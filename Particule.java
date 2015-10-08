@@ -7,6 +7,66 @@ public class Particule {
 	Vecteur coordonnes;
 	Vecteur vitesse;
 	Vecteur acceleration;
+	double rayon;
+	
+	/**
+	 * @return the rayon
+	 */
+	public double getRayon() {
+		return rayon;
+	}
+
+
+	/**
+	 * @return the vitesse
+	 */
+	public Vecteur getVitesse() {
+		return vitesse;
+	}
+
+
+	/**
+	 * @return the acceleration
+	 */
+	public Vecteur getAcceleration() {
+		return acceleration;
+	}
+
+
+	/**
+	 * @param acceleration the acceleration to set
+	 */
+	public void setAcceleration(Vecteur acceleration) {
+		this.acceleration = acceleration;
+	}
+
+
+	Vecteur vitesseFuture;
+	
+	/**
+	 * @param vitesseFuture the vitesseFuture to set
+	 */
+	public void setVitesseFuture(Vecteur vitesseFuture) {
+		this.vitesseFuture = vitesseFuture;
+	}
+
+
+	/**
+	 * @return the coordonnes
+	 */
+	public Vecteur getCoordonnes() {
+		return coordonnes;
+	}
+
+
+	/**
+	 * @return the masse
+	 */
+	public double getMasse() {
+		return masse;
+	}
+
+
 	double masse;
 	double charge;
 	

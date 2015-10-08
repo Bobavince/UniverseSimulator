@@ -7,7 +7,10 @@ public class Vecteur {
 	double y;
 	double z;
 	
-
+	public Vecteur(double x, double y, double z){
+		
+	}
+	
 	/**
 	 * @param scalaire
 	 * @return

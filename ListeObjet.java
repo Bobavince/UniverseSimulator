@@ -19,7 +19,7 @@ public class ListeObjet {
 	/**
 	 * @return the listeParticule
 	 */
-	public LinkedList getListeParticule() {
+	public LinkedList<Particule> getListeParticule() {
 		
 		return listeParticule;
 	}
