@@ -1,10 +1,12 @@
+import java.util.LinkedList;
+
 /**
  * @author Vincent F
  *
  */
 public class ListeObjet {
 	
-	Particule listeParticule;
+	LinkedList<Particule> listeParticule = new LinkedList<Particule>();
 
 	
 	/** Constructeur
@@ -17,7 +19,7 @@ public class ListeObjet {
 	/**
 	 * @return the listeParticule
 	 */
-	public Particule getListeParticule() {
+	public LinkedList getListeParticule() {
 		
 		return listeParticule;
 	}

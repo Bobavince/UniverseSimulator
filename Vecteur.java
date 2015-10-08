@@ -57,6 +57,24 @@ public class Vecteur {
 		return resultat;
 	}
 	
+	/** Calculer le module d'un vecteur
+	 * @return
+	 */
+	public double module(){
+		double resultat = 0;
+
+		return resultat;
+	}
+	
+	/** Calculer le module au carré (donc sans utiliser la racine) d'un vecteur
+	 * @return
+	 */
+	public double moduleCarre(){
+		double resultat = 0;
+
+		return resultat;
+	}
+	
 	/**
 	 * @param vect
 	 * @return
