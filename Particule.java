@@ -10,6 +10,10 @@ public class Particule {
 	private int num;
 	private double rayon;
 	private Vecteur vitesseFuture;
+	private static int masseParDefaut= 10;
+	private static int rayonParDefaut= 10;
+	private static String typeParDefaut= "Particule";
+	private static int chargeParDefaut=0;
 	
 	/** Constructeur
 	 * @param x
@@ -31,27 +35,21 @@ public class Particule {
 		compteur++;
 		num=compteur;
 		this.rayon= rayon;
+		charge= chargeParDefaut;
 	}
 	
-	public Particule (Vecteur coord, Vecteur vit, Vecteur acc, double rayon){
+	public Particule (Vecteur coord, Vecteur vit, Vecteur acc){
 		coordonnees=coord;
 		vitesse=vit;
 		acceleration=acc;
-		masse=10;
-		type="particule";
+		masse=masseParDefaut;
+		type=typeParDefaut;
 		compteur++;
 		num=compteur;
-		this.rayon=rayon;
+		rayon=rayonParDefaut;
+		charge=chargeParDefaut;
 	}
-
-	public double getMasse() {
-		return masse;
-	}
-
-	public void setMasse(double masse) {
-		this.masse = masse;
-	}
-
+	
 	public Vecteur getCoordonnees(){
 		return coordonnees;
 	}
@@ -70,6 +68,14 @@ public class Particule {
 	
 	public double getRayon(){
 		return rayon;
+	}
+	
+	public double getMasse() {
+		return masse;
+	}
+
+	public void setMasse(double masse) {
+		this.masse = masse;
 	}
 	
 	public Vecteur getVitesseFuture(){
@@ -112,7 +118,6 @@ public class Particule {
 		vitesseFuture=v;
 	}
 	
-	
 	public void passerEtatFutur(){
 		if(vitesse != vitesseFuture){
 			vitesse = vitesseFuture; 
@@ -135,10 +140,11 @@ public class Particule {
 		}
 		if(!(o instanceof Particule)){
 			return false;
-		} else {
+		}
+		else{
 			Particule p= (Particule) o;
-			return vitesse.equals(p.vitesse)&&coordonnees.equals(p.coordonnees)&&acceleration.equals(p.acceleration)&&masse==p.masse&&type.equals(p.type);
+			return vitesse.equals(p.vitesse)&&coordonnees.equals(p.coordonnees)&&acceleration.equals(p.acceleration)&&masse==p.masse&&type.equals(p.type)&&num==p.num&&rayon==p.rayon&&charge==p.charge;
 		}
 	}
-	
+		
 }
