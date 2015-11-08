@@ -1,92 +1,72 @@
-/**
- * @author Vincent F
- *
- */
-public class Vecteur {
-	double x;
-	double y;
-	double z;
+public class Vecteur{
+	
+	private double x; // ou tableau de 3 cases ?
+	private double y;
+	private double z;
 	
 	public Vecteur(double x, double y, double z){
-		
+		this.x = x;
+		this.y = y;
+		this.z = z;
 	}
 	
-	/**
-	 * @param scalaire
-	 * @return
-	 */
-	public Vecteur multScalaire(double scalaire){
-		Vecteur resultat = null;
-		
-		return resultat;
+	public double getComposante(char comp){
+		double res;
+		if (comp == 'x'){
+			res = x;
+		} else if (comp == 'y'){
+			res = y;
+		} else {
+			res = z;
+		}
+		return res;
 	}
 	
-	/**
-	 * @param vect
-	 * @return
-	 */
-	public double prodScalaire(Vecteur vect){
-		double resultat = 0;
-
-		return resultat;
+	public boolean equals(Vecteur param){
+		boolean res = (x == param.getComposante('x'))
+						&& (y == param.getComposante('y'))
+						&& (z == param.getComposante('z'));
+		return res;
 	}
 	
-	/**
-	 * @param vect
-	 * @return
-	 */
-	public Vecteur addition(Vecteur vect){
-		Vecteur resultat = null;
-
-		return resultat;
+	public String toString(){
+		return "("+x+","+y+","+z+")";
 	}
 	
-	/**
-	 * @param vect
-	 * @return
-	 */
-	public Vecteur soustraction(Vecteur vect){
-		Vecteur resultat = null;
-
-		return resultat;
-	}
-
-	/**
-	 * @return
-	 */
-	public Vecteur normalise(){
-		Vecteur resultat = null;
-
-		return resultat;
+	public Vecteur addition(Vecteur param){ // Vecteur ou void ? modif irréversible du vecteur ?
+		double resx = x + param.getComposante('x');
+		double resy = y + param.getComposante('y');
+		double resz = z + param.getComposante('z');
+		Vecteur res = new Vecteur(resx, resy, resz);
+		return res;
 	}
 	
-	/** Calculer le module d'un vecteur
-	 * @return
-	 */
-	public double module(){
-		double resultat = 0;
-
-		return resultat;
+	public Vecteur soustraction(Vecteur param){
+		double resx = x - param.getComposante('x');
+		double resy = y - param.getComposante('y');
+		double resz = z - param.getComposante('z');
+		Vecteur res = new Vecteur(resx, resy, resz);
+		return res;
 	}
 	
-	/** Calculer le module au carré (donc sans utiliser la racine) d'un vecteur
-	 * @return
-	 */
+	public Vecteur multScalaire(double a){
+		Vecteur res = new Vecteur(x*a, y*a, z*a);
+		return res;
+	}
+	
+	public double prodScalaire(Vecteur param){
+		double res = x*param.getComposante('x') 
+						+ y*param.getComposante('y')
+						+ z*param.getComposante('z');	
+		return res;
+	}
+	
 	public double moduleCarre(){
-		double resultat = 0;
-
-		return resultat;
+		return x*x + y*y + z*z;
 	}
 	
-	/**
-	 * @param vect
-	 * @return
-	 */
-	public boolean equals(Vecteur vect) {
-		boolean resultat = false;
-
-		return resultat;
+	public double module(){
+		return Math.sqrt(this.moduleCarre());
 	}
-
-
+	
 }
