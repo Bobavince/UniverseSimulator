@@ -10,7 +10,7 @@ public class Moteur {
 	public static Vecteur normeZ = new Vecteur(0,0,1);
 
 	public Moteur(double coefGravite){
-		this.coefGravite = coefGravite;
+		Moteur.coefGravite = coefGravite;
 	}
 	/** Méthode qui calcul l'interaction entre deux particules. 
 	 * @param objetUn
@@ -36,7 +36,7 @@ public class Moteur {
 	 * @return Le vecteur distance entre l'objetUn et l'objetDeux
 	 */
 	public Vecteur distance (Particule objetUn, Particule objetDeux){
-		return objetUn.getCoordonnes().soustraction(objetDeux.getCoordonnes()); // Coordonnées Objets A - Coordonnées Objet 2    Soustrait les deux coordonnées des objets 2 et 1 
+		return objetUn.getCoordonnees().soustraction(objetDeux.getCoordonnees()); // Coordonnées Objets A - Coordonnées Objet 2    Soustrait les deux coordonnées des objets 2 et 1 
 	}
 	
 	/**
