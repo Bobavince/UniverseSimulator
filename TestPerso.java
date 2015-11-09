@@ -4,8 +4,6 @@
  */
 public class TestPerso {
 	public static void main(String[] args) {
-		// Tester ici vos classes
-
+		new Affichage();
 	}
-
 }
