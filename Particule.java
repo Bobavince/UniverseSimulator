@@ -1,3 +1,5 @@
+import java.awt.Graphics;
+
 public class Particule {
 	
 	private Vecteur coordonnees;
@@ -146,5 +148,6 @@ public class Particule {
 			return vitesse.equals(p.vitesse)&&coordonnees.equals(p.coordonnees)&&acceleration.equals(p.acceleration)&&masse==p.masse&&type.equals(p.type)&&num==p.num&&rayon==p.rayon&&charge==p.charge;
 		}
 	}
-		
+	
+	public void dessiner(Graphics g){}
 }

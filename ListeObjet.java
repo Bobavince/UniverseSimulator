@@ -1,3 +1,4 @@
+import java.awt.Graphics;
 import java.util.LinkedList ;
 public class ListeObjet {
 	
@@ -24,6 +25,8 @@ public class ListeObjet {
 	public void sortirParticule(int i){
 		listeParticule.remove(i);
 	}
+	
+	public void dessinerListe(Graphics g){}
 	
 	public String toString(){
 		if(listeParticule.size()==0){

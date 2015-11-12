@@ -1,19 +1,220 @@
 import java.awt.*;
 import java.util.*;
+
 import javax.swing.*;
 
 public class Affichage extends JFrame {
+	
+	//---- ELEMENTS NON GRAPHIQUES ----
+	ListeObjet listeDesParticules = new ListeObjet();
+	
+	//---- ELEMENTS NECESSAIRES ----
+	private JButton boutonAjout = new JButton("Ajouter Particule");
+	private JButton boutonRetirer = new JButton("Retirer Particule");
+	
+	private JLabel labelListe = new JLabel("Liste particules");
+	private JComboBox<String> listeObjets = new JComboBox<String>();
+	
+	private JLabel labelCoord = new JLabel("Coordonnées");
+	private JLabel labelX = new JLabel(" x ");
+	private JLabel labelY = new JLabel(" y ");
+	private JLabel labelZ = new JLabel(" z ");
+	private JSpinner coordX = new JSpinner();
+	private JSpinner coordY = new JSpinner();
+	private JSpinner coordZ = new JSpinner();
+	
+	private JLabel labelVitesse = new JLabel("Vitesse");
+	private JLabel labelVx = new JLabel(" Vx ");
+	private JLabel labelVy = new JLabel(" Vy ");
+	private JLabel labelVz = new JLabel(" Vz ");
+	private JSpinner vitesX = new JSpinner();
+	private JSpinner vitesY = new JSpinner();
+	private JSpinner vitesZ = new JSpinner();
+
+	private JLabel labelAcceleration = new JLabel("Accélération");
+	private JLabel labelAx = new JLabel(" Ax ");
+	private JLabel labelAy = new JLabel(" Ay ");
+	private JLabel labelAz = new JLabel(" Az ");
+	private JSpinner accelX = new JSpinner();
+	private JSpinner accelY = new JSpinner();
+	private JSpinner accelZ = new JSpinner();
+	
+	private JButton boutonNext = new JButton("t -> t+1");
+	
+	//---- ELEMENTS EVOLUES ----
+	
+	private JLabel labelConsole = new JLabel("Console");
+	private JTextArea areaConsole = new JTextArea();
+	
+	private JLabel labelCstGravitation = new JLabel("Constante Gravitation");
+	private JSpinner cstGravitation = new JSpinner();
+
+	private JLabel labelVitesseSimulation = new JLabel("Vitesse simulation");
+	private JSpinner vitesseSimulation = new JSpinner();
+	
+	private JButton boutonPause = new JButton("PAUSE");
+	
+	
 	public Affichage() {
-		setSize(800,800); //Dimension initiales
-		setMinimumSize(new Dimension(600, 600)); // dimensions minimales
+		setSize(800,600); //Dimension initiales
+		setMinimumSize(new Dimension(870, 600)); // dimensions minimales /!\ 870 est la longueur minimale pour que les boutons soient affichés correctement !
 		
+		//Le Conteneur de la feneêtre - Pas forcément nécessaire
+		JPanel conteneurPrincipal = new JPanel();
+
+		//Le conteneur haut et le conteneur bas
+		PanelDessin conteneurNordPrincipal = new PanelDessin(this);
+		JPanel conteneurSudPrincipal = new JPanel();
+
+		//Les deux conteneurs
+		JPanel conteneurSudOuest = new JPanel();
+		JPanel conteneurSudEst = new JPanel();
 		
+		//STRUCTURE PRINCIPALE AVEC 2 STRUCTURES SECONDAIRES
+		conteneurPrincipal.setLayout(new BorderLayout());
+		conteneurPrincipal.add(conteneurNordPrincipal, BorderLayout.CENTER);
+		conteneurPrincipal.add(conteneurSudPrincipal, BorderLayout.SOUTH);
 		
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //
+		//STRUCTURE SECONDAIRE SUD AVEC 2 STRUCTURES TERTIAIRES
+		conteneurSudPrincipal.setLayout(new BorderLayout());
+		conteneurSudPrincipal.add(conteneurSudOuest, BorderLayout.WEST);
+		conteneurSudPrincipal.add(conteneurSudEst, BorderLayout.EAST);
+		
+		//On met les boutons dans les interfaces : interface bas gauche
+		conteneurSudOuest.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		conteneurSudOuest.setLayout(new GridLayout(0,2,5,5));
+		
+		//On crée un conteneur pour un affichage pour les boutons ajouter/retirer
+		JPanel conteneurAjoutRetirer = new JPanel();
+		conteneurAjoutRetirer.setLayout(new GridLayout(1,2,5,5));
+		conteneurAjoutRetirer.add(boutonAjout);
+		conteneurAjoutRetirer.add(boutonRetirer);
+		
+		//On crée un conteneur pour un affichage à l'utilisateur
+		JPanel conteneurConsole = new JPanel();
+		conteneurConsole.setLayout(new GridLayout(1,2,5,5));
+		conteneurConsole.add(labelConsole);
+		conteneurConsole.add(areaConsole);
+		
+		//On crée un conteneur pour la gravitation
+		JPanel conteneurGravitation = new JPanel();
+		conteneurGravitation.setLayout(new GridLayout(1,2,5,5));
+		conteneurGravitation.add(labelCstGravitation);
+		conteneurGravitation.add(cstGravitation);
+		
+		//On crée un conteneur pour la vitesse de Simulation
+		JPanel conteneurVitesseSimulation = new JPanel();
+		conteneurVitesseSimulation.setLayout(new GridLayout(1,2,5,5));
+		conteneurVitesseSimulation.add(labelVitesseSimulation);
+		conteneurVitesseSimulation.add(vitesseSimulation);
+		
+		//On crée un conteneur pour la Pause et Next
+		JPanel conteneurPauseNext = new JPanel();
+		conteneurPauseNext.setLayout(new GridLayout(1,2,5,5));
+		conteneurPauseNext.add(boutonPause);
+		conteneurPauseNext.add(boutonNext);
+		
+		//On centres les JLabel
+		labelConsole.setHorizontalAlignment(JLabel.CENTER);
+		labelCstGravitation.setHorizontalAlignment(JLabel.CENTER);
+		labelVitesseSimulation.setHorizontalAlignment(JLabel.CENTER);
+		
+		//On ajoute tout au bloc sud ouest
+		conteneurSudOuest.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		conteneurSudOuest.setLayout(new GridLayout(0,1,5,5));
+		conteneurSudOuest.add(conteneurAjoutRetirer);
+		conteneurSudOuest.add(conteneurConsole);
+		conteneurSudOuest.add(conteneurGravitation);
+		conteneurSudOuest.add(conteneurVitesseSimulation);
+		conteneurSudOuest.add(conteneurPauseNext);
+		//---- FIN BLOC SUD OUEST ----
+		
+		//---- DEBUT BLOC SUD EST ----
+		//On crée un conteneur pour la liste de particule
+		JPanel conteneurListe = new JPanel();
+		conteneurListe.setLayout(new GridLayout(1,2,5,5));
+		conteneurListe.add(labelListe);
+		conteneurListe.add(listeObjets);
+		
+		//On centre tous les JLabel
+		labelListe.setHorizontalAlignment(JLabel.CENTER);
+		
+		//On crée un conteneur pour les coordonnées
+		JPanel conteneurCoord = new JPanel();
+		conteneurCoord.setLayout(new GridLayout(1,7,5,5));
+		conteneurCoord.add(labelCoord);
+		conteneurCoord.add(labelX);
+		conteneurCoord.add(coordX);
+		conteneurCoord.add(labelY);
+		conteneurCoord.add(coordY);
+		conteneurCoord.add(labelZ);
+		conteneurCoord.add(coordZ);
+		
+		//On centre tous les JLabel
+		labelCoord.setHorizontalAlignment(JLabel.CENTER);
+		labelX.setHorizontalAlignment(JLabel.CENTER);
+		labelY.setHorizontalAlignment(JLabel.CENTER);
+		labelZ.setHorizontalAlignment(JLabel.CENTER);
+
+		//On crée un conteneur pour les vitesse
+		JPanel conteneurVitesse = new JPanel();
+		conteneurVitesse.setLayout(new GridLayout(1,7,5,5));
+		conteneurVitesse.add(labelVitesse);
+		conteneurVitesse.add(labelVx);
+		conteneurVitesse.add(vitesX);
+		conteneurVitesse.add(labelVy);
+		conteneurVitesse.add(vitesY);
+		conteneurVitesse.add(labelVz);
+		conteneurVitesse.add(vitesZ);
+		
+		//On centre tous les JLabel
+		labelVitesse.setHorizontalAlignment(JLabel.CENTER);
+		labelVx.setHorizontalAlignment(JLabel.CENTER);
+		labelVy.setHorizontalAlignment(JLabel.CENTER);
+		labelVz.setHorizontalAlignment(JLabel.CENTER);
+
+		//On crée un conteneur pour les accélérations
+		JPanel conteneurAcceleration = new JPanel();
+		conteneurAcceleration.setLayout(new GridLayout(1,7,5,5));
+		conteneurAcceleration.add(labelAcceleration);
+		conteneurAcceleration.add(labelAx);
+		conteneurAcceleration.add(accelX);
+		conteneurAcceleration.add(labelAy);
+		conteneurAcceleration.add(accelY);
+		conteneurAcceleration.add(labelAz);
+		conteneurAcceleration.add(accelZ);
+		
+		//On centre tous les JLabel
+		labelAcceleration.setHorizontalAlignment(JLabel.CENTER);
+		labelAx.setHorizontalAlignment(JLabel.CENTER);
+		labelAy.setHorizontalAlignment(JLabel.CENTER);
+		labelAz.setHorizontalAlignment(JLabel.CENTER);
+		
+		//On met les boutons dans les interfaces : interface bas droite
+		JPanel conteneurParticule = new JPanel();
+		conteneurParticule.setLayout(new GridLayout(3,1,5,5));
+		conteneurParticule.add(conteneurCoord);
+		conteneurParticule.add(conteneurVitesse);
+		conteneurParticule.add(conteneurAcceleration);
+		
+		//On met tout dans le conteneur SUD EST.
+		conteneurSudEst.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		conteneurSudEst.setLayout(new BorderLayout());
+		conteneurSudEst.add(conteneurListe, BorderLayout.NORTH);
+		conteneurSudEst.add(conteneurParticule, BorderLayout.CENTER);
+		
+		//---- FIN BLOC SUD EST ----
+		
+		//On attribue le conteneur principal à la fenêtre
+		this.setContentPane(conteneurPrincipal);
+		
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Fermer le programme avec la croix
 		this.setLocationRelativeTo(null); //Centre la fenêtre à l'écran
 		this.setTitle("Universe Simulator"); //Entête de la fenêtre
 		setVisible(true); //Afficher la fenêtre
 	}
 
-
+	public ListeObjet getListeObjets(){
+		return listeDesParticules;
+	}
 }
