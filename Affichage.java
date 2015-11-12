@@ -197,8 +197,11 @@ public class Affichage extends JFrame {
 		conteneurParticule.add(conteneurVitesse);
 		conteneurParticule.add(conteneurAcceleration);
 		
-		//On met tout dans le conteneur SUD EST.
+		//On rajoute des bordures pour que ce soit aéré.
 		conteneurSudEst.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		conteneurListe.setBorder(BorderFactory.createEmptyBorder(0, 5, 5, 5));
+		
+		//On met tout dans le conteneur SUD EST.
 		conteneurSudEst.setLayout(new BorderLayout());
 		conteneurSudEst.add(conteneurListe, BorderLayout.NORTH);
 		conteneurSudEst.add(conteneurParticule, BorderLayout.CENTER);
