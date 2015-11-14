@@ -9,12 +9,13 @@ public class Affichage extends JFrame {
 	ListeObjet listeDesParticules = new ListeObjet();
 	
 	//---- ELEMENTS NECESSAIRES ----
+	// AJOUT/RETIRER BOUTONS
 	private JButton boutonAjout = new JButton("Ajouter Particule");
 	private JButton boutonRetirer = new JButton("Retirer Particule");
-	
+	// LISTE PARTICULE ELEMENTS
 	private JLabel labelListe = new JLabel("Liste particules");
 	private JComboBox<String> listeObjets = new JComboBox<String>();
-	
+	// COORDONNES ELEMENTS
 	private JLabel labelCoord = new JLabel("Coordonnées");
 	private JLabel labelX = new JLabel(" x ");
 	private JLabel labelY = new JLabel(" y ");
@@ -22,7 +23,7 @@ public class Affichage extends JFrame {
 	private JSpinner coordX = new JSpinner();
 	private JSpinner coordY = new JSpinner();
 	private JSpinner coordZ = new JSpinner();
-	
+	// VITESSES ELEMENTS
 	private JLabel labelVitesse = new JLabel("Vitesse");
 	private JLabel labelVx = new JLabel(" Vx ");
 	private JLabel labelVy = new JLabel(" Vy ");
@@ -30,7 +31,7 @@ public class Affichage extends JFrame {
 	private JSpinner vitesX = new JSpinner();
 	private JSpinner vitesY = new JSpinner();
 	private JSpinner vitesZ = new JSpinner();
-
+    //ACCELERATION ELEMENT
 	private JLabel labelAcceleration = new JLabel("Accélération");
 	private JLabel labelAx = new JLabel(" Ax ");
 	private JLabel labelAy = new JLabel(" Ay ");
@@ -38,8 +39,10 @@ public class Affichage extends JFrame {
 	private JSpinner accelX = new JSpinner();
 	private JSpinner accelY = new JSpinner();
 	private JSpinner accelZ = new JSpinner();
-	
+	// NEXT BOUTON
 	private JButton boutonNext = new JButton("t -> t+1");
+	// FORME DES JSPINNER EN MODE "DOUBLE"
+	//A MODIFIER // SpinnerNumberModel modelJSpinnerDouble = new SpinnerNumberModel(0.0, -1000.0, 1000.0, 0.1);
 	
 	//---- ELEMENTS EVOLUES ----
 	
@@ -59,14 +62,16 @@ public class Affichage extends JFrame {
 		setSize(800,600); //Dimension initiales
 		setMinimumSize(new Dimension(870, 600)); // dimensions minimales /!\ 870 est la longueur minimale pour que les boutons soient affichés correctement !
 		
-		//Le Conteneur de la feneêtre - Pas forcément nécessaire
+		// ---- ELEMENTS GENERAUX ----
+		
+		//CONTENEUR PRINCIPAL DE LA FENETRE (pas forcément nécessaire ... peut être)
 		JPanel conteneurPrincipal = new JPanel();
 
-		//Le conteneur haut et le conteneur bas
+		//DEUX PRINCIPAUX CONTENEURS
 		PanelDessin conteneurNordPrincipal = new PanelDessin(this);
 		JPanel conteneurSudPrincipal = new JPanel();
 
-		//Les deux conteneurs
+		//DEUX PETITS CONTENEURS
 		JPanel conteneurSudOuest = new JPanel();
 		JPanel conteneurSudEst = new JPanel();
 		
@@ -79,10 +84,6 @@ public class Affichage extends JFrame {
 		conteneurSudPrincipal.setLayout(new BorderLayout());
 		conteneurSudPrincipal.add(conteneurSudOuest, BorderLayout.WEST);
 		conteneurSudPrincipal.add(conteneurSudEst, BorderLayout.EAST);
-		
-		//On met les boutons dans les interfaces : interface bas gauche
-		conteneurSudOuest.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-		conteneurSudOuest.setLayout(new GridLayout(0,2,5,5));
 		
 		//On crée un conteneur pour un affichage pour les boutons ajouter/retirer
 		JPanel conteneurAjoutRetirer = new JPanel();
@@ -119,7 +120,7 @@ public class Affichage extends JFrame {
 		labelCstGravitation.setHorizontalAlignment(JLabel.CENTER);
 		labelVitesseSimulation.setHorizontalAlignment(JLabel.CENTER);
 		
-		//On ajoute tout au bloc sud ouest
+		//DEFINIT FORME QUART BAS GAUCHE + AJOUTS ELEMENTS
 		conteneurSudOuest.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		conteneurSudOuest.setLayout(new GridLayout(0,1,5,5));
 		conteneurSudOuest.add(conteneurAjoutRetirer);
@@ -149,7 +150,7 @@ public class Affichage extends JFrame {
 		conteneurCoord.add(coordY);
 		conteneurCoord.add(labelZ);
 		conteneurCoord.add(coordZ);
-		
+        
 		//On centre tous les JLabel
 		labelCoord.setHorizontalAlignment(JLabel.CENTER);
 		labelX.setHorizontalAlignment(JLabel.CENTER);
@@ -208,6 +209,23 @@ public class Affichage extends JFrame {
 		
 		//---- FIN BLOC SUD EST ----
 		
+		// ---- MODIFICATIONS DIVERSES ----
+		//MODIFICATION DES JSPINNER EN DOUBLE. Problème : fait que tous les Jspinner se modifie de la même manière. Il faudrait donc crérer autant de model que de JSpinner.
+		/* modelJSpinnerDouble.setStepSize(0.1);
+		
+		coordX.setModel(modelJSpinnerDouble);
+		coordY.setModel(modelJSpinnerDouble);
+		coordZ.setModel(modelJSpinnerDouble);
+		vitesX.setModel(modelJSpinnerDouble);
+		vitesY.setModel(modelJSpinnerDouble);
+		vitesZ.setModel(modelJSpinnerDouble);
+		accelX.setModel(modelJSpinnerDouble);
+		accelY.setModel(modelJSpinnerDouble);
+		accelZ.setModel(modelJSpinnerDouble);
+		cstGravitation.setModel(modelJSpinnerDouble);
+		vitesseSimulation.setModel(modelJSpinnerDouble);*/
+		
+		// ---- FINALISATION ----
 		//On attribue le conteneur principal à la fenêtre
 		this.setContentPane(conteneurPrincipal);
 		

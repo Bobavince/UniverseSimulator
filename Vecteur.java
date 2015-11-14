@@ -1,72 +1,86 @@
 public class Vecteur{
 	
-	private double x; // ou tableau de 3 cases ?
-	private double y;
-	private double z;
+	private double[] vect = new double[3];
 	
 	public Vecteur(double x, double y, double z){
-		this.x = x;
-		this.y = y;
-		this.z = z;
+		vect[0] = x;
+		vect[1] = y;
+		vect[2] = z;
 	}
 	
-	public double getComposante(char comp){
-		double res;
-		if (comp == 'x'){
-			res = x;
-		} else if (comp == 'y'){
-			res = y;
-		} else {
-			res = z;
+	public double[] getTabVecteur(){
+		return vect;
+	}
+	
+	public void setComposante(int composante,double a){
+		vect[composante] = a;
+	}
+	
+	public boolean equals(Vecteur param){
+		boolean res = false;
+		if (param != null){
+			res = (vect[0] == param.getTabVecteur()[0])
+					&& (vect[1] == param.getTabVecteur()[1])
+					&& (vect[2] == param.getTabVecteur()[2]);
 		}
 		return res;
 	}
 	
-	public boolean equals(Vecteur param){
-		boolean res = (x == param.getComposante('x'))
-						&& (y == param.getComposante('y'))
-						&& (z == param.getComposante('z'));
-		return res;
+	@Override
+	public boolean equals(Object arg0) {
+		// TODO Auto-generated method stub
+		return super.equals(arg0);
 	}
-	
+
 	public String toString(){
-		return "("+x+","+y+","+z+")";
+		return "("+vect[0]+","+vect[1]+","+vect[2]+")";
 	}
 	
 	public Vecteur addition(Vecteur param){ // Vecteur ou void ? modif irréversible du vecteur ?
-		double resx = x + param.getComposante('x');
-		double resy = y + param.getComposante('y');
-		double resz = z + param.getComposante('z');
-		Vecteur res = new Vecteur(resx, resy, resz);
+		Vecteur res = new Vecteur(0,0,0);
+		if (param != null){
+			res.setComposante(0, vect[0] + param.getTabVecteur()[0]);
+			res.setComposante(1, vect[1] + param.getTabVecteur()[1]);
+			res.setComposante(2, vect[2] + param.getTabVecteur()[2]);
+		}
 		return res;
 	}
 	
 	public Vecteur soustraction(Vecteur param){
-		double resx = x - param.getComposante('x');
-		double resy = y - param.getComposante('y');
-		double resz = z - param.getComposante('z');
-		Vecteur res = new Vecteur(resx, resy, resz);
+		Vecteur res = new Vecteur(0,0,0);
+		if (param != null){
+			res.setComposante(0, vect[0] - param.getTabVecteur()[0]);
+			res.setComposante(1, vect[1] - param.getTabVecteur()[1]);
+			res.setComposante(2, vect[2] - param.getTabVecteur()[2]);
+		}
 		return res;
 	}
 	
 	public Vecteur multScalaire(double a){
-		Vecteur res = new Vecteur(x*a, y*a, z*a);
+		Vecteur res = new Vecteur(vect[0]*a, vect[1]*a, vect[2]*a);
 		return res;
 	}
 	
 	public double prodScalaire(Vecteur param){
-		double res = x*param.getComposante('x') 
-						+ y*param.getComposante('y')
-						+ z*param.getComposante('z');	
+		double res =0;
+		if (param != null){
+			res = vect[0]*param.getTabVecteur()[0]
+					+ vect[1]*param.getTabVecteur()[1]
+					+ vect[2]*param.getTabVecteur()[2];
+		}
 		return res;
 	}
 	
 	public double moduleCarre(){
-		return x*x + y*y + z*z;
+		return vect[0]*vect[0] + vect[1]*vect[1] + vect[2]*vect[2];
 	}
 	
 	public double module(){
 		return Math.sqrt(this.moduleCarre());
+	}
+	
+	public Vecteur normalise(){
+		return this.multScalaire(1/this.module());
 	}
 	
 }
