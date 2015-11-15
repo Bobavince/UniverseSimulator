@@ -7,7 +7,8 @@ public class Affichage extends JFrame {
 	
 	//---- ELEMENTS NON GRAPHIQUES ----
 	ListeObjet listeDesParticules = new ListeObjet();
-	
+	Moteur moteurPhysique = new Moteur(1); //1 est le Coef de gravité
+
 	//---- ELEMENTS NECESSAIRES ----
 	// AJOUT/RETIRER BOUTONS
 	private JButton boutonAjout = new JButton("Ajouter Particule");
@@ -57,6 +58,12 @@ public class Affichage extends JFrame {
 	
 	private JButton boutonPause = new JButton("PAUSE");
 	
+	//TOUS LE JPANEL
+	JPanel conteneurPrincipal;
+	PanelDessin conteneurNordPrincipal;
+	JPanel conteneurSudPrincipal;
+	JPanel conteneurSudOuest;
+	JPanel conteneurSudEst;
 	
 	public Affichage() {
 		setSize(800,600); //Dimension initiales
@@ -65,15 +72,15 @@ public class Affichage extends JFrame {
 		// ---- ELEMENTS GENERAUX ----
 		
 		//CONTENEUR PRINCIPAL DE LA FENETRE (pas forcément nécessaire ... peut être)
-		JPanel conteneurPrincipal = new JPanel();
+		conteneurPrincipal = new JPanel();
 
 		//DEUX PRINCIPAUX CONTENEURS
-		PanelDessin conteneurNordPrincipal = new PanelDessin(this);
-		JPanel conteneurSudPrincipal = new JPanel();
+		conteneurNordPrincipal = new PanelDessin(this);
+		conteneurSudPrincipal = new JPanel();
 
 		//DEUX PETITS CONTENEURS
-		JPanel conteneurSudOuest = new JPanel();
-		JPanel conteneurSudEst = new JPanel();
+		conteneurSudOuest = new JPanel();
+		conteneurSudEst = new JPanel();
 		
 		//STRUCTURE PRINCIPALE AVEC 2 STRUCTURES SECONDAIRES
 		conteneurPrincipal.setLayout(new BorderLayout());
@@ -225,6 +232,28 @@ public class Affichage extends JFrame {
 		cstGravitation.setModel(modelJSpinnerDouble);
 		vitesseSimulation.setModel(modelJSpinnerDouble);*/
 		
+		// ---- ECOUTEURS ---- NOTE : DECOMENTEZ UNE FOIS IMPLEMENTE ! =)
+		
+		// AJOUT/RETIRER ECOUTEUR
+		//EcouteurBoutonAjout boutonAjout = new EcouteurBoutonAjout(this);
+		//EcouteurBoutonRetirer boutonRetirer = new EcouteurBoutonRetirer(this);
+		// LISTE OBJET ECOUTEUR
+		//EcouteurListeObjet listeObjets = new EcouteurListeObjet(this);
+		// COORDONNES ECOUTEUR
+		//EcouteurCoordX coordX = new EcouteurCoordX(this);
+		//EcouteurCoordY coordY = new EcouteurCoordY(this);
+		//EcouteurCoordZ coordZ = new EcouteurCoordZ(this);
+		// VITESSES ECOUTEUR
+		//EcouteurVitesX vitesX = new EcouteurVitesX(this);
+		//EcouteurVitesY vitesY = new EcouteurVitesY(this);
+		//EcouteurVitesZ vitesZ = new EcouteurVitesZ(this);
+	    //ACCELERATION ECOUTEUR
+		//EcouteurAccelX accelX = new EcouteurAccelX(this);
+		//EcouteurAccelY accelY = new EcouteurAccelY(this);
+		//EcouteurAccelZ accelZ = new EcouteurAccelZ(this);
+		// NEXT BOUTON ECOUTEUR
+		EcouteurBoutonNext boutonNext = new EcouteurBoutonNext(this);
+		
 		// ---- FINALISATION ----
 		//On attribue le conteneur principal à la fenêtre
 		this.setContentPane(conteneurPrincipal);
@@ -237,5 +266,13 @@ public class Affichage extends JFrame {
 
 	public ListeObjet getListeObjets(){
 		return listeDesParticules;
+	}
+	
+	public PanelDessin getZoneDessin(){
+		return conteneurNordPrincipal;
+	}
+	
+	public Moteur getMoteur(){
+		return moteurPhysique;
 	}
 }

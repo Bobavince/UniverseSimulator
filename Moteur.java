@@ -12,6 +12,7 @@ public class Moteur {
 	public Moteur(double coefGravite){
 		Moteur.coefGravite = coefGravite;
 	}
+	
 	/** Méthode qui calcul l'interaction entre deux particules. 
 	 * @param objetUn
 	 * @param objetDeux
