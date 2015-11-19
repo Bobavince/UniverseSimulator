@@ -40,6 +40,14 @@ public class Affichage extends JFrame {
 	private JSpinner accelX = new JSpinner();
 	private JSpinner accelY = new JSpinner();
 	private JSpinner accelZ = new JSpinner();
+	//MASSE COULEUR RAYON
+	private JLabel labelMasse = new JLabel(" Masse ");
+	private JLabel labelCouleur = new JLabel(" Couleur ");
+	private JLabel labelRayon = new JLabel(" Rayon ");
+	private JSpinner spinnerMasse = new JSpinner();
+	private JSpinner spinnerRayon = new JSpinner();
+	private JButton boutonCouleur = new  JButton("Modifier couleur");
+	
 	// NEXT BOUTON
 	private JButton boutonNext = new JButton("t -> t+1");
 	// FORME DES JSPINNER EN MODE "DOUBLE"
@@ -66,11 +74,10 @@ public class Affichage extends JFrame {
 	JPanel conteneurSudEst;
 	
 	public Affichage() {
-		setSize(800,600); //Dimension initiales
-		setMinimumSize(new Dimension(870, 600)); // dimensions minimales /!\ 870 est la longueur minimale pour que les boutons soient affichés correctement !
-		
+		setSize(1080,600); //Dimension initiales
+		setMinimumSize(new Dimension(1080, 600)); // dimensions minimales /!\ 870 est la longueur minimale pour que les boutons soient affichés correctement !
+
 		// ---- ELEMENTS GENERAUX ----
-		
 		//CONTENEUR PRINCIPAL DE LA FENETRE (pas forcément nécessaire ... peut être)
 		conteneurPrincipal = new JPanel();
 
@@ -119,7 +126,7 @@ public class Affichage extends JFrame {
 		//On crée un conteneur pour la Pause et Next
 		JPanel conteneurPauseNext = new JPanel();
 		conteneurPauseNext.setLayout(new GridLayout(1,2,5,5));
-		conteneurPauseNext.add(boutonPause);
+		//conteneurPauseNext.add(boutonPause); // A AJOUTER QUAND LA FONCTION SERA DISPONIBLE
 		conteneurPauseNext.add(boutonNext);
 		
 		//On centres les JLabel
@@ -127,13 +134,19 @@ public class Affichage extends JFrame {
 		labelCstGravitation.setHorizontalAlignment(JLabel.CENTER);
 		labelVitesseSimulation.setHorizontalAlignment(JLabel.CENTER);
 		
+		//GESTON LOGO
+		ImageIcon image = new ImageIcon("UNIVERSE2.png");
+		JLabel imagelabel = new JLabel(image);
+		
 		//DEFINIT FORME QUART BAS GAUCHE + AJOUTS ELEMENTS
 		conteneurSudOuest.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		conteneurSudOuest.setLayout(new GridLayout(0,1,5,5));
 		conteneurSudOuest.add(conteneurAjoutRetirer);
-		conteneurSudOuest.add(conteneurConsole);
-		conteneurSudOuest.add(conteneurGravitation);
-		conteneurSudOuest.add(conteneurVitesseSimulation);
+		conteneurSudOuest.add(imagelabel);
+			//--- POUR L'INSTANT INUTILE, DECOMMENTEZ SI IMPLEMENTE ----
+			//conteneurSudOuest.add(conteneurConsole);
+			//conteneurSudOuest.add(conteneurGravitation);
+			//conteneurSudOuest.add(conteneurVitesseSimulation);
 		conteneurSudOuest.add(conteneurPauseNext);
 		//---- FIN BLOC SUD OUEST ----
 		
@@ -198,12 +211,28 @@ public class Affichage extends JFrame {
 		labelAy.setHorizontalAlignment(JLabel.CENTER);
 		labelAz.setHorizontalAlignment(JLabel.CENTER);
 		
+		//On crée un conteneur pour les accélérations
+		JPanel conteneurMasseRayonCouleur = new JPanel();
+		conteneurMasseRayonCouleur.setLayout(new GridLayout(1,6,5,5));
+		conteneurMasseRayonCouleur.add(labelMasse);
+		conteneurMasseRayonCouleur.add(spinnerMasse);
+		conteneurMasseRayonCouleur.add(labelRayon);
+		conteneurMasseRayonCouleur.add(spinnerRayon);
+		conteneurMasseRayonCouleur.add(labelCouleur);
+		conteneurMasseRayonCouleur.add(boutonCouleur);
+				
+		//On centre tous les JLabel
+		labelMasse.setHorizontalAlignment(JLabel.CENTER);
+		labelCouleur.setHorizontalAlignment(JLabel.CENTER);
+		labelRayon.setHorizontalAlignment(JLabel.CENTER);
+		
 		//On met les boutons dans les interfaces : interface bas droite
 		JPanel conteneurParticule = new JPanel();
-		conteneurParticule.setLayout(new GridLayout(3,1,5,5));
+		conteneurParticule.setLayout(new GridLayout(4,1,5,5));
 		conteneurParticule.add(conteneurCoord);
 		conteneurParticule.add(conteneurVitesse);
 		conteneurParticule.add(conteneurAcceleration);
+		conteneurParticule.add(conteneurMasseRayonCouleur);
 		
 		//On rajoute des bordures pour que ce soit aéré.
 		conteneurSudEst.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
@@ -235,24 +264,30 @@ public class Affichage extends JFrame {
 		// ---- ECOUTEURS ---- NOTE : DECOMENTEZ UNE FOIS IMPLEMENTE ! =)
 		
 		// AJOUT/RETIRER ECOUTEUR
-		//EcouteurBoutonAjout boutonAjout = new EcouteurBoutonAjout(this);
-		//EcouteurBoutonRetirer boutonRetirer = new EcouteurBoutonRetirer(this);
+		//EcouteurBoutonAjout EboutonAjout = new EcouteurBoutonAjout(this);
+		//EcouteurBoutonRetirer EboutonRetirer = new EcouteurBoutonRetirer(this);
 		// LISTE OBJET ECOUTEUR
-		//EcouteurListeObjet listeObjets = new EcouteurListeObjet(this);
+		//EcouteurListeObjet ElisteObjets = new EcouteurListeObjet(this);
 		// COORDONNES ECOUTEUR
-		//EcouteurCoordX coordX = new EcouteurCoordX(this);
-		//EcouteurCoordY coordY = new EcouteurCoordY(this);
-		//EcouteurCoordZ coordZ = new EcouteurCoordZ(this);
+		//EcouteurCoordX EcoordX = new EcouteurCoordX(this);
+		//EcouteurCoordY EcoordY = new EcouteurCoordY(this);
+		//EcouteurCoordZ EcoordZ = new EcouteurCoordZ(this);
 		// VITESSES ECOUTEUR
-		//EcouteurVitesX vitesX = new EcouteurVitesX(this);
-		//EcouteurVitesY vitesY = new EcouteurVitesY(this);
-		//EcouteurVitesZ vitesZ = new EcouteurVitesZ(this);
+		//EcouteurVitesX EvitesX = new EcouteurVitesX(this);
+		//EcouteurVitesY EvitesY = new EcouteurVitesY(this);
+		//EcouteurVitesZ EvitesZ = new EcouteurVitesZ(this);
 	    //ACCELERATION ECOUTEUR
-		//EcouteurAccelX accelX = new EcouteurAccelX(this);
-		//EcouteurAccelY accelY = new EcouteurAccelY(this);
-		//EcouteurAccelZ accelZ = new EcouteurAccelZ(this);
+		//EcouteurAccelX EaccelX = new EcouteurAccelX(this);
+		//EcouteurAccelY EaccelY = new EcouteurAccelY(this);
+		//EcouteurAccelZ EaccelZ = new EcouteurAccelZ(this);
+		//MASSE RAYON COULEUR ECOUTEURS
+		//EcouteurMasse Emasse = new EcouteurMasse(this);
+		//EcouteurRayon Erayon = new EcouteurRayon(this);
+		//EcouteurCouleur EboutonCouleur = new EcouteurCouleur(this);  // J'ai une idée pour simplifier la gestion des couleurs : http://www.fobec.com/java/979/afficher-boite-dialogue-selection-une-couleur.html
+		//boutonCouleur.addActionListener(EboutonCouleur); // POUR LA GESTION DES COULEURS, ME CONTACTER =D 
 		// NEXT BOUTON ECOUTEUR
-		EcouteurBoutonNext boutonNext = new EcouteurBoutonNext(this);
+		EcouteurBoutonNext EboutonNext = new EcouteurBoutonNext(this);
+		boutonNext.addActionListener(EboutonNext);
 		
 		// ---- FINALISATION ----
 		//On attribue le conteneur principal à la fenêtre
@@ -275,4 +310,5 @@ public class Affichage extends JFrame {
 	public Moteur getMoteur(){
 		return moteurPhysique;
 	}
+	
 }
