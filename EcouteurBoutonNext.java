@@ -43,23 +43,18 @@ public class EcouteurBoutonNext implements ActionListener {
 				minY=yCourant;
 			}
 		}
-		
+		/*
 		//On récupère la taille de la fenetre parente
 		int fenHeight = fenetreParente.getZoneDessin().getHeight();
 		int fenWidth = fenetreParente.getZoneDessin().getWidth();
-		
+		*/
 		//On fait rentre les coordonnées MAX/MIN dans la taille de la fenetre, par la multiplication par un coefficient (l'un des deux plus faibles, selon celui calculé sur X et celui sur Y)
 		
-		//On transfmet le coefficient au paint.
 		
+		//On transfmet le coefficient a la zone de dessin qui les transmettra aux objets.
+		fenetreParente.getZoneDessin().transmissionCoordonnesDessin(maxX, maxY, minX, minY);
 		//On repaint la fenêtre puisque la position des objets a changé.
 		fenetreParente.getZoneDessin().repaint();
-	}
-	
-	//Méthode map pour changer valeurs - A METTRE DANS PARTICULE
-	int map(int x, int in_min, int in_max, int out_min, int out_max)
-	{
-	  return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 	}
 
 }

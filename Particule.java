@@ -186,12 +186,20 @@ public class Particule {
 		}
 	}
 	
-	protected void dessiner( Graphics g){
+	protected void dessiner(Graphics g, int maxX, int maxY, int minX, int minY, int dessinX, int dessinY){
 		g.setColor(couleur);
-		g.fillOval((int)(this.getCentre().getX()), (int)(this.getCentre().getY()),(int)(rayon), (int)(rayon));
+		int corrigeCentreX = map((int)(this.getCentre().getX()), minX, maxX, 0, dessinX);
+		int corrigeCentreY = map((int)(this.getCentre().getY()), minY, maxY, 0, dessinY); // FAIT DES OVALES ! A CORRIGER ! 
+		int corrigeRayon = map((int)(rayon), minY, maxY, 0, dessinY); // LIGNE A CORRIGER
+		g.fillOval(corrigeCentreX, corrigeCentreY,corrigeRayon, corrigeRayon);
 		
 	}
 	
+	//Méthode map pour changer valeurs - A METTRE DANS PARTICULE
+	int map(int x, int in_min, int in_max, int out_min, int out_max)
+	{
+	  return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+	}
 	
 	
 }
