@@ -265,24 +265,38 @@ public class Affichage extends JFrame {
 		
 		// AJOUT/RETIRER ECOUTEUR
 		//EcouteurBoutonAjout EboutonAjout = new EcouteurBoutonAjout(this);
+		//boutonAjout.addActionListener(EboutonAjout);
 		//EcouteurBoutonRetirer EboutonRetirer = new EcouteurBoutonRetirer(this);
+		//boutonRetirer.addActionListener(EboutonRetirer);
 		// LISTE OBJET ECOUTEUR
 		//EcouteurListeObjet ElisteObjets = new EcouteurListeObjet(this);
+		//listeObjets.addActionListener(ElisteObjets);
 		// COORDONNES ECOUTEUR
 		//EcouteurCoordX EcoordX = new EcouteurCoordX(this);
+		//coordX.addActionListener(EcoordX);
 		//EcouteurCoordY EcoordY = new EcouteurCoordY(this);
+		//coordY.addActionListener(EcoordY);
 		//EcouteurCoordZ EcoordZ = new EcouteurCoordZ(this);
+		//coordZ.addActionListener(EcoordZ);
 		// VITESSES ECOUTEUR
 		//EcouteurVitesX EvitesX = new EcouteurVitesX(this);
+		//vitesX.addActionListener(EvitesX);
 		//EcouteurVitesY EvitesY = new EcouteurVitesY(this);
+		//vitesY.addActionListener(EvitesY);
 		//EcouteurVitesZ EvitesZ = new EcouteurVitesZ(this);
+		//vitesZ.addActionListener(EvitesZ);
 	    //ACCELERATION ECOUTEUR
 		//EcouteurAccelX EaccelX = new EcouteurAccelX(this);
+		//accelX.addActionListener(EaccelX);
 		//EcouteurAccelY EaccelY = new EcouteurAccelY(this);
+		//accelY.addActionListener(EaccelY);
 		//EcouteurAccelZ EaccelZ = new EcouteurAccelZ(this);
+		//accelZ.addActionListener(EaccelZ);
 		//MASSE RAYON COULEUR ECOUTEURS
 		//EcouteurMasse Emasse = new EcouteurMasse(this);
+		//masse.addActionListener(Emasse);
 		//EcouteurRayon Erayon = new EcouteurRayon(this);
+		//rayon.addActionListener(Erayon);
 		//EcouteurCouleur EboutonCouleur = new EcouteurCouleur(this);  // J'ai une idée pour simplifier la gestion des couleurs : http://www.fobec.com/java/979/afficher-boite-dialogue-selection-une-couleur.html
 		//boutonCouleur.addActionListener(EboutonCouleur); // POUR LA GESTION DES COULEURS, ME CONTACTER =D 
 		// NEXT BOUTON ECOUTEUR
