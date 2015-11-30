@@ -1,4 +1,7 @@
 import java.awt.Graphics;
+import java.awt.Point; 
+import java.awt.Graphics; 
+import java.awt.*;
 
 public class Particule {
 	
@@ -16,6 +19,8 @@ public class Particule {
 	private static int rayonParDefaut= 10;
 	private static String typeParDefaut= "Particule";
 	private static int chargeParDefaut=0;
+	private Point centre;
+	private Color couleur;
 	
 	/** Constructeur
 	 * @param x
@@ -28,6 +33,20 @@ public class Particule {
 	 * @param ay
 	 * @param az
 	 */
+	public Particule(double x,double y, double z, double vx, double vy, double vz, double ax, double ay, double az,double masse, String type, double rayon, Color couleur){
+		coordonnees= new Vecteur(x,y,z);
+		vitesse= new Vecteur(vx,vy,vz);
+		acceleration = new Vecteur(ax,ay,az);
+		this.masse= masse;
+		this.type= type;
+		compteur++;
+		num=compteur;
+		this.rayon= rayon;
+		charge= chargeParDefaut;
+		centre= new Point((int)(x+rayon),(int)(y+rayon));
+		this.couleur=couleur;
+	}
+	
 	public Particule(double x,double y, double z, double vx, double vy, double vz, double ax, double ay, double az,double masse, String type, double rayon){
 		coordonnees= new Vecteur(x,y,z);
 		vitesse= new Vecteur(vx,vy,vz);
@@ -38,6 +57,8 @@ public class Particule {
 		num=compteur;
 		this.rayon= rayon;
 		charge= chargeParDefaut;
+		centre= new Point((int)(x+rayon),(int)(y+rayon));
+		this.couleur= Color.BLUE;
 	}
 	
 	public Particule (Vecteur coord, Vecteur vit, Vecteur acc){
@@ -75,6 +96,14 @@ public class Particule {
 	public double getMasse() {
 		return masse;
 	}
+	
+	public Point getCentre(){
+		return centre;
+	}
+	
+	public void setCentre(int x, int y){
+		centre= new Point(x,y);
+	}
 
 	public void setMasse(double masse) {
 		this.masse = masse;
@@ -84,6 +113,10 @@ public class Particule {
 		return vitesseFuture;
 	}
 	
+	public void setCouleur(Color c){
+		couleur=c;
+	}
+		
 	
 	public void setVitesse(int X, int Y, int Z){
 		Vecteur v= new Vecteur(X,Y,Z);
@@ -131,8 +164,12 @@ public class Particule {
 		coordonnees=coordonnees.addition(vitesse);
    }
 
+	//public String toString(){
+	//	return "Votre particule est un(e) "+type+" , de masse "+masse+". Ses coordonnées sont: " +coordonnees.toString()+" , sa vitesse "+ vitesse.toString()+" , son accélération: "+acceleration;
+	//}
+	
 	public String toString(){
-		return "Votre particule est un(e) "+type+" , de masse "+masse+". Ses coordonnées sont: " +coordonnees.toString()+" , sa vitesse "+ vitesse.toString()+" , son accélération: "+acceleration;
+		return "Particule "+num+" prête à être lancée !";
 	}
 	
 	public boolean equals(Object o){
@@ -149,5 +186,12 @@ public class Particule {
 		}
 	}
 	
-	public void dessiner(Graphics g){}
+	protected void dessiner( Graphics g){
+		g.setColor(couleur);
+		g.fillOval((int)(this.getCentre().getX()), (int)(this.getCentre().getY()),(int)(rayon), (int)(rayon));
+		
+	}
+	
+	
+	
 }
