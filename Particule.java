@@ -118,17 +118,17 @@ public class Particule {
 	}
 		
 	
-	public void setVitesse(int X, int Y, int Z){
+	public void setVitesse(double X, double Y, double Z){
 		Vecteur v= new Vecteur(X,Y,Z);
 		vitesse=v;
 	}
 	
-	public void setCoordonnees(int X, int Y, int Z){
+	public void setCoordonnees(double X, double Y, double Z){
 		Vecteur v= new Vecteur(X,Y,Z);
 		coordonnees=v;
 	}
 	
-	public void setAcceleration(int X, int Y, int Z){
+	public void setAcceleration(double X, double Y, double Z){
 		Vecteur v= new Vecteur(X,Y,Z);
 		acceleration=v;
 	}

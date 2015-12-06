@@ -1,23 +1,18 @@
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
-/**
- * 
- */
-
-/**
- * @author Vincent F
- *
- */
 public class EcouteurCoordX implements ActionListener {
-
-	/* (non-Javadoc)
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-
+	
+	private Affichage fen;
+	Particule particule;
+	
+	public EcouteurCoordX(Affichage fen){
+		this.fen=fen;
+	}
+	
+	public void actionPerformed(ActionEvent ae){
+		int coordX=fen.getX();
+		particule=fen.getJComboItem();
+		particule.setCoordonnees(coordX,fen.getY(),fen.getZ());
 	}
 
 }
