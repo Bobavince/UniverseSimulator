@@ -1,7 +1,10 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class EcouteurAccelY implements ActionListener {
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
+public class EcouteurAccelY implements ChangeListener {
 	
 	private Affichage fen;
 	Particule particule;
@@ -9,11 +12,12 @@ public class EcouteurAccelY implements ActionListener {
 	public EcouteurAccelY(Affichage fen){
 		this.fen=fen;
 	}
-	
-	public void actionPerformed(ActionEvent ae){
+
+	@Override
+	public void stateChanged(ChangeEvent e) {
 		int accelY=fen.getAccelY();
 		particule=fen.getJComboItem();
 		particule.setAcceleration(particule.getAccelerationX(),accelY,0.0);
-	} 
+	}
 
 }

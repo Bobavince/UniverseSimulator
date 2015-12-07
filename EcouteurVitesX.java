@@ -1,7 +1,10 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class EcouteurVitesX implements ActionListener {
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
+public class EcouteurVitesX implements ChangeListener {
 	
 	private Affichage fen;
 	Particule particule;
@@ -10,11 +13,13 @@ public class EcouteurVitesX implements ActionListener {
 		this.fen=fen;
 	}
 	
-	public void actionPerformed(ActionEvent ae){
+	@Override
+	public void stateChanged(ChangeEvent e) {
 		int vitesX=fen.getVitesX();
 		particule=fen.getJComboItem();
 		particule.setVitesse(vitesX,particule.getVitesseY(),0.0);
 	}
+
 
 }
 

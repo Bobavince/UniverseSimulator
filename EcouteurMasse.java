@@ -1,23 +1,27 @@
 import java.awt.event.*;
 
-public class EcouteurMasse implements ActionListener {
-	
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
+public class EcouteurMasse implements ChangeListener {
+
 	private Affichage fen;
 	Particule particule;
 
 	public EcouteurMasse(Affichage fen){
 		this.fen=fen;
-		
+
 	}
-	
-	public void actionPerformed(ActionEvent ae) {
+
+	@Override
+	public void stateChanged(ChangeEvent e) {
 		int masse=fen.getMasse();
-		
+
 		particule=fen.getJComboItem();
-		
+
 		particule.setMasse(masse);
-		
-		
+
+
 	}
-	
+
 }

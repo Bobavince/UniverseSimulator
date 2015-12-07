@@ -1,6 +1,9 @@
 import java.awt.event.*;
 
-public class EcouteurRayon implements ActionListener {
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
+public class EcouteurRayon implements ChangeListener {
 	
 	private Affichage fen;
 	Particule particule;
@@ -9,7 +12,8 @@ public class EcouteurRayon implements ActionListener {
 		this.fen=fen;
 	}
 	
-	public void actionPerformed(ActionEvent ae) {
+	@Override
+	public void stateChanged(ChangeEvent e) {
 		int rayon=fen.getRayon();
 		particule=fen.getJComboItem();
 		particule.setRayon(rayon);

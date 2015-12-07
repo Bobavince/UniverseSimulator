@@ -265,26 +265,37 @@ public class Affichage extends JFrame {
 		
 		// AJOUT/RETIRER ECOUTEUR
 		//EcouteurBoutonAjout EboutonAjout = new EcouteurBoutonAjout(this);
-		//EcouteurBoutonRetirer EboutonRetirer = new EcouteurBoutonRetirer(this);
+		EcouteurRetirerParticule EboutonRetirer = new EcouteurRetirerParticule(this);
+		boutonRetirer.addActionListener(EboutonRetirer);
+		
 		// LISTE OBJET ECOUTEUR
 		EcouteurListeObjet ElisteObjets = new EcouteurListeObjet(this);
+		listeObjets.addActionListener(ElisteObjets);
 		// COORDONNES ECOUTEUR
 		EcouteurCoordX EcoordX = new EcouteurCoordX(this);
 		EcouteurCoordY EcoordY = new EcouteurCoordY(this);
+		coordX.addChangeListener(EcoordX);
+		coordY.addChangeListener(EcoordY);
 		//EcouteurCoordZ EcoordZ = new EcouteurCoordZ(this);
 		// VITESSES ECOUTEUR
 		EcouteurVitesX EvitesX = new EcouteurVitesX(this);
 		EcouteurVitesY EvitesY = new EcouteurVitesY(this);
+		vitesX.addChangeListener(EvitesX);
+		vitesY.addChangeListener(EvitesY);
 		//EcouteurVitesZ EvitesZ = new EcouteurVitesZ(this);
 	    //ACCELERATION ECOUTEUR
 		EcouteurAccelX EaccelX = new EcouteurAccelX(this);
 		EcouteurAccelY EaccelY = new EcouteurAccelY(this);
+		accelX.addChangeListener(EaccelX);
+		accelY.addChangeListener(EaccelY);
 		//EcouteurAccelZ EaccelZ = new EcouteurAccelZ(this);
 		//MASSE RAYON COULEUR ECOUTEURS
 		EcouteurMasse Emasse = new EcouteurMasse(this);
 		EcouteurRayon Erayon = new EcouteurRayon(this);
-		//EcouteurCouleur EboutonCouleur = new EcouteurCouleur(this);  // J'ai une idée pour simplifier la gestion des couleurs : http://www.fobec.com/java/979/afficher-boite-dialogue-selection-une-couleur.html
-		//boutonCouleur.addActionListener(EboutonCouleur); // POUR LA GESTION DES COULEURS, ME CONTACTER =D 
+		spinnerMasse.addChangeListener(Emasse);
+		spinnerRayon.addChangeListener(Erayon);
+		EcouteurCouleur EboutonCouleur = new EcouteurCouleur(this);  // J'ai une idée pour simplifier la gestion des couleurs : http://www.fobec.com/java/979/afficher-boite-dialogue-selection-une-couleur.html
+		boutonCouleur.addActionListener(EboutonCouleur); // POUR LA GESTION DES COULEURS, ME CONTACTER =D 
 		// NEXT BOUTON ECOUTEUR
 		EcouteurBoutonNext EboutonNext = new EcouteurBoutonNext(this);
 		boutonNext.addActionListener(EboutonNext);

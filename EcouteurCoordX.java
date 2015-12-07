@@ -1,6 +1,7 @@
-import java.awt.event.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
-public class EcouteurCoordX implements ActionListener {
+public class EcouteurCoordX implements ChangeListener {
 	
 	private Affichage fen;
 	Particule particule;
@@ -8,8 +9,9 @@ public class EcouteurCoordX implements ActionListener {
 	public EcouteurCoordX(Affichage fen){
 		this.fen=fen;
 	}
-	
-	public void actionPerformed(ActionEvent ae){
+
+	@Override
+	public void stateChanged(ChangeEvent arg0) {
 		int coordX=fen.getX();
 		particule=fen.getJComboItem();
 		particule.setCoordonnees(coordX,particule.getCoordonneeY(),0.0);

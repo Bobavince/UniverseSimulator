@@ -10,19 +10,13 @@ public class EcouteurRetire implements ActionListener{
 		this.fenR = fenR;
 	}
 
-	public void ActionListener(ActionEvent ae){
-		LinkedList<JCheckBox> listeBoutons = fenR.getListeBoutons();
-		for (int i=0; i<listeBoutons.size(); i++){
-//			if (listeBoutons[i].getState()){ //ERREUR ICI
-//				listeDesParticules.sortirParticule(i); // ??? //ERREUR ICI
-//			}
-		}
+	public void actionPerformed(ActionEvent ae){
+		LinkedList<Particule> listePart = fenR.getListePart();
+		//		LinkedList<JCheckBox> listeBoutons = fenR.getListeBoutons(); //Erreur de type entre JCombo et LinkedList 
+		//		for (int i=0; i<listeBoutons.size(); i++){
+		//			if (listeBoutons.get(i).getState()){ //méthode getState() non définie
+		//				fenR.getListeDesParticules().sortirParticule(i); //à tester
+		//			}
 	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
 }
+

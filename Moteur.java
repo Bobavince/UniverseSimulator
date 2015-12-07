@@ -62,8 +62,8 @@ public class Moteur {
 		Vecteur nouvelleVitesseAxiale = ( (vitesseAxiale.multScalaire(objetUn.getMasse())) .addition( (vitesseAxialeDeux.multScalaire(objetDeux.getMasse()) )) .soustraction( ((vitesseAxialeDeux.soustraction(vitesseAxiale)) .multScalaire (objetDeux.getMasse()) )) ).multScalaire( 1/(objetUn.getMasse() + objetDeux.getMasse()) );
 		
 		//On repasse la nouvelleVitesseAxiale dans le repère cartésien. On fait CoordonnéeCartésienneX = vecteurAxiale°unitaireX + VecteurTangentielle°unitaireY, CoordonnéesCartésienneY = ... de même.
-		Vecteur nouvelleVitesseCartésien = new Vecteur(normeX.prodScalaire(nouvelleVitesseAxiale)+ normeX.prodScalaire(vitesseTangentielle), normeY.prodScalaire(nouvelleVitesseAxiale)+ normeY.prodScalaire(vitesseTangentielle) , normeZ.prodScalaire(nouvelleVitesseAxiale)+ normeZ.prodScalaire(vitesseTangentielle) );
-		objetUn.setVitesseFuture(nouvelleVitesseCartésien);
+		Vecteur nouvelleVitesseCartesien = new Vecteur(normeX.prodScalaire(nouvelleVitesseAxiale)+ normeX.prodScalaire(vitesseTangentielle), normeY.prodScalaire(nouvelleVitesseAxiale)+ normeY.prodScalaire(vitesseTangentielle) , normeZ.prodScalaire(nouvelleVitesseAxiale)+ normeZ.prodScalaire(vitesseTangentielle) );
+		objetUn.setVitesseFuture(nouvelleVitesseCartesien);
 	}
 	
 	

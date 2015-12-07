@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class EcouteurRetirerParticule implements ActionListener{
-	private Affichage fen = new Affichage();
+	private Affichage fen;
 	
 	public EcouteurRetirerParticule(Affichage fen){
 		this.fen = fen;

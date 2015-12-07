@@ -13,12 +13,17 @@ import javax.swing.JColorChooser;
  */
 public class EcouteurBoutonAjout implements ActionListener {
 
+	Affichage fen;
+	public void EcouteurBoutonAjout(Affichage fen){
+		this.fen = fen;
+	}
 	/* (non-Javadoc)
 	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		//FenetreAjout(this.fen);
 
 	}
 
