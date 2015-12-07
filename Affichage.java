@@ -60,7 +60,7 @@ public class Affichage extends JFrame {
 	
 	private JLabel labelCstGravitation = new JLabel("Constante Gravitation");
 	private JSpinner cstGravitation = new JSpinner();
-
+	
 	private JLabel labelVitesseSimulation = new JLabel("Vitesse simulation");
 	private JSpinner vitesseSimulation = new JSpinner();
 	
@@ -247,7 +247,7 @@ public class Affichage extends JFrame {
 		
 		// ---- MODIFICATIONS DIVERSES ----
 		//MODIFICATION DES JSPINNER EN DOUBLE. Problème : fait que tous les Jspinner se modifie de la même manière. Il faudrait donc crérer autant de model que de JSpinner.
-		/* modelJSpinnerDouble.setStepSize(0.1);
+		/* modelJSpinnerDouble.setStepSize(0.1); 
 		
 		coordX.setModel(modelJSpinnerDouble);
 		coordY.setModel(modelJSpinnerDouble);
@@ -267,22 +267,22 @@ public class Affichage extends JFrame {
 		//EcouteurBoutonAjout EboutonAjout = new EcouteurBoutonAjout(this);
 		//EcouteurBoutonRetirer EboutonRetirer = new EcouteurBoutonRetirer(this);
 		// LISTE OBJET ECOUTEUR
-		//EcouteurListeObjet ElisteObjets = new EcouteurListeObjet(this);
+		EcouteurListeObjet ElisteObjets = new EcouteurListeObjet(this);
 		// COORDONNES ECOUTEUR
-		//EcouteurCoordX EcoordX = new EcouteurCoordX(this);
-		//EcouteurCoordY EcoordY = new EcouteurCoordY(this);
+		EcouteurCoordX EcoordX = new EcouteurCoordX(this);
+		EcouteurCoordY EcoordY = new EcouteurCoordY(this);
 		//EcouteurCoordZ EcoordZ = new EcouteurCoordZ(this);
 		// VITESSES ECOUTEUR
-		//EcouteurVitesX EvitesX = new EcouteurVitesX(this);
-		//EcouteurVitesY EvitesY = new EcouteurVitesY(this);
+		EcouteurVitesX EvitesX = new EcouteurVitesX(this);
+		EcouteurVitesY EvitesY = new EcouteurVitesY(this);
 		//EcouteurVitesZ EvitesZ = new EcouteurVitesZ(this);
 	    //ACCELERATION ECOUTEUR
-		//EcouteurAccelX EaccelX = new EcouteurAccelX(this);
-		//EcouteurAccelY EaccelY = new EcouteurAccelY(this);
+		EcouteurAccelX EaccelX = new EcouteurAccelX(this);
+		EcouteurAccelY EaccelY = new EcouteurAccelY(this);
 		//EcouteurAccelZ EaccelZ = new EcouteurAccelZ(this);
 		//MASSE RAYON COULEUR ECOUTEURS
-		//EcouteurMasse Emasse = new EcouteurMasse(this);
-		//EcouteurRayon Erayon = new EcouteurRayon(this);
+		EcouteurMasse Emasse = new EcouteurMasse(this);
+		EcouteurRayon Erayon = new EcouteurRayon(this);
 		//EcouteurCouleur EboutonCouleur = new EcouteurCouleur(this);  // J'ai une idée pour simplifier la gestion des couleurs : http://www.fobec.com/java/979/afficher-boite-dialogue-selection-une-couleur.html
 		//boutonCouleur.addActionListener(EboutonCouleur); // POUR LA GESTION DES COULEURS, ME CONTACTER =D 
 		// NEXT BOUTON ECOUTEUR
@@ -346,5 +346,106 @@ public class Affichage extends JFrame {
 	public void setRayon(double rayon) {
 		this.spinnerRayon.setValue(rayon);
 	}
+	
+	public int getMasse(){
+		return Integer.parseInt(spinnerMasse.getValue().toString());
+	}
+	
+	public int getRayon(){
+		return Integer.parseInt(spinnerRayon.getValue().toString());
+	}
+	
+	
+	public int getX(){
+		int answer;
+		if(coordX==null){
+			answer = 0;
+		} else if(coordX.getValue()==null){
+			answer = 0;
+		} else {
+			answer = Integer.parseInt(coordX.getValue().toString());
+		}
+		return answer;
+	}
+	
+	public int getY(){
+		int answer;
+		if(coordY==null){
+			answer = 0;
+		} else if(coordY.getValue()==null){
+			answer = 0;
+		} else {
+			answer = Integer.parseInt(coordY.getValue().toString());
+		}
+		return answer ;
+	}
+	
+	/*	
+	public int getZ(){
+		return Integer.parseInt(coordZ.getValue().toString());
+	}
+	*/
+	
+	
+	public int getVitesX(){
+		int answer;
+		if(vitesX==null){
+			answer = 0;
+		} else if(vitesX.getValue()==null){
+			answer = 0;
+		} else {
+			answer = Integer.parseInt(vitesX.getValue().toString());
+		}
+		return answer ;
+	}
+	
+	public int getVitesY(){
+		int answer;
+		if(vitesY==null){
+			answer = 0;
+		} else if(vitesY.getValue()==null){
+			answer = 0;
+		} else {
+			answer = Integer.parseInt(vitesY.getValue().toString());
+		}
+		return answer ;
+	}
+	
+	/*
+	public int getVitesZ(){
+		return Integer.parseInt(vitesZ.getValue().toString());
+	}
+	*/
+	
+	
+	public int getAccelX(){
+		int answer;
+		if(accelX==null){
+			answer = 0;
+		} else if(accelX.getValue()==null){
+			answer = 0;
+		} else {
+			answer = Integer.parseInt(accelX.getValue().toString());
+		}
+		return answer ;
+	}
+	
+	public int getAccelY(){
+		int answer;
+		if(accelY==null){
+			answer = 0;
+		} else if(accelY.getValue()==null){
+			answer = 0;
+		} else {
+			answer = Integer.parseInt(accelY.getValue().toString());
+		}
+		return answer ;
+	}
+	
+	/*
+	public int getAccelZ(){
+		return Integer.parseInt(accelZ.getValue().toString());
+	}
+	*/
 	
 }

@@ -13,9 +13,8 @@ public class EcouteurCoordY implements ActionListener {
 	public void actionPerformed(ActionEvent ae){
 		int coordY=fen.getY();
 		particule=fen.getJComboItem();
-		particule.setCoordonnees(particule.getCoordonneeY(),coordY,0.0);
+		particule.setCoordonnees(particule.getCoordonneeX(),coordY,0.0);
 	}
 
 }
-
 

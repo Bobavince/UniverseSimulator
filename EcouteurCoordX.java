@@ -12,7 +12,7 @@ public class EcouteurCoordX implements ActionListener {
 	public void actionPerformed(ActionEvent ae){
 		int coordX=fen.getX();
 		particule=fen.getJComboItem();
-		particule.setCoordonnees(coordX,fen.getY(),fen.getZ());
+		particule.setCoordonnees(coordX,particule.getCoordonneeY(),0.0);
 	}
 
 }

@@ -11,7 +11,7 @@ public class EcouteurAccelY implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent ae){
-		int accelY=fen.AccelY();
+		int accelY=fen.getAccelY();
 		particule=fen.getJComboItem();
 		particule.setAcceleration(particule.getAccelerationX(),accelY,0.0);
 	} 

@@ -1,6 +1,5 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 public class EcouteurVitesY implements ActionListener {
 	private Affichage fen;
 	Particule particule;

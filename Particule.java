@@ -73,17 +73,44 @@ public class Particule {
 		charge=chargeParDefaut;
 	}
 	
+	//ENSEMBLE DE GETTEURS COORDONNEES
 	public Vecteur getCoordonnees(){
 		return coordonnees;
 	}
 	
+	public double getCoordonneeX(){
+		return coordonnees.getTabVecteur()[0];
+	}
+	
+	public double getCoordonneeY(){
+		return coordonnees.getTabVecteur()[1];
+	}
+	
+	//ENSEMBLE DE GETTEURS VITESSE
 	public Vecteur getVitesse(){
 		return vitesse;
 	}
+	
+	public double getVitesseX(){
+		return vitesse.getTabVecteur()[0];
+	}
+	
+	public double getVitesseY(){
+		return vitesse.getTabVecteur()[1];
+	}
 			
+	//ENSEMBLE DE GETTEURS ACCELERATION	
 	public Vecteur getAcceleration(){
 		return acceleration;
 	}	
+	
+	public double getAccelerationX(){
+		return acceleration.getTabVecteur()[0];
+	}
+	
+	public double getAccelerationY(){
+		return acceleration.getTabVecteur()[1];
+	}
 	
 	public int getNum(){
 		return num;

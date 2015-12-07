@@ -1,23 +1,21 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- * 
- */
-
-/**
- * @author Vincent F
- *
- */
 public class EcouteurVitesX implements ActionListener {
-
-	/* (non-Javadoc)
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-
+	
+	private Affichage fen;
+	Particule particule;
+	
+	public EcouteurVitesX(Affichage fen){
+		this.fen=fen;
+	}
+	
+	public void actionPerformed(ActionEvent ae){
+		int vitesX=fen.getVitesX();
+		particule=fen.getJComboItem();
+		particule.setVitesse(vitesX,particule.getVitesseY(),0.0);
 	}
 
 }
+
+
