@@ -1,8 +1,9 @@
 /**
- * @author Vincent F
- * Classe de test personnel (ne sera pas la classe final "main". Vous pouvez vous en servir pour tester vos classes.
+ * @author Vincent F.
+ *
  */
-public class TestPerso {
+
+public class testPerso {
 	public static void main(String[] args) {
 		new Affichage();
 	}

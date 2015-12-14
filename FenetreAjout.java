@@ -1,10 +1,10 @@
 import javax.swing.*;
+
 import java.awt.*;
-import java.util.LinkedList;
 
 public class FenetreAjout extends JFrame{
 	//couleur de la particule
-	Color couleurParticule= Color.BLUE;
+	private static Color couleurParticule= Color.BLUE;
 	
 	private Affichage fenetrePrincipale;
 	
@@ -12,28 +12,21 @@ public class FenetreAjout extends JFrame{
 	
 	private JLabel legendeCX= new JLabel("x");
 	private JLabel legendeCY= new JLabel("y");
-	//private JLabel legendeCZ= new JLabel("z");
-	
 	
 	private JTextField coordX= new JTextField("0",4);
 	private JTextField coordY= new JTextField("0",4);
-	//private JTextField coordZ= new JTextField("0",4);
 	
 	private JLabel legendeVX= new JLabel("Vx");
 	private JLabel legendeVY= new JLabel("Vy");
-	//private JLabel legendeVZ= new JLabel("Vz");
 	
 	private JTextField vitX= new JTextField("0",4);
 	private JTextField vitY= new JTextField("0",4);
-	//private JTextField vitZ= new JTextField("0",4);
 	
 	private JLabel legendeAX= new JLabel("Ax");
 	private JLabel legendeAY= new JLabel("Ay");
-	//private JLabel legendeAZ= new JLabel("Az");
 	
 	private JTextField accX= new JTextField("0",4);
 	private JTextField accY= new JTextField("0",4);
-	//private JTextField accZ= new JTextField("0",4);
 	
 	private JLabel legendeMasse= new JLabel("Masse ");
 	private JLabel legendeType= new JLabel("Type ");
@@ -46,13 +39,8 @@ public class FenetreAjout extends JFrame{
 	private JButton btnAnnuler= new JButton(" Annuler ");
 	private JButton btnLancer= new JButton(" Lancer ");
 	private JButton btnCouleur= new JButton(" Couleur ");
-	
-	
-	
-	
+
 	public FenetreAjout(Affichage fenetrePrincipale) {
-		
-		
 		super("Ajouter une particule");
 		
 		//Instanciation des attributs
@@ -60,19 +48,20 @@ public class FenetreAjout extends JFrame{
 		particulesPredefinies = new JComboBox<Particule>();
 		
 		//Ecouteurs
-		EcouteurLancement ecouteurBtnLancer= new EcouteurLancement(this);
+		EcouteurFenetreAjoutAjouter ecouteurBtnLancer= new EcouteurFenetreAjoutAjouter(this);
 		btnLancer.addActionListener(ecouteurBtnLancer);
 		
-		EcouteurAnnuler ecouteurBtnAnnuler= new EcouteurAnnuler(this);
+		EcouteurFenetreAjoutAnnuler ecouteurBtnAnnuler= new EcouteurFenetreAjoutAnnuler(this);
 		btnAnnuler.addActionListener(ecouteurBtnAnnuler);
 		
 		EcouteurParticulesPredefinies ecouteurListeParticulesPredefinies= new EcouteurParticulesPredefinies(this);
 		particulesPredefinies.addActionListener(ecouteurListeParticulesPredefinies);
 		
-		EcouteurCouleurParticule ecouteurCouleurParticule= new EcouteurCouleurParticule(this);
+		EcouteurFenetreAjoutCouleur ecouteurCouleurParticule= new EcouteurFenetreAjoutCouleur(this);
 		btnCouleur.addActionListener(ecouteurCouleurParticule);
 		
-		particulesPredefinies.addItem( new Particule(0,0,0,0,0,0,0,0,0,0,"...",0));
+		// AJout des particules prédéfinies
+		particulesPredefinies.addItem(new Particule(0,0,0,0,0,0,0,0,0,0,"...",0));
 		particulesPredefinies.addItem(new Terre(0,0,0,0,0,0,0,0,0));
 		particulesPredefinies.addItem(new EtoileNaineRouge(0,0,0,0,0,0,0,0,0));
 		particulesPredefinies.addItem(new Meteorite(0,0,0,0,0,0,0,0,0));
@@ -121,15 +110,12 @@ public class FenetreAjout extends JFrame{
 		setLocationRelativeTo(null);
 		setContentPane(cadrePrincipal);
 		
-		
 		//setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setMinimumSize(new Dimension(350,300));
 		setVisible(true);
-		
-		
 	}
 	
-	//setteurs
+	// SETTEURS
 	
 	public void setCouleurParticule(Color c){
 		couleurParticule=c;
@@ -169,43 +155,43 @@ public class FenetreAjout extends JFrame{
 		rayon.setText(s);
 	}
 	
-	//getteurs
+	// GETTEURS
 	public double getCoordX(){//test de la nullité oblig?
-		return Double.parseDouble(coordX.getText());
+		return stringToDouble(coordX);
 	}
 	
 	public double getCoordY(){
-		return Double.parseDouble(coordY.getText());
+		return stringToDouble(coordY);
 	}
 	
 	public double getVitX(){
-		return Double.parseDouble(vitX.getText());
+		return stringToDouble(vitX);
 	}
 	
 	public double getVitY(){
-		return Double.parseDouble(vitY.getText());
+		return stringToDouble(vitY);
 	}
 	
-	
 	public double getAccX(){
-		return Double.parseDouble(accX.getText());
+		return stringToDouble(accX);
 	}
 	
 	public double getAccY(){
-		return Double.parseDouble(accY.getText());
+		return stringToDouble(accY);
 	}
 	
-	
 	public double getMasse(){
-		return Double.parseDouble(masse.getText());
+		return stringToDouble(masse);
 	}
 	
 	public double getRayon(){
-		return Double.parseDouble(rayon.getText());
+		return stringToDouble(rayon);
 	}
 	
+	
+	//AUTRES GETTEURS
 	public String getTypeParticule(){
-		return type.getText();
+		return type.getText().toString();
 	}
 	
 	public Particule getSelectedParticule(){
@@ -219,6 +205,32 @@ public class FenetreAjout extends JFrame{
 	
 	public Affichage getFenAffichage(){
 		return fenetrePrincipale;
+	}
+	
+	// METHODES UTILES
+	
+	public double stringToDouble(JTextField textfield){
+		double answer = 0;
+		
+		try {
+			if(textfield==null){
+				answer = 0;
+				System.out.println("1");
+			} else if(textfield.getText()==null){
+				answer = 0;
+				System.out.println("2");
+			} else if(textfield.getText().toString().length()==0){
+				answer = 0;
+				System.out.println("3");
+			} else {
+				answer = Double.parseDouble(textfield.getText().toString());
+			}
+		} catch (NumberFormatException e) {
+			System.out.println("VOUS AVEZ ENTRE UNE CHAINE DE CARACTERE ! ");
+			answer = -1;
+		}
+
+		return answer;
 	}
 
 

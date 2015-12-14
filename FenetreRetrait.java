@@ -9,9 +9,8 @@ public class FenetreRetrait extends JFrame{
 	private JButton btRetire;
 	private JButton btAnnule;
 	private ListeObjet listeDesParticules;
-	private JComboBox listeBoutons;
-	/*private LinkedList<JCheckBox> listeBoutons = new LinkedList<JCheckBox>();
-	 * */
+	private LinkedList<JCheckBox> listeBoutons = new LinkedList<JCheckBox>();
+	
 	
 	
 	public FenetreRetrait(ListeObjet listeDesParticules){
@@ -25,64 +24,32 @@ public class FenetreRetrait extends JFrame{
 		btAnnule = new JButton("Annuler");
 		
 		
-		//Ajout des écouteurs
-		//btRetire.addActionListener(new EcouteurRetire(this));
-		btAnnule.addActionListener(new EcouteurAnnule(this));
-		
-		
-		//Mise à jour de ListeObjet ???
-		
-		
-		
-		//Création des JCheckBox
-		
-		//V : Déclare une LinkedList de Checkbox. NOTE : bien sûr, il faut le mettre en haut de classe, tout joli et tout, mais c'est surtout pour te montrer.
-		LinkedList<JCheckBox> listeCheckbox = new LinkedList<JCheckBox>();
-
-		//V : Déclare un JPnael pour stocker les CheckBox
-		JPanel conteneurCheckBox = new JPanel();
-		//On lui attribue le nom de ligne qu'il faut (le nombre de particules) et 2 colonnes
-		conteneurCheckBox.setLayout(new GridLayout(listePart.size(),2,5,5));
-		
-		//V : rempli ta liste de JckeckBox
+		//CrÃ©ation du conteneur de la liste de particules (JCheckBox)
+		JPanel liste = new JPanel();
+		liste.setLayout(new GridLayout(listePart.size(),2,5,5));
+		//Remplissage de la liste
 		for (int i=0; i<listePart.size(); i++){
-			listeCheckbox.add(new JCheckBox()); // On créer Une check box qu'on ajoute dans la liste des checkbox 
-			conteneurCheckBox.add(listeCheckbox.get(i)); //On ajoute la checkbox dans la première colonne
-			conteneurCheckBox.add(new JLabel(listePart.get(i).toString())); //On ajoute le nom de la particule (au même indice i) dans la deuxième colonne.
+			listeBoutons.add(new JCheckBox(listePart.get(i).toString())); //CrÃ©ation d'un JCheckBox qu'on ajoute dans la liste des JCheckBox 
+			liste.add(listeBoutons.get(i)); //Ajout d'un JCheckBox dans la premiÃ¨re colonne
+			//liste.add(new JLabel(listePart.get(i).toString())); //Ajout du nom de la particule (au mÃªme indice i) dans la deuxiÃ¨me colonne
 		}
 		
-		//V : Le code pour vérifier si les checkbox sont cochées ou pas
-		for (int i=0; i<listePart.size(); i++){
-			if(listeCheckbox.get(i).isSelected()){
-				// Particule "listePart.get(i)" à supprimer
-			}
-		}
 		
-		//ANCIEN 
-		/*
-		for (int i=0; i<listePart.size(); i++){
-			listeBoutons.add(new JCheckBox(listePart.get(i).getType()));
-		}
-		*/
-		
-		//NOTE : 
-		/*
-		JCheckBox maCheck = new JCheckBox(); // pour créer une Checkbox
-		maCheck.isSelected(); // Pour avoir le boolean de la Checkbox 
-		 */
+		//Ajout des Ã©couteurs
+		btRetire.addActionListener(new EcouteurFenetreRetraitRetirer(this));
+		btAnnule.addActionListener(new EcouteurFenetreRetraitAnnule(this));
 		
 		
-		//Mise à jour des panneaux
+		//CrÃ©ation du conteneur de boutons
 		JPanel barreOutils = new JPanel();
 		barreOutils.add(btRetire);
 		barreOutils.add(btAnnule);
 		
-		//JPanel particules = new JPanel(); //inutile de créer un cadre pour JCheckBox ?
-		//particules.add(listeBoutons);
 		
+		//CrÃ©ation du cadre principal
 		cadre = new JPanel(new BorderLayout());
 		cadre.add(barreOutils, BorderLayout.SOUTH);
-		//cadre.add(particules, BorderLayout.CENTER);
+		cadre.add(liste, BorderLayout.CENTER);
 		
 		
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -91,18 +58,18 @@ public class FenetreRetrait extends JFrame{
 		setVisible(true);
 	}
 	
-	//obtenir la liste des particules de FenetreRetrait
-	public ListeObjet getListeDesParticules(){
-		return listeDesParticules;
-	}
 	
+	
+	
+	
+	//Obtention de la liste des particules de FenetreRetrait
 	public LinkedList<Particule> getListePart(){
 		return listeDesParticules.getListeParticule();
 	}
 	
-	/* TU RENVOIS UNE LINKEDLIST ALOR SQUE C'EST UNE JCOMBO BOX ! 
+	//Obtention de la liste de JCheckBox
 	public LinkedList<JCheckBox> getListeBoutons(){
 		return listeBoutons;
 	}
-	*/
+	
 }

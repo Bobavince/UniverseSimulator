@@ -1,31 +1,33 @@
 import javax.swing.*;
+
 import java.awt.*;
 import java.util.*;
 
 public class PanelDessin extends JPanel {
 	private Affichage fenetreParente;
-	int maxX=0, maxY=0, minX=0, minY=0;
+	double coefficient = 1;
 	
 	public PanelDessin(Affichage fenetreParente){
 		this.fenetreParente = fenetreParente;
-		setBackground(Color.BLACK); //Le Fond en noir pour faire Spatial
+		//setBackground(Color.BLACK); //Le Fond en noir pour faire Spatial
 	}
 
 	@Override
 	protected void paintComponent(Graphics g) {
-		super.paintComponent( g ); //Appel de la fonction nécessaire pour commencer à dessiner la zone de dessin
+		//Appel de la fonction nï¿½cessaire pour commencer ï¿½ dessiner la zone de dessin
+		super.paintComponent(g); 
 		
-		for(int i=0 ; i<fenetreParente.getListeObjets().getListeParticule().size() ; i++){
-			fenetreParente.getListeObjets().dessinerListe(g, maxX, maxY, minX, minY, this.getWidth(), this.getHeight());
-		}
+		//On demande Ã  la liste des Objets de dessiner toutes les particules
+		fenetreParente.getListeObjets().dessinerListe(g, coefficient, this.getWidth(), this.getHeight());
+		
+		//DEBUG // 
+		System.out.println("DANS PANEL DESSIN : coefficient, getWidht, getHeight " + coefficient + " " + this.getWidth() + " " + this.getHeight());
+		//DEBUG // 
 
 	}
 	
 
-	public void transmissionCoordonnesDessin(int maxX, int maxY, int minX, int minY){
-		this.maxX=maxX; 
-		this.maxY=maxY; 
-		this.minX=minX;
-		this.minY=minY;
+	public void setCoefficient(double coefficient){
+		this.coefficient = coefficient;
 	}
 }

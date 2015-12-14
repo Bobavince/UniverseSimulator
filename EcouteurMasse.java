@@ -5,22 +5,30 @@ import javax.swing.event.ChangeListener;
 
 public class EcouteurMasse implements ChangeListener {
 
-	private Affichage fen;
-	Particule particule;
+	private Affichage fenetreAffichage;
+	
 
-	public EcouteurMasse(Affichage fen){
-		this.fen=fen;
+	public EcouteurMasse(Affichage fenetreAffichage){
+		this.fenetreAffichage=fenetreAffichage;
 
 	}
 
 	@Override
 	public void stateChanged(ChangeEvent e) {
-		int masse=fen.getMasse();
 
-		particule=fen.getJComboItem();
+		if(fenetreAffichage.getJComboBox().getSelectedItem() instanceof Particule){
 
-		particule.setMasse(masse);
+			// On récupère la particule courante sélectionnée
+			Particule particule = (Particule)(fenetreAffichage.getJComboBox().getSelectedItem());
+			// On lui attribue sa nouvelle masse
+			particule.setMasse(fenetreAffichage.getMasse());
 
+			//DEBUG // 
+			System.out.println("MASSE DE LA PARTICULE : \n" + particule.toStringComplet() + " \n changée");
+			//DEBUG - Pour savoir si la masse été changée effectivement. //
+		} else {
+			System.out.println("Il n'y a pas de particule sélectionnée !");
+		}
 
 	}
 

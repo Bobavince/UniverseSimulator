@@ -2,10 +2,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class EcouteurRetirerParticule implements ActionListener{
+public class EcouteurBoutonRetirer implements ActionListener{
 	private Affichage fen;
 	
-	public EcouteurRetirerParticule(Affichage fen){
+	public EcouteurBoutonRetirer(Affichage fen){
 		this.fen = fen;
 	}
 	

@@ -6,19 +6,27 @@ import javax.swing.event.ChangeListener;
 
 public class EcouteurCoordY implements ChangeListener {
 
-	private Affichage fen;
-	Particule particule;
+	private Affichage fenetreAffichage;
 
-	public EcouteurCoordY(Affichage fen){
-		this.fen=fen;
+	public EcouteurCoordY(Affichage fenetreAffichage){
+		this.fenetreAffichage=fenetreAffichage;
 	}
 
 	@Override
-	public void stateChanged(ChangeEvent e) {
-		int coordY=fen.getY();
-		particule=fen.getJComboItem();
-		particule.setCoordonnees(particule.getCoordonneeX(),coordY,0.0);
+	public void stateChanged(ChangeEvent arg0) {
+		if(fenetreAffichage.getJComboBox().getSelectedItem() instanceof Particule){
 
+			// On récupère la particule courante sélectionnée
+			Particule particule = (Particule)(fenetreAffichage.getJComboBox().getSelectedItem());
+			// On lui attribue de nouvelles coordonnées : sa coordonnée y depuis la fenetre principale et sa coordonnées x inchangée
+			particule.setCoordonnees(particule.getCoordonneeX(),fenetreAffichage.getCoordY(),0.0);
+
+			//DEBUG // 
+			System.out.println("COORDONNES Y DE LA PARTICULE : \n" + particule.toStringComplet() + " \n changée");
+			//DEBUG - Pour savoir si la coordonnées à été changée effectivement. //
+		} else {
+			System.out.println("Il n'y a pas de particule sélectionnée !");
+		}
 	}
 
 }

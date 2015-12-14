@@ -1,23 +1,20 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JColorChooser;
+/** Ecouteur du bouton Ajouter dans la fenêtre principale
+ * Ouvre une fenetre de gestion d'ajout des particules.
+ */
 
 public class EcouteurBoutonAjout implements ActionListener {
-	Affichage fen;
-	FenetreAjout fen2;
-	
-	
+	Affichage fenetreAffichage;
+	FenetreAjout fenetreAjout;
+
 	public EcouteurBoutonAjout(Affichage fen){
-		this.fen=fen;
+		this.fenetreAffichage=fen;
 	}
-	
 	
 	public void actionPerformed(ActionEvent e) {
-		fen2= new FenetreAjout(fen);
+		fenetreAjout = new FenetreAjout(fenetreAffichage);
 	}
-		
-
 	
-
 }
