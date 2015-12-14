@@ -3,14 +3,6 @@ import java.awt.event.*;
 
 import javax.swing.JColorChooser;
 
-/**
- * 
- */
-
-/**
- * @author Vincent F
- *
- */
 public class EcouteurCouleur implements ActionListener {
 
 	public EcouteurCouleur(Affichage maFen){

@@ -3,17 +3,21 @@ import java.awt.*;
 import java.util.LinkedList;
 
 public class FenetreAjout extends JFrame{
+	//couleur de la particule
+	Color couleurParticule= Color.BLUE;
 	
-	private JComboBox particulesPredefinies;
+	private Affichage fenetrePrincipale;
+	
+	private JComboBox<Particule> particulesPredefinies;
 	
 	private JLabel legendeCX= new JLabel("x");
 	private JLabel legendeCY= new JLabel("y");
-	private JLabel legendeCZ= new JLabel("z");
+	//private JLabel legendeCZ= new JLabel("z");
 	
 	
 	private JTextField coordX= new JTextField("0",4);
 	private JTextField coordY= new JTextField("0",4);
-	private JTextField coordZ= new JTextField("0",4);
+	//private JTextField coordZ= new JTextField("0",4);
 	
 	private JLabel legendeVX= new JLabel("Vx");
 	private JLabel legendeVY= new JLabel("Vy");
@@ -44,17 +48,35 @@ public class FenetreAjout extends JFrame{
 	private JButton btnCouleur= new JButton(" Couleur ");
 	
 	
-	public FenetreAjout() {
+	
+	
+	public FenetreAjout(Affichage fenetrePrincipale) {
+		
 		
 		super("Ajouter une particule");
 		
 		//Instanciation des attributs
-		particulesPredefinies = new JComboBox();
+		this.fenetrePrincipale = fenetrePrincipale;
+		particulesPredefinies = new JComboBox<Particule>();
 		
 		//Ecouteurs
-		EcouteurLancement monEcouteur= new EcouteurLancement(this);
-		btnLancer.addActionListener(monEcouteur);
-				
+		EcouteurLancement ecouteurBtnLancer= new EcouteurLancement(this);
+		btnLancer.addActionListener(ecouteurBtnLancer);
+		
+		EcouteurAnnuler ecouteurBtnAnnuler= new EcouteurAnnuler(this);
+		btnAnnuler.addActionListener(ecouteurBtnAnnuler);
+		
+		EcouteurParticulesPredefinies ecouteurListeParticulesPredefinies= new EcouteurParticulesPredefinies(this);
+		particulesPredefinies.addActionListener(ecouteurListeParticulesPredefinies);
+		
+		EcouteurCouleurParticule ecouteurCouleurParticule= new EcouteurCouleurParticule(this);
+		btnCouleur.addActionListener(ecouteurCouleurParticule);
+		
+		particulesPredefinies.addItem( new Particule(0,0,0,0,0,0,0,0,0,0,"...",0));
+		particulesPredefinies.addItem(new Terre(0,0,0,0,0,0,0,0,0));
+		particulesPredefinies.addItem(new EtoileNaineRouge(0,0,0,0,0,0,0,0,0));
+		particulesPredefinies.addItem(new Meteorite(0,0,0,0,0,0,0,0,0));
+					
 		//Cadres
 		JPanel cadrePrincipal = new JPanel( new BorderLayout());
 		JPanel cadreDeroulant = new JPanel(new BorderLayout());
@@ -100,11 +122,103 @@ public class FenetreAjout extends JFrame{
 		setContentPane(cadrePrincipal);
 		
 		
-		
-		
 		//setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setMinimumSize(new Dimension(350,300));
 		setVisible(true);
+		
+		
+	}
+	
+	//setteurs
+	
+	public void setCouleurParticule(Color c){
+		couleurParticule=c;
+	}
+	
+	public void setCoordX(String s){
+		coordX.setText(s);
+	}
+	public void setCoordY(String s){
+		coordY.setText(s);
+	}
+	
+	public void setVitX(String s){
+		vitX.setText(s);
+	}
+	
+	public void setVitY(String s){
+		vitY.setText(s);
+	}
+	public void setAccX(String s){
+		accX.setText(s);
+	}
+	
+	public void setAccY(String s){
+		accY.setText(s);
+	}
+	
+	public void setMasse(String s){
+		masse.setText(s);
+	}
+	
+	public void setType(String s){
+		type.setText(s);
+	}
+	
+	public void setRayon(String s){
+		rayon.setText(s);
+	}
+	
+	//getteurs
+	public double getCoordX(){//test de la nullité oblig?
+		return Double.parseDouble(coordX.getText());
+	}
+	
+	public double getCoordY(){
+		return Double.parseDouble(coordY.getText());
+	}
+	
+	public double getVitX(){
+		return Double.parseDouble(vitX.getText());
+	}
+	
+	public double getVitY(){
+		return Double.parseDouble(vitY.getText());
+	}
+	
+	
+	public double getAccX(){
+		return Double.parseDouble(accX.getText());
+	}
+	
+	public double getAccY(){
+		return Double.parseDouble(accY.getText());
+	}
+	
+	
+	public double getMasse(){
+		return Double.parseDouble(masse.getText());
+	}
+	
+	public double getRayon(){
+		return Double.parseDouble(rayon.getText());
+	}
+	
+	public String getTypeParticule(){
+		return type.getText();
+	}
+	
+	public Particule getSelectedParticule(){
+		Particule p =(Particule) particulesPredefinies.getSelectedItem();
+		return p;
+	}
+	
+	public Color getCouleurParticule(){
+		return couleurParticule;
+	}
+	
+	public Affichage getFenAffichage(){
+		return fenetrePrincipale;
 	}
 
 

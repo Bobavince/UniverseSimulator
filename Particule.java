@@ -180,6 +180,10 @@ public class Particule {
 		vitesseFuture=v;
 	}
 	
+	public String getType(){
+		return type;
+	}
+	
 	public void passerEtatFutur(){
 		if(vitesse != vitesseFuture){
 			vitesse = vitesseFuture; 
@@ -192,11 +196,15 @@ public class Particule {
    }
 
 	//public String toString(){
-	//	return "Votre particule est un(e) "+type+" , de masse "+masse+". Ses coordonnées sont: " +coordonnees.toString()+" , sa vitesse "+ vitesse.toString()+" , son accélération: "+acceleration;
+	//	return "Votre particule est un(e) "+type+" , de masse "+masse+". Ses coordonnï¿½es sont: " +coordonnees.toString()+" , sa vitesse "+ vitesse.toString()+" , son accï¿½lï¿½ration: "+acceleration;
 	//}
-	
+	/*
 	public String toString(){
-		return "Particule "+num+" prête à être lancée !";
+		return "Particule "+num+" prï¿½te ï¿½ ï¿½tre lancï¿½e !";
+	}
+	*/
+	public String toString(){
+		return "Particule: "+type;
 	}
 	
 	public boolean equals(Object o){
@@ -222,7 +230,7 @@ public class Particule {
 		
 	}
 	
-	//Méthode map pour changer valeurs - A METTRE DANS PARTICULE
+	//Mï¿½thode map pour changer valeurs - A METTRE DANS PARTICULE
 	int map(int x, int in_min, int in_max, int out_min, int out_max)
 	{
 	  return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;

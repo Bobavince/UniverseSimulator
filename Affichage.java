@@ -7,7 +7,7 @@ public class Affichage extends JFrame {
 	
 	//---- ELEMENTS NON GRAPHIQUES ----
 	ListeObjet listeDesParticules = new ListeObjet();
-	Moteur moteurPhysique = new Moteur(1); //1 est le Coef de gravité
+	Moteur moteurPhysique = new Moteur(1); //1 est le Coef de gravitï¿½
 
 	//---- ELEMENTS NECESSAIRES ----
 	// AJOUT/RETIRER BOUTONS
@@ -17,7 +17,7 @@ public class Affichage extends JFrame {
 	private JLabel labelListe = new JLabel("Liste particules");
 	private JComboBox<Particule> listeObjets = new JComboBox<Particule>();
 	// COORDONNES ELEMENTS
-	private JLabel labelCoord = new JLabel("Coordonnées");
+	private JLabel labelCoord = new JLabel("Coordonnï¿½es");
 	private JLabel labelX = new JLabel(" x ");
 	private JLabel labelY = new JLabel(" y ");
 	//private JLabel labelZ = new JLabel(" z ");
@@ -33,7 +33,7 @@ public class Affichage extends JFrame {
 	private JSpinner vitesY = new JSpinner();
 	//private JSpinner vitesZ = new JSpinner();
     //ACCELERATION ELEMENT
-	private JLabel labelAcceleration = new JLabel("Accélération");
+	private JLabel labelAcceleration = new JLabel("Acceleration");
 	private JLabel labelAx = new JLabel(" Ax ");
 	private JLabel labelAy = new JLabel(" Ay ");
 	//private JLabel labelAz = new JLabel(" Az ");
@@ -75,10 +75,10 @@ public class Affichage extends JFrame {
 	
 	public Affichage() {
 		setSize(1080,600); //Dimension initiales
-		setMinimumSize(new Dimension(1240, 600)); // dimensions minimales /!\ 870 est la longueur minimale pour que les boutons soient affichés correctement !
+		setMinimumSize(new Dimension(1240, 600)); // dimensions minimales /!\ 870 est la longueur minimale pour que les boutons soient affichï¿½s correctement !
 
 		// ---- ELEMENTS GENERAUX ----
-		//CONTENEUR PRINCIPAL DE LA FENETRE (pas forcément nécessaire ... peut être)
+		//CONTENEUR PRINCIPAL DE LA FENETRE (pas forcï¿½ment nï¿½cessaire ... peut ï¿½tre)
 		conteneurPrincipal = new JPanel();
 
 		//DEUX PRINCIPAUX CONTENEURS
@@ -99,31 +99,31 @@ public class Affichage extends JFrame {
 		conteneurSudPrincipal.add(conteneurSudOuest, BorderLayout.WEST);
 		conteneurSudPrincipal.add(conteneurSudEst, BorderLayout.EAST);
 		
-		//On crée un conteneur pour un affichage pour les boutons ajouter/retirer
+		//On crï¿½e un conteneur pour un affichage pour les boutons ajouter/retirer
 		JPanel conteneurAjoutRetirer = new JPanel();
 		conteneurAjoutRetirer.setLayout(new GridLayout(1,2,5,5));
 		conteneurAjoutRetirer.add(boutonAjout);
 		conteneurAjoutRetirer.add(boutonRetirer);
 		
-		//On crée un conteneur pour un affichage à l'utilisateur
+		//On crï¿½e un conteneur pour un affichage ï¿½ l'utilisateur
 		JPanel conteneurConsole = new JPanel();
 		conteneurConsole.setLayout(new GridLayout(1,2,5,5));
 		conteneurConsole.add(labelConsole);
 		conteneurConsole.add(areaConsole);
 		
-		//On crée un conteneur pour la gravitation
+		//On crï¿½e un conteneur pour la gravitation
 		JPanel conteneurGravitation = new JPanel();
 		conteneurGravitation.setLayout(new GridLayout(1,2,5,5));
 		conteneurGravitation.add(labelCstGravitation);
 		conteneurGravitation.add(cstGravitation);
 		
-		//On crée un conteneur pour la vitesse de Simulation
+		//On crï¿½e un conteneur pour la vitesse de Simulation
 		JPanel conteneurVitesseSimulation = new JPanel();
 		conteneurVitesseSimulation.setLayout(new GridLayout(1,2,5,5));
 		conteneurVitesseSimulation.add(labelVitesseSimulation);
 		conteneurVitesseSimulation.add(vitesseSimulation);
 		
-		//On crée un conteneur pour la Pause et Next
+		//On crï¿½e un conteneur pour la Pause et Next
 		JPanel conteneurPauseNext = new JPanel();
 		conteneurPauseNext.setLayout(new GridLayout(1,2,5,5));
 		//conteneurPauseNext.add(boutonPause); // A AJOUTER QUAND LA FONCTION SERA DISPONIBLE
@@ -151,7 +151,7 @@ public class Affichage extends JFrame {
 		//---- FIN BLOC SUD OUEST ----
 		
 		//---- DEBUT BLOC SUD EST ----
-		//On crée un conteneur pour la liste de particule
+		//On crï¿½e un conteneur pour la liste de particule
 		JPanel conteneurListe = new JPanel();
 		conteneurListe.setLayout(new GridLayout(1,2,5,5));
 		conteneurListe.add(labelListe);
@@ -160,7 +160,7 @@ public class Affichage extends JFrame {
 		//On centre tous les JLabel
 		labelListe.setHorizontalAlignment(JLabel.CENTER);
 		
-		//On crée un conteneur pour les coordonnées
+		//On crï¿½e un conteneur pour les coordonnï¿½es
 		JPanel conteneurCoord = new JPanel();
 		conteneurCoord.setLayout(new GridLayout(1,7,5,5));
 		conteneurCoord.add(labelCoord);
@@ -177,7 +177,7 @@ public class Affichage extends JFrame {
 		labelY.setHorizontalAlignment(JLabel.CENTER);
 		//labelZ.setHorizontalAlignment(JLabel.CENTER);
 
-		//On crée un conteneur pour les vitesse
+		//On crï¿½e un conteneur pour les vitesse
 		JPanel conteneurVitesse = new JPanel();
 		conteneurVitesse.setLayout(new GridLayout(1,7,5,5));
 		conteneurVitesse.add(labelVitesse);
@@ -194,7 +194,7 @@ public class Affichage extends JFrame {
 		labelVy.setHorizontalAlignment(JLabel.CENTER);
 		//labelVz.setHorizontalAlignment(JLabel.CENTER);
 
-		//On crée un conteneur pour les accélérations
+		//On crï¿½e un conteneur pour les accï¿½lï¿½rations
 		JPanel conteneurAcceleration = new JPanel();
 		conteneurAcceleration.setLayout(new GridLayout(1,7,5,5));
 		conteneurAcceleration.add(labelAcceleration);
@@ -211,7 +211,7 @@ public class Affichage extends JFrame {
 		labelAy.setHorizontalAlignment(JLabel.CENTER);
 		//labelAz.setHorizontalAlignment(JLabel.CENTER);
 		
-		//On crée un conteneur pour les accélérations
+		//On crï¿½e un conteneur pour les accï¿½lï¿½rations
 		JPanel conteneurMasseRayonCouleur = new JPanel();
 		conteneurMasseRayonCouleur.setLayout(new GridLayout(1,6,5,5));
 		conteneurMasseRayonCouleur.add(labelMasse);
@@ -234,7 +234,7 @@ public class Affichage extends JFrame {
 		conteneurParticule.add(conteneurAcceleration);
 		conteneurParticule.add(conteneurMasseRayonCouleur);
 		
-		//On rajoute des bordures pour que ce soit aéré.
+		//On rajoute des bordures pour que ce soit aï¿½rï¿½.
 		conteneurSudEst.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		conteneurListe.setBorder(BorderFactory.createEmptyBorder(0, 5, 5, 5));
 		
@@ -246,7 +246,7 @@ public class Affichage extends JFrame {
 		//---- FIN BLOC SUD EST ----
 		
 		// ---- MODIFICATIONS DIVERSES ----
-		//MODIFICATION DES JSPINNER EN DOUBLE. Problème : fait que tous les Jspinner se modifie de la même manière. Il faudrait donc crérer autant de model que de JSpinner.
+		//MODIFICATION DES JSPINNER EN DOUBLE. Problï¿½me : fait que tous les Jspinner se modifie de la mï¿½me maniï¿½re. Il faudrait donc crï¿½rer autant de model que de JSpinner.
 		/* modelJSpinnerDouble.setStepSize(0.1); 
 		
 		coordX.setModel(modelJSpinnerDouble);
@@ -265,6 +265,8 @@ public class Affichage extends JFrame {
 		
 		// AJOUT/RETIRER ECOUTEUR
 		//EcouteurBoutonAjout EboutonAjout = new EcouteurBoutonAjout(this);
+		EcouteurBoutonAjout ecouteurBtnAjout= new EcouteurBoutonAjout(this);
+		boutonAjout.addActionListener(ecouteurBtnAjout);
 		EcouteurRetirerParticule EboutonRetirer = new EcouteurRetirerParticule(this);
 		boutonRetirer.addActionListener(EboutonRetirer);
 		
@@ -294,24 +296,29 @@ public class Affichage extends JFrame {
 		EcouteurRayon Erayon = new EcouteurRayon(this);
 		spinnerMasse.addChangeListener(Emasse);
 		spinnerRayon.addChangeListener(Erayon);
-		EcouteurCouleur EboutonCouleur = new EcouteurCouleur(this);  // J'ai une idée pour simplifier la gestion des couleurs : http://www.fobec.com/java/979/afficher-boite-dialogue-selection-une-couleur.html
+		EcouteurCouleur EboutonCouleur = new EcouteurCouleur(this);  // J'ai une idï¿½e pour simplifier la gestion des couleurs : http://www.fobec.com/java/979/afficher-boite-dialogue-selection-une-couleur.html
 		boutonCouleur.addActionListener(EboutonCouleur); // POUR LA GESTION DES COULEURS, ME CONTACTER =D 
 		// NEXT BOUTON ECOUTEUR
 		EcouteurBoutonNext EboutonNext = new EcouteurBoutonNext(this);
 		boutonNext.addActionListener(EboutonNext);
 		
 		// ---- FINALISATION ----
-		//On attribue le conteneur principal à la fenêtre
+		//On attribue le conteneur principal ï¿½ la fenï¿½tre
 		this.setContentPane(conteneurPrincipal);
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Fermer le programme avec la croix
-		this.setLocationRelativeTo(null); //Centre la fenêtre à l'écran
-		this.setTitle("Universe Simulator"); //Entête de la fenêtre
-		setVisible(true); //Afficher la fenêtre
+		this.setLocationRelativeTo(null); //Centre la fenï¿½tre ï¿½ l'ï¿½cran
+		this.setTitle("Universe Simulator"); //Entï¿½te de la fenï¿½tre
+		setVisible(true); //Afficher la fenï¿½tre
 	}
 
 	public ListeObjet getListeObjets(){
 		return listeDesParticules;
+	}
+	
+
+	public void setListeObjets(Particule p){
+		listeObjets.addItem(p);
 	}
 	
 	public PanelDessin getZoneDessin(){
@@ -377,6 +384,30 @@ public class Affichage extends JFrame {
 			answer = Integer.parseInt(coordX.getValue().toString());
 		}
 		return answer;
+	}
+	
+	public double getCoordX(){
+		double answer;
+		if(coordX==null){
+			answer = 0;
+		} else if(coordX.getValue()==null){
+			answer = 0;
+		} else {
+			answer = Double.parseDouble(coordX.getValue().toString());
+		}
+		return answer;
+	}
+	
+	public double getCoordY(){
+		double answer;
+		if(coordY==null){
+			answer = 0;
+		} else if(coordY.getValue()==null){
+			answer = 0;
+		} else {
+			answer = Double.parseDouble(coordY.getValue().toString());
+		}
+		return answer ;
 	}
 	
 	public int getY(){
@@ -452,6 +483,7 @@ public class Affichage extends JFrame {
 		}
 		return answer ;
 	}
+
 	
 	/*
 	public int getAccelZ(){
