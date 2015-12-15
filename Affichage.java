@@ -6,7 +6,7 @@ public class Affichage extends JFrame {
 
 	//---- ELEMENTS NON GRAPHIQUES ----
 	ListeObjet listeDesParticules = new ListeObjet();
-	Moteur moteurPhysique = new Moteur(1); //1 est le Coef de gravit�
+	Moteur moteurPhysique = new Moteur(-10); //1 est le Coef de gravit�
 
 	//---- ELEMENTS NECESSAIRES ----
 	// AJOUT/RETIRER BOUTONS

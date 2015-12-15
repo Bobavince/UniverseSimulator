@@ -61,7 +61,7 @@ public class FenetreAjout extends JFrame{
 		btnCouleur.addActionListener(ecouteurCouleurParticule);
 		
 		// AJout des particules prédéfinies
-		particulesPredefinies.addItem(new Particule(0,0,0,0,0,0,0,0,0,0,"...",0));
+		particulesPredefinies.addItem(new Particule(0,0,0,0,0,0,0,0,0,0,"Personnalisée N°" + Particule.compteur,0));
 		particulesPredefinies.addItem(new Terre(0,0,0,0,0,0,0,0,0));
 		particulesPredefinies.addItem(new EtoileNaineRouge(0,0,0,0,0,0,0,0,0));
 		particulesPredefinies.addItem(new Meteorite(0,0,0,0,0,0,0,0,0));

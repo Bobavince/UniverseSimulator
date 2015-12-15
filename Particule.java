@@ -20,13 +20,14 @@ public class Particule {
 	private static int chargeParDefaut=0;
 
 	//NUMERO PARTICULE
-	private static int compteur=0;
+	public static int compteur=0;
 	private int num;
 
 	public Particule(double x,double y, double z, double vx, double vy, double vz, double ax, double ay, double az,double masse, String type, double rayon, Color couleur){
 		// ATTRIBUTS ESSENTIELS
 		this.coordonnees= new Vecteur(x,y,z);
 		this.vitesse= new Vecteur(vx,vy,vz);
+		this.vitesseFuture = this.vitesse;
 		this.acceleration = new Vecteur(ax,ay,az);
 		this.masse= masse;
 		this.type= type;
@@ -43,6 +44,7 @@ public class Particule {
 		// ATTRIBUTS ESSENTIELS
 		this.coordonnees= new Vecteur(x,y,z);
 		this.vitesse= new Vecteur(vx,vy,vz);
+		this.vitesseFuture = this.vitesse;
 		this.acceleration = new Vecteur(ax,ay,az);
 		this.masse= masse;
 		this.type= type;
@@ -59,6 +61,7 @@ public class Particule {
 		// ATTRIBUTS ESSENTIELS
 		this.coordonnees=coord;
 		this.vitesse=vit;
+		this.vitesseFuture = this.vitesse;
 		this.acceleration=acc;
 		this.masse=masseParDefaut;
 		this.type=typeParDefaut;
@@ -125,7 +128,7 @@ public class Particule {
 	public int getNum(){
 		return num;
 	}
-	
+
 	public String getType(){
 		return type;
 	}
@@ -157,7 +160,7 @@ public class Particule {
 	public void setVitesse(double X, double Y, double Z){
 		vitesse = new Vecteur(X,Y,Z);
 	}
-	
+
 	public void setVitesse(Vecteur vit){
 		vitesse= vit;
 	}
@@ -178,45 +181,54 @@ public class Particule {
 	//ENSEMBLE DE METHODES UTILES
 
 	public void passerEtatFutur(){
+
+		//DEBUG//
+		System.out.println("PARTICULE " +  this.toString() + ": Passer état futur AVANT MODIF  :  acceleration" + this.getAcceleration().toString() + " vitesse " + this.getVitesse().toString() + " coordonnées " + this.getCoordonnees().toString());
+		//DEBUG//
 		if(vitesse != vitesseFuture){
 			vitesse = vitesseFuture; 
 		} else {
 			vitesse = vitesse.addition(acceleration);  
 		}
-
+		//DEBUG//
+		System.out.println("PARTICULE " +  this.toString() + ": Passer état futur COURANT MODIF  :  acceleration" + this.getAcceleration().toString() + " vitesse " + this.getVitesse().toString() + " coordonnées " + this.getCoordonnees().toString());
+		//DEBUG//
 		vitesseFuture = vitesse;
 		coordonnees=coordonnees.addition(vitesse);
+		//DEBUG//
+		System.out.println("PARTICULE " +  this.toString() + ": Passer état futur APRES MODIF  :  acceleration" + this.getAcceleration().toString() + " vitesse " + this.getVitesse().toString() + " coordonnées " + this.getCoordonnees().toString());
+		//DEBUG//
 	}
-	
+
 	protected void dessiner(Graphics g, int maxX, int maxY, int minX, int minY, int dessinX, int dessinY){
 		g.setColor(couleur);
 		int corrigeCentreX = map((int)(this.getCoordonneeX()-this.rayon), minX, maxX, 0, dessinX);
 		int corrigeCentreY = map((int)(this.getCoordonneeY()-this.rayon), minY, maxY, 0, dessinY); // FAIT DES OVALES ! A CORRIGER ! 
 		int corrigeRayon = map((int)(rayon), minY, maxY, 0, dessinY); // LIGNE A CORRIGER
-		
+
 		//LIGNE DE DEBUG
-		g.fillOval((int)this.getCoordonneeX(), (int)this.getCoordonneeY(),(int)rayon, (int)rayon);
-		
+		g.fillOval((int)this.getCoordonneeX(), (int)this.getCoordonneeY(),(int)rayon*2, (int)rayon*2);
+
 		//g.fillOval(corrigeCentreX, corrigeCentreY,corrigeRayon, corrigeRayon);
 		System.out.println("PARTICULE :  i, maxX, maxyn minx, minY, getWidht, getHeight" + maxX + " " + maxY + " " + minX + " " + minY + " " + dessinX +  " " + dessinY);
 		System.out.println("PARTICULE : corrigeX, corrigeY, corrigeRayon" + corrigeCentreX + " " + corrigeCentreY  + " " +  corrigeRayon) ;
 
 
 	}
-	
+
 	protected void dessiner(Graphics g, double coefficient, int dessinX, int dessinY){
 		g.setColor(couleur);
 		//AJOUTER LA GESTION DU COEFFICIENT : 
 		// FAIRE x*coefficient y*coefficient
-		
+
 		//DEBUG //
 		System.out.println("Coordonnes Particule : " + this.toString() + " en : x " + (int)(this.getCoordonneeX()) + " y " + (int)(this.getCoordonneeY()));
 		System.out.println("Tentative de dessin de : " + this.toString() + " en : x " + (int)(this.getCoordonneeX()-this.rayon) + " y " + (int)(this.getCoordonneeY()-this.rayon) + " de rayon " + (int)rayon + " " +(int)rayon);
 		//DEBUG //
-		g.fillOval((int)(this.getCoordonneeX()-(this.rayon/2)), (int)(this.getCoordonneeY()-(this.rayon/2)),(int)rayon, (int)rayon);
+		g.fillOval((int)(this.getCoordonneeX()-(this.rayon)), (int)(this.getCoordonneeY()-(this.rayon)),(int)rayon*2, (int)rayon*2);
 	}
-	
-	
+
+
 
 	//M�thode map pour changer valeurs - A METTRE DANS PARTICULE
 	int map(int x, int in_min, int in_max, int out_min, int out_max)
@@ -227,16 +239,31 @@ public class Particule {
 	}
 
 
-	//ENSEMBLE DE TOSTRING et EQUALS
+	// ---- ENSEMBLE DE TOSTRING et EQUALS ----
 	public String toStringComplet(){
-		// NOTE ERREUR ICI IL FAUT VERIFIER SI ILS EXISTENT ! 
-		return "Particule :  "+ type +" , de masse "+ masse +". coordonnées : " + coordonnees.toString()+" , vitesse "+ vitesse.toString() +" , accélération: "+ acceleration + " numéro " + num;
+		String answer = "";
+		if(type!=null){
+			answer+= "Particule :  " + type;
+		}
+		answer+= " de masse "+ masse;
+		if(coordonnees!=null){
+			answer+= " coordonnées : " + coordonnees.toString(); 
+		}
+		if(type!=null){
+			answer+= " vitesse " + vitesse.toString();
+		}
+		if(acceleration!=null){
+			answer += " accélération: " + acceleration ;
+		}
+		answer += " numéro " + num;
+
+		return answer;
 	}
 
 	public String toString(){
 		return "Particule: "+ type;
 	}
-	 
+
 	public boolean equals(Object o){
 		if(o==null){
 			return false;

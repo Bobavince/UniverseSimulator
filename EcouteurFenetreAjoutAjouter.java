@@ -18,7 +18,7 @@ public class EcouteurFenetreAjoutAjouter implements ActionListener {
 			// On créé la particule avec les données de la fenêtre et on l'ajoute à la fenetre principale qui se charge du reste
 			Particule maParticule= new Particule(fen.getCoordX(), fen.getCoordY(),0, fen.getVitX(), fen.getVitY(),0,fen.getAccX(), fen.getAccY(),0,fen.getMasse(),fen.getTypeParticule(), fen.getRayon(),fen.getCouleurParticule());
 			fen.getFenAffichage().ajouterParticule(maParticule);
-			
+			fen.getFenAffichage().getZoneDessin().repaint();
 			//On cache la fenetre d'ajout de particule
 			fen.dispose();
 			

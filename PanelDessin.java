@@ -9,7 +9,7 @@ public class PanelDessin extends JPanel {
 	
 	public PanelDessin(Affichage fenetreParente){
 		this.fenetreParente = fenetreParente;
-		//setBackground(Color.BLACK); //Le Fond en noir pour faire Spatial
+		setBackground(Color.BLACK); //Le Fond en noir pour faire Spatial
 	}
 
 	@Override
