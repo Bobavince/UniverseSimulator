@@ -27,14 +27,14 @@ public class EcouteurBoutonNext implements ActionListener {
 		//On récupère le "coefficient de dilatation" pour le dessin
 		double coefDilatation = getCoefficient(tableauMinimaMaxima,fenHeight,fenWidth);
 		//DEBUG//
-		System.out.println("Ecouteur NEXT :  coefDilatation " + coefDilatation); 
+		if(Affichage.debug){System.out.println("Ecouteur NEXT :  coefDilatation " + coefDilatation); }
 		// DEBUG // 
 				
 		//On transfmet le coefficient a la zone de dessin qui les transmettra aux objets.
 		fenetreAffichage.getZoneDessin().setCoefficient(coefDilatation);
 		
 		//DEBUG//
-		System.out.println("Ecouteur NEXT :  minX, minY, MAXX, MAXY" + tableauMinimaMaxima[0] + " " + tableauMinimaMaxima[1] + " " + tableauMinimaMaxima[2] + " " + tableauMinimaMaxima[3]); 
+		if(Affichage.debug){System.out.println("Ecouteur NEXT :  minX, minY, MAXX, MAXY" + tableauMinimaMaxima[0] + " " + tableauMinimaMaxima[1] + " " + tableauMinimaMaxima[2] + " " + tableauMinimaMaxima[3]); }
 		// DEBUG // 
 		
 		//On repaint la fenetre puisque la position des objets a chang�.
@@ -45,7 +45,10 @@ public class EcouteurBoutonNext implements ActionListener {
 		double answer=1;
 		//On fait rentre les coordonn�es MAX/MIN dans la taille de la fenetre, par la multiplication par un coefficient (l'un des deux plus faibles, selon celui calcul� sur X et celui sur Y)
 		
-		
+		//tableauMinimaMaxima[0]=minX;
+		//tableauMinimaMaxima[1]=minY;
+		//tableauMinimaMaxima[2]=MAXX;
+		//tableauMinimaMaxima[3]=MAXY;
 		
 		// TOOOOOOOOOOOOOOOOOOOOOOOOOO DOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 		return answer;

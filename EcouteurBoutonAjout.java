@@ -9,8 +9,8 @@ public class EcouteurBoutonAjout implements ActionListener {
 	Affichage fenetreAffichage;
 	FenetreAjout fenetreAjout;
 
-	public EcouteurBoutonAjout(Affichage fen){
-		this.fenetreAffichage=fen;
+	public EcouteurBoutonAjout(Affichage fenetreAffichage){
+		this.fenetreAffichage=fenetreAffichage;
 	}
 	
 	public void actionPerformed(ActionEvent e) {

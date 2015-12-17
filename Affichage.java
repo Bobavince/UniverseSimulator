@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.util.*;
+
 import javax.swing.*;
 
 public class Affichage extends JFrame {
@@ -43,8 +44,8 @@ public class Affichage extends JFrame {
 
 	// NEXT BOUTON
 	private JButton boutonNext = new JButton("t -> t+1");
-	private JButton boutonStart = new JButton("START");
-	private JButton boutonPause = new JButton("PAUSE");
+	private JToggleButton  boutonStartPause = new JToggleButton ("START");
+	private JToggleButton boutonAutoScale = new JToggleButton("AUTOSCALE");
 
 	//---- ELEMENTS EVOLUES ----
 	private JLabel labelConsole = new JLabel("Console");
@@ -63,9 +64,13 @@ public class Affichage extends JFrame {
 	JPanel conteneurSudOuest;
 	JPanel conteneurSudEst;
 
+	//DEBUG
+	static boolean debug = true;
+
 	public Affichage() {
-		setSize(1080,600); //Dimension initiales
-		setMinimumSize(new Dimension(1240, 600)); // dimensions minimales pour affichage correct/!\ 
+		setSize(new Dimension((int)(java.awt.Toolkit.getDefaultToolkit().getScreenSize().getWidth()*0.8), (int)(java.awt.Toolkit.getDefaultToolkit().getScreenSize().getHeight()*0.8))); //Dimension initiales
+		setMinimumSize(new Dimension(1000, 600)); // dimensions minimales pour affichage correct/!\ 
+		this.setPreferredSize(new Dimension((int)(java.awt.Toolkit.getDefaultToolkit().getScreenSize().getWidth()*0.8), (int)(java.awt.Toolkit.getDefaultToolkit().getScreenSize().getHeight()*0.8)));
 
 		// ---- ELEMENTS GENERAUX ----
 		//CONTENEUR PRINCIPAL DE LA FENETRE 
@@ -85,7 +90,7 @@ public class Affichage extends JFrame {
 		conteneurPrincipal.add(conteneurSudPrincipal, BorderLayout.SOUTH);
 
 		//STRUCTURE SECONDAIRE SUD AVEC 2 STRUCTURES TERTIAIRES
-		conteneurSudPrincipal.setLayout(new BorderLayout());
+		conteneurSudPrincipal.setLayout(new GridLayout(1,2,5,5));
 		conteneurSudPrincipal.add(conteneurSudOuest, BorderLayout.WEST);
 		conteneurSudPrincipal.add(conteneurSudEst, BorderLayout.EAST);
 
@@ -113,11 +118,16 @@ public class Affichage extends JFrame {
 		conteneurVitesseSimulation.add(labelVitesseSimulation);
 		conteneurVitesseSimulation.add(vitesseSimulation);
 
-		//On cr�e un conteneur pour la Pause et Next
+		//On cr�e un conteneur pour la Autoscale et Next
 		JPanel conteneurPauseNext = new JPanel();
 		conteneurPauseNext.setLayout(new GridLayout(1,2,5,5));
-		//conteneurPauseNext.add(boutonPause); // A AJOUTER QUAND LA FONCTION SERA DISPONIBLE
+		conteneurPauseNext.add(boutonAutoScale);
 		conteneurPauseNext.add(boutonNext);
+
+		//On créé un conteneur pour le start et stop
+		JPanel conteneurStartStop = new JPanel();
+		conteneurStartStop.setLayout(new GridLayout(1,2,5,5));
+		conteneurStartStop.add(boutonStartPause);
 
 		//On centres les JLabel
 		labelConsole.setHorizontalAlignment(JLabel.CENTER);
@@ -138,6 +148,7 @@ public class Affichage extends JFrame {
 		//conteneurSudOuest.add(conteneurGravitation);
 		//conteneurSudOuest.add(conteneurVitesseSimulation);
 		conteneurSudOuest.add(conteneurPauseNext);
+		conteneurSudOuest.add(conteneurStartStop);
 		//---- FIN BLOC SUD OUEST ----
 
 		//---- DEBUT BLOC SUD EST ----
@@ -228,7 +239,6 @@ public class Affichage extends JFrame {
 
 		// ---- ECOUTEURS ----
 		// AJOUT/RETIRER ECOUTEUR
-		//EcouteurBoutonAjout EboutonAjout = new EcouteurBoutonAjout(this);
 		EcouteurBoutonAjout EboutonAjout = new EcouteurBoutonAjout(this);
 		boutonAjout.addActionListener(EboutonAjout);
 		EcouteurBoutonRetirer EboutonRetirer = new EcouteurBoutonRetirer(this);
@@ -266,6 +276,10 @@ public class Affichage extends JFrame {
 		// NEXT BOUTON ECOUTEUR
 		EcouteurBoutonNext EboutonNext = new EcouteurBoutonNext(this);
 		boutonNext.addActionListener(EboutonNext);
+		EcouteurBoutonAutoScale EboutonAutoScale = new EcouteurBoutonAutoScale(this);
+		boutonAutoScale.addActionListener(EboutonAutoScale);
+		EcouteurBoutonStartPause EboutonStartPause = new EcouteurBoutonStartPause(this);
+		boutonStartPause.addActionListener(EboutonStartPause);
 
 		// ---- FINALISATION ----
 		//On attribue le conteneur principal à la fen�tre
@@ -281,7 +295,7 @@ public class Affichage extends JFrame {
 	public ListeObjet getListeObjets(){
 		return listeDesParticules;
 	}
-	
+
 	public Moteur getMoteur(){
 		return moteurPhysique;
 	}
@@ -292,6 +306,15 @@ public class Affichage extends JFrame {
 
 	public PanelDessin getZoneDessin(){
 		return conteneurNordPrincipal;
+	}
+
+	//SETTEURS PARTICULIERS
+	public void setBoutonStartPause(JToggleButton boutonStartPause) {
+		this.boutonStartPause = boutonStartPause;
+	}
+
+	public void setBoutonAutoScale(JToggleButton boutonAutoScale) {
+		this.boutonAutoScale = boutonAutoScale;
 	}
 
 	// LES SETTEURS des COORDONNES / VITESSES / ACCELERATIONS / MASSE / RAYON 
@@ -351,7 +374,7 @@ public class Affichage extends JFrame {
 	public double getAccelY(){
 		return stringToDouble(accelY) ;
 	}
-	
+
 	public double getMasse(){
 		return stringToDouble(spinnerMasse);
 	}
@@ -366,7 +389,7 @@ public class Affichage extends JFrame {
 	 */
 	public double stringToDouble(JSpinner spinner){
 		double answer = 0;
-		
+
 		try {
 			if(spinner==null){
 				answer = 0;
@@ -381,10 +404,10 @@ public class Affichage extends JFrame {
 			System.out.println("VOUS AVEZ ENTRE UNE CHAINE DE CARACTERE ! ");
 			answer = -1;
 		}
-		
+
 		return answer;
 	}
-	
+
 
 	/** Méthode pour ajouter une particule proprement
 	 * @param particule : la particule à ajouter
@@ -394,18 +417,58 @@ public class Affichage extends JFrame {
 		listeDesParticules.ajouterParticule(particule);
 		// On ajoute la particule dans la liste déroulante
 		listeObjets.addItem(particule);
-		
+
 		//DEBUG //
-		listeDesParticules.toString();
-		listeObjets.toString();
+		if(Affichage.debug){listeDesParticules.toString();}
+		if(Affichage.debug){listeObjets.toString();}
 		//DEBUG - Connaitre l'état de la liste des Particules //
 	}
-	
+
 	/** Méthode pour retirer une particule proprement
 	 * @param particule : la particule à retirer
 	 */
 	public void retirerParticule(Particule particule){
-		
+		// On retire la particule à la listeObjet
+		listeDesParticules.getListeParticule().remove(particule);
+		// On retire la particule dans la liste déroulante
+		listeObjets.removeItem(particule);
+
+		//DEBUG //
+		if(Affichage.debug){listeDesParticules.toString();}
+		if(Affichage.debug){listeObjets.toString();}
+		//DEBUG - Connaitre l'état de la liste des Particules //
+	}
+
+	/** Méthode qui met à jour les champs de la fenêtre principale (Coordonnées, vitesse, masse ...)
+	 * 
+	 */
+	public void mettreAJourChamps(){
+		if(this.getJComboBox().getSelectedItem() instanceof Particule){
+			Particule particule = (Particule) this.getJComboBox().getSelectedItem();
+
+			// On change tous les JSpinner de la fenêtre principale.
+			this.setCoordX(particule.getCoordonnees().getTabVecteur()[0]);
+			this.setCoordY(particule.getCoordonnees().getTabVecteur()[1]);
+			this.setVitesX(particule.getVitesse().getTabVecteur()[0]);
+			this.setVitesY(particule.getVitesse().getTabVecteur()[1]);
+			this.setAccelX(particule.getAcceleration().getTabVecteur()[0]);
+			this.setAccelY(particule.getAcceleration().getTabVecteur()[1]);
+			this.setMasse(particule.getMasse());
+			this.setRayon(particule.getRayon());
+			//On repaint la fenetre puisque la position des objets a chang�.
+			this.getZoneDessin().repaint();
+		} else {
+			System.out.println("Pas de particule dans la liste déroulante sélectionnée");
+			//On mets tous les indices à 0 si il n'y a aucune particule
+				this.setCoordX(0);
+				this.setCoordY(0);
+				this.setVitesX(0);
+				this.setVitesY(0);
+				this.setAccelX(0);
+				this.setAccelY(0);
+				this.setMasse(0);
+				this.setRayon(0);
+		}
 	}
 
 }

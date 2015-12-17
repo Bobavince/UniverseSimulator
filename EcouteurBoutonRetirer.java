@@ -3,14 +3,14 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class EcouteurBoutonRetirer implements ActionListener{
-	private Affichage fen;
+	private Affichage fenetreAffichage;
 	
-	public EcouteurBoutonRetirer(Affichage fen){
-		this.fen = fen;
+	public EcouteurBoutonRetirer(Affichage fenetreAffichage){
+		this.fenetreAffichage = fenetreAffichage;
 	}
 	
 	public void actionPerformed(ActionEvent ae){
-		new FenetreRetrait(fen.getListeObjets());
+		new FenetreRetrait(fenetreAffichage.getListeObjets(), this.fenetreAffichage);
 	}
 	
 }

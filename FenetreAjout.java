@@ -61,16 +61,16 @@ public class FenetreAjout extends JFrame{
 		btnCouleur.addActionListener(ecouteurCouleurParticule);
 		
 		// AJout des particules prédéfinies
-		particulesPredefinies.addItem(new Particule(0,0,0,0,0,0,0,0,0,0,"Personnalisée N°" + Particule.compteur,0));
-		particulesPredefinies.addItem(new Terre(0,0,0,0,0,0,0,0,0));
-		particulesPredefinies.addItem(new EtoileNaineRouge(0,0,0,0,0,0,0,0,0));
-		particulesPredefinies.addItem(new Meteorite(0,0,0,0,0,0,0,0,0));
+		particulesPredefinies.addItem(new Particule(0,0,0,0,0,0,0,0,0,0,"Personnalisée N°" + Particule.compteur,0, false));
+		particulesPredefinies.addItem(new Terre(0,0,0,0,0,0,0,0,0,false));
+		particulesPredefinies.addItem(new EtoileNaineRouge(0,0,0,0,0,0,0,0,0, false));
+		particulesPredefinies.addItem(new Meteorite(0,0,0,0,0,0,0,0,0, false));
 					
 		//Cadres
-		JPanel cadrePrincipal = new JPanel( new BorderLayout());
+		JPanel cadrePrincipal = new JPanel(new BorderLayout());
 		JPanel cadreDeroulant = new JPanel(new BorderLayout());
 		JPanel cadreAttributs= new JPanel(new GridLayout(3,6,5,5));
-		JPanel cadreBoutons= new JPanel(new BorderLayout());
+		JPanel cadreBoutons= new JPanel(new GridLayout(1,3,5,5));
 		
 		cadrePrincipal.add(cadreDeroulant,BorderLayout.NORTH);
 		cadrePrincipal.add(cadreAttributs,BorderLayout.CENTER);
@@ -84,7 +84,6 @@ public class FenetreAjout extends JFrame{
 		cadreAttributs.add(vitX);
 		cadreAttributs.add(legendeAX);
 		cadreAttributs.add(accX);
-		
 		cadreAttributs.add(legendeCY);
 		cadreAttributs.add(coordY);
 		cadreAttributs.add(legendeVY);
@@ -103,15 +102,36 @@ public class FenetreAjout extends JFrame{
 		cadreBoutons.add(btnLancer,BorderLayout.CENTER);
 		cadreBoutons.add(btnAnnuler,BorderLayout.EAST);
 		
+		//Alignement
+		legendeCX.setHorizontalAlignment(JLabel.CENTER);
+		legendeVX.setHorizontalAlignment(JLabel.CENTER);
+		legendeAX.setHorizontalAlignment(JLabel.CENTER);
+		legendeCY.setHorizontalAlignment(JLabel.CENTER);
+		legendeVY.setHorizontalAlignment(JLabel.CENTER);
+		legendeAY.setHorizontalAlignment(JLabel.CENTER);
+		legendeRayon.setHorizontalAlignment(JLabel.CENTER);
+		legendeMasse.setHorizontalAlignment(JLabel.CENTER);
+		legendeType.setHorizontalAlignment(JLabel.CENTER);
+		legendeCX.setVerticalAlignment(JLabel.CENTER);
+		legendeVX.setVerticalAlignment(JLabel.CENTER);
+		legendeAX.setVerticalAlignment(JLabel.CENTER);
+		legendeCY.setVerticalAlignment(JLabel.CENTER);
+		legendeVY.setVerticalAlignment(JLabel.CENTER);
+		legendeAY.setVerticalAlignment(JLabel.CENTER);
+		legendeRayon.setVerticalAlignment(JLabel.CENTER);
+		legendeMasse.setVerticalAlignment(JLabel.CENTER);
+		legendeType.setVerticalAlignment(JLabel.CENTER);
+		
 		//Parametrage fenetre
 		cadreDeroulant.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		cadreBoutons.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		cadreAttributs.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-		setLocationRelativeTo(null);
 		setContentPane(cadrePrincipal);
-		
-		//setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setMinimumSize(new Dimension(350,300));
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setMinimumSize(new Dimension(800,300));
+		this.setMaximumSize(new Dimension (10000,600));
+		this.setMinimumSize(new Dimension (800,300));
+		setLocationRelativeTo(null);
 		setVisible(true);
 	}
 	

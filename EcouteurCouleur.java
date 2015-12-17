@@ -5,17 +5,30 @@ import javax.swing.JColorChooser;
 
 public class EcouteurCouleur implements ActionListener {
 
-	public EcouteurCouleur(Affichage maFen){
-		
+	private Affichage fenetreAffichage;
+	
+	public EcouteurCouleur(Affichage fenetreAffichage){
+		this.fenetreAffichage=fenetreAffichage;
 	}
-	/* (non-Javadoc)
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-	 */
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		Color maCouleur = JColorChooser.showDialog(null,"Choix de couleur", null);
-		//GetParticuleCourante.setCouleur(maCouleur);
+		Color couleurChoisie = JColorChooser.showDialog(null,"Choix de couleur", null);
+		
+		if(fenetreAffichage.getJComboBox().getSelectedItem() instanceof Particule){
+			
+			// On récupère la particule courante sélectionnée
+			Particule particule = (Particule)(fenetreAffichage.getJComboBox().getSelectedItem());
+			// On lui attribue de nouvelles coordonnées : sa coordonnée X depuis la fenetre principale et sa coordonnées y inchangée
+			particule.setCouleur(couleurChoisie);
+			
+			//DEBUG // 
+			System.out.println("COULEUR DE LA PARTICULE : \n" + particule.toStringComplet() + " \n changée");
+			//DEBUG - Pour savoir si la coordonnées à été changée effectivement. //
+		} else {
+			System.out.println("Il n'y a pas de particule sélectionnée !");
+		}
 	}
 
 }

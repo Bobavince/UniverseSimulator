@@ -24,7 +24,7 @@ public class ListeObjet {
 		}
 
 		// DEBUG //
-		System.out.println(this.toString());
+		if(Affichage.debug){System.out.println(this.toString());}
 		// DEBUG - AFFICHAGE LISTE MODIFIE //
 	}
 
@@ -39,19 +39,19 @@ public class ListeObjet {
 		}
 
 		// DEBUG //
-		System.out.println(this.toString());
+		if(Affichage.debug){System.out.println(this.toString());}
 		// DEBUG - AFFICHAGE LISTE MODIFIE //
 	}
 
 	public void dessinerListe(Graphics g, double coefficient, int dessinX, int dessinY){
 		//DEBUG // 
-		System.out.println("Arrivé dans la métode dessin de Liste");
-		System.out.println("Longeur Liste : " + listeParticule.size());
+		if(Affichage.debug){System.out.println("Arrivé dans la métode dessin de Liste");}
+		if(Affichage.debug){System.out.println("Longeur Liste : " + listeParticule.size());}
 		//DEBUG//
 		for (int i=0; i< this.listeParticule.size(); i++){
 			this.listeParticule.get(i).dessiner(g, coefficient, dessinX, dessinY);
 			//DEBUG //
-			System.out.println("La particule N°" + i + " a été dessiné : " + listeParticule.get(i).toString());
+			if(Affichage.debug){System.out.println("La particule N°" + i + " a été dessiné : " + listeParticule.get(i).toString());}
 			//DEBUG//
 		}
 	}
@@ -63,7 +63,7 @@ public class ListeObjet {
 
 		double[] tableauMinimaMaxima = new double[4];
 
-		if(listeParticule.size()!=0){
+		if(listeParticule.size()>=2){
 			int minX, minY, MAXX, MAXY;
 			//Le X de la première particule va dans le MAX X
 			MAXX = (int) listeParticule.get(0).getCoordonnees().getTabVecteur()[0];
@@ -75,34 +75,48 @@ public class ListeObjet {
 			minY = MAXY;
 
 			for(int i=0 ; i < listeParticule.size(); i++ ){
-				int xCourant = (int) listeParticule.get(i).getCoordonnees().getTabVecteur()[0];
-				int yCourant = (int) listeParticule.get(i).getCoordonnees().getTabVecteur()[1];
+				int xCourantGauche = (int) (listeParticule.get(i).getCoordonnees().getTabVecteur()[0]-listeParticule.get(i).getRayon());
+				int yCourantHaut = (int) (listeParticule.get(i).getCoordonnees().getTabVecteur()[1]-listeParticule.get(i).getRayon());
+				int xCourantDroite = (int) (listeParticule.get(i).getCoordonnees().getTabVecteur()[0]+listeParticule.get(i).getRayon());
+				int yCourantBas = (int) (listeParticule.get(i).getCoordonnees().getTabVecteur()[1]+listeParticule.get(i).getRayon());
 
-				if(MAXX<xCourant){
-					MAXX=xCourant;
+				if(MAXX<xCourantGauche){
+					MAXX=xCourantGauche;
 				}
-				if(MAXY<yCourant){
-					MAXY=yCourant;
+				if(MAXY<yCourantHaut){
+					MAXY=yCourantHaut;
 				}
-				if(minX>xCourant){
-					minX=xCourant;
+				if(minX>xCourantGauche){
+					minX=xCourantGauche;
 				}
-				if(minY>yCourant){
-					minY=yCourant;
+				if(minY>yCourantHaut){
+					minY=yCourantHaut;
+				}
+				if(MAXX<xCourantDroite){
+					MAXX=xCourantDroite;
+				}
+				if(MAXY<yCourantBas){
+					MAXY=yCourantBas;
+				}
+				if(minX>xCourantDroite){
+					minX=xCourantDroite;
+				}
+				if(minY>yCourantBas){
+					minY=yCourantBas;
 				}
 			}
 
 			// On range dans le tableau
 			tableauMinimaMaxima[0]=minX;
-			tableauMinimaMaxima[0]=minY;
-			tableauMinimaMaxima[0]=MAXX;
-			tableauMinimaMaxima[0]=MAXY;
+			tableauMinimaMaxima[1]=minY;
+			tableauMinimaMaxima[2]=MAXX;
+			tableauMinimaMaxima[3]=MAXY;
 		} else {
 			// On range dans le tableau
 			tableauMinimaMaxima[0]=0;
-			tableauMinimaMaxima[0]=0;
-			tableauMinimaMaxima[0]=1000;
-			tableauMinimaMaxima[0]=1000;
+			tableauMinimaMaxima[1]=0;
+			tableauMinimaMaxima[2]=1000;
+			tableauMinimaMaxima[3]=1000;
 		}
 
 		return tableauMinimaMaxima;

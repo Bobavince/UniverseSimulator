@@ -21,8 +21,11 @@ public class PanelDessin extends JPanel {
 		fenetreParente.getListeObjets().dessinerListe(g, coefficient, this.getWidth(), this.getHeight());
 		
 		//DEBUG // 
-		System.out.println("DANS PANEL DESSIN : coefficient, getWidht, getHeight " + coefficient + " " + this.getWidth() + " " + this.getHeight());
+		if(Affichage.debug){System.out.println("DANS PANEL DESSIN : coefficient, getWidht, getHeight " + coefficient + " " + this.getWidth() + " " + this.getHeight());}
 		//DEBUG // 
+		
+		//On mets à jour tous les champs de l'interface.
+		fenetreParente.mettreAJourChamps();
 
 	}
 	
