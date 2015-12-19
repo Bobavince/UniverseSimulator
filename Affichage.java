@@ -1,8 +1,21 @@
-import java.awt.*;
-import java.util.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridLayout;
 
-import javax.swing.*;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSpinner;
+import javax.swing.JTextArea;
+import javax.swing.JToggleButton;
 
+/** Classe d'Affichage principal qui gère la fenêtre principale et les écouteurs associés.
+ */
 public class Affichage extends JFrame {
 
 	//---- ELEMENTS NON GRAPHIQUES ----
@@ -65,8 +78,10 @@ public class Affichage extends JFrame {
 	JPanel conteneurSudEst;
 
 	//DEBUG
-	static boolean debug = true;
+	static boolean debug = false;
 
+	/** Constructeur de la fenêtre principale de type "Affichage"
+	 */
 	public Affichage() {
 		setSize(new Dimension((int)(java.awt.Toolkit.getDefaultToolkit().getScreenSize().getWidth()*0.8), (int)(java.awt.Toolkit.getDefaultToolkit().getScreenSize().getHeight()*0.8))); //Dimension initiales
 		setMinimumSize(new Dimension(1000, 600)); // dimensions minimales pour affichage correct/!\ 
@@ -292,96 +307,165 @@ public class Affichage extends JFrame {
 	}
 
 	// GETTEURS PARTICULIERS 
+	/** Getteur de l'attribut LISTEOBJET, instance de la classe ListeObjet qui gère la liste des particules
+	 * @return l'objet de type ListeObjet
+	 */
 	public ListeObjet getListeObjets(){
 		return listeDesParticules;
 	}
 
+	/** Getteur de l'instance du moteur
+	 * @return le moteur
+	 */
 	public Moteur getMoteur(){
 		return moteurPhysique;
 	}
 
+	/** Getteur de la JComboBox de sélection de la particule de la liste déroulante
+	 * @return la JComboBox entière.
+	 */
 	public JComboBox<Particule> getJComboBox(){
 		return listeObjets;
 	}
 
+	/** Getteur du JPanel de dessin de la fenêtre principal
+	 * @return JPanel de dessin de la fenêtre principal
+	 */
 	public PanelDessin getZoneDessin(){
 		return conteneurNordPrincipal;
 	}
 
+	/** Getteur du bouton START/STOP de la fenêtre principal
+	 * @return bouton START/STOPde la fenêtre principal
+	 */
 	public JToggleButton getBoutonStartPause() {
 		return boutonStartPause;
 	}
 
+	/** Getteur du JPanel bouton AUTOSCALE de la fenêtre principal
+	 * @return bouton AUTOSCALE  de la fenêtre principal
+	 */
 	public JToggleButton getBoutonAutoScale() {
 		return boutonAutoScale;
 	}
 
+	/** Getteur bouton couleur de dessin de la fenêtre principal
+	 * @return bouton couleur de la fenêtre principal
+	 */
 	public JButton getBoutonCouleur() {
 		return boutonCouleur;
 	}
 
 	// LES SETTEURS des COORDONNES / VITESSES / ACCELERATIONS / MASSE / RAYON 
+	/** Setteur du champ CoordX
+	 * @param coordX : la valeur à appliquer au champ
+	 */
 	public void setCoordX(double coordX) {
 		this.coordX.setValue(coordX);
 	}
 
+	/**Setteur du champ CoordY
+	 * @param coordY : la valeur à appliquer au champ
+	 */
 	public void setCoordY(double coordY) {
 		this.coordY.setValue(coordY);
 	}
 
+	/**Setteur du champ VitesX
+	 * @param vitesX : la valeur à appliquer au champ
+	 */
 	public void setVitesX(double vitesX) {
 		this.vitesX.setValue(vitesX);
 	}
 
+	/**Setteur du champ VitesY
+	 * @param vitesY : la valeur à appliquer au champ
+	 */
 	public void setVitesY(double vitesY) {
 		this.vitesY.setValue(vitesY);
 	}
 
+	/**Setteur du champ AccelX
+	 * @param accelX : la valeur à appliquer au champ
+	 */
 	public void setAccelX(double accelX) {
 		this.accelX.setValue(accelX);
 	}
 
+	/**Setteur du champ AccelY
+	 * @param accelY : la valeur à appliquer au champ
+	 */
 	public void setAccelY(double accelY) {
 		this.accelY.setValue(accelY);
 	}
 
+	/**Setteur du champ Masse
+	 * @param masse : la valeur à appliquer au champ
+	 */
 	public void setMasse(double masse) {
 		this.spinnerMasse.setValue(masse);
 	}
 
+	/**Setteur du champ Rayon
+	 * @param rayon : la valeur à appliquer au champ
+	 */
 	public void setRayon(double rayon) {
 		this.spinnerRayon.setValue(rayon);
 	}
 
 	// LES GETTEURS des COORDONNES / VITESSES / ACCELERATIONS / MASSE / RAYON
+	/**Getteur du champ CoordX
+	 * @return la valeur du champ
+	 */
 	public double getCoordX(){
 		return stringToDouble(coordX);
 	}
 
+	/**Getteur du champ CoordY
+	 * @return la valeur du champ
+	 */
 	public double getCoordY(){
 		return stringToDouble(coordY);
 	}
 
+	/**Getteur du champ VitesX
+	 * @return la valeur du champ
+	 */
 	public double getVitesX(){
 		return stringToDouble(vitesX);
 	}
 
+	/**Getteur du champ VitesY
+	 * @return la valeur du champ
+	 */
 	public double getVitesY(){
 		return stringToDouble(vitesY);
 	}
 
+	/**Getteur du champ AccelX
+	 * @return la valeur du champ
+	 */
 	public double getAccelX(){
 		return stringToDouble(accelX) ;
 	}
 
+	/**Getteur du champ AccelY
+	 * @return la valeur du champ
+	 */
 	public double getAccelY(){
 		return stringToDouble(accelY) ;
 	}
 
+	/**Getteur du champ Masse
+	 * @return la valeur du champ
+	 */
 	public double getMasse(){
 		return stringToDouble(spinnerMasse);
 	}
 
+	/**Getteur du champ Rayon
+	 * @return la valeur du champ
+	 */
 	public double getRayon(){
 		return stringToDouble(spinnerRayon);
 	}
@@ -467,21 +551,24 @@ public class Affichage extends JFrame {
 		} else {
 			System.out.println("Pas de particule dans la liste déroulante sélectionnée");
 			//On mets tous les indices à 0 si il n'y a aucune particule
-				this.setCoordX(0);
-				this.setCoordY(0);
-				this.setVitesX(0);
-				this.setVitesY(0);
-				this.setAccelX(0);
-				this.setAccelY(0);
-				this.setMasse(0);
-				this.setRayon(0);
-				this.mettreCouleurBouton(Color.WHITE);
-				//DEBUG // 
-				if(Affichage.debug){System.out.println("AFFICHAGE : Mise par défaut des champs" );}
-				//DEBUG //
+			this.setCoordX(0);
+			this.setCoordY(0);
+			this.setVitesX(0);
+			this.setVitesY(0);
+			this.setAccelX(0);
+			this.setAccelY(0);
+			this.setMasse(0);
+			this.setRayon(0);
+			this.mettreCouleurBouton(Color.WHITE);
+			//DEBUG // 
+			if(Affichage.debug){System.out.println("AFFICHAGE : Mise par défaut des champs" );}
+			//DEBUG //
 		}
 	}
-	
+
+	/** Méthode pour appliquer une couleur au bouton de choix de la couleur
+	 * @param couleur : la couleur à appliquer
+	 */
 	public void mettreCouleurBouton(Color couleur){
 		//On met une jolie couleur au bouton : 
 		boutonCouleur.setBackground(couleur);

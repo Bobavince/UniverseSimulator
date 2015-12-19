@@ -1,23 +1,51 @@
-import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+/** Classe enfant de Particule qui gère les particules du type "Terre"
+ */
 public class Terre extends Particule {
-
+	
+	/** Constructeur premier de Terre, créant une particule avec les données pré-enrengistrées
+	 * @param x : Coordonnées X (gauche/droite) de création de la particule
+	 * @param y : Coordonnées Y (haut/bas) de création de la particule
+	 * @param z : Coordonnée Z (profondeur) de création de la particule NON UTILISE
+	 * @param vx : Vitesse X (gauche/droite) de création de la particule
+	 * @param vy : Vitesse Y (haut/bas) de création de la particule
+	 * @param vz : Vitesse Z (profondeur) de création de la particule NON UTILISE
+	 * @param ax : Acceleration X (gauche/droite) de création de la particule
+	 * @param ay : Acceleration Y (haut/bas) de création de la particule
+	 * @param az : Acceleration Z (profondeur) de création de la particule NON UTILISE
+	 * @param vraiParticule : Boolean qui gère si la particule créé sera effectivement ajouté à la liste des particules du programme ou non.
+	 */
 	public Terre(double x,double y,double z,double vx,double vy,double vz,double ax,double ay,double az, boolean vraiParticule){
 		super(x,y,z,vx,vy,vz,ax,ay,az,5.9,"Terre",6371000.0, vraiParticule);
 	}
 
+	/** Constructeur second de Terre, créant une particule avec les données de l'utilisateur
+	 * @param x : Coordonnées X (gauche/droite) de création de la particule
+	 * @param y : Coordonnées Y (haut/bas) de création de la particule
+	 * @param z : Coordonnée Z (profondeur) de création de la particule NON UTILISE
+	 * @param vx : Vitesse X (gauche/droite) de création de la particule
+	 * @param vy : Vitesse Y (haut/bas) de création de la particule
+	 * @param vz : Vitesse Z (profondeur) de création de la particule NON UTILISE
+	 * @param ax : Acceleration X (gauche/droite) de création de la particule
+	 * @param ay : Acceleration Y (haut/bas) de création de la particule
+	 * @param az : Acceleration Z (profondeur) de création de la particule NON UTILISE
+	 * @param masse : masse de la particule définie par l'utilisateur
+	 * @param rayon : rayon de la particule définie par l'utilisateur
+	 * @param vraiParticule : Boolean qui gère si la particule créé sera effectivement ajouté à la liste des particules du programme ou non.
+	 */
 	public Terre(double x,double y,double z,double vx,double vy,double vz,double ax,double ay,double az,double masse, double rayon, boolean vraiParticule){
 		super(x,y,z,vx,vy,vz,ax,ay,az,masse,"Terre",rayon, vraiParticule);
 	}
 
+	/* Méthode qui dessiner la particule selon des règles précises.
+	 * Les arguments sont : le graphics où la particule se dessinera, le coefficient de mise à l'échelle pour le dessin, et les largeur/hauteur de la zone de dessin.
+	 */
 	protected void dessiner(Graphics g, double[] coefficient, int dessinX, int dessinY){
 
 		// FAIRE x*coefficient y*coefficient
@@ -50,6 +78,8 @@ public class Terre extends Particule {
 		}
 	}
 
+	/* Méthode standard de la particule
+	 */
 	public String toString(){
 		return super.toString();
 	}

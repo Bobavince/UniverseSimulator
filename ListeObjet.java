@@ -1,19 +1,21 @@
 import java.awt.Graphics;
 import java.util.LinkedList;
 
+/** Classe qui gère la Liste des Objets géré par le programme : c'est cette classe qui comporte la liste de tous les objets, qui gère leur affichage et leurs modifications groupées.
+ */
 public class ListeObjet {
 
-	//LA LISTE DES PARTICULES
+	/** LA LISTE DES PARTICULES
+	 */
 	private LinkedList<Particule> listeParticule;
 
-	/**
-	 *  Constructeur de ListeObjet
+	/** Constructeur de ListeObjet
 	 */
 	public ListeObjet() {
 		listeParticule= new LinkedList<Particule>();
 	}
 
-	/** Méthode pour ajouter une particule
+	/** Méthode qui permet d'ajouter une particule à la liste, proprement.
 	 * @param p : la particule à ajouter à la liste
 	 */
 	public void ajouterParticule(Particule p){
@@ -28,7 +30,7 @@ public class ListeObjet {
 		// DEBUG - AFFICHAGE LISTE MODIFIE //
 	}
 
-	/** Sort une particule proprement
+	/** Méthode qui permet de sortir une particule proprement
 	 * @param p : la particule à retirer
 	 */
 	public void sortirParticule(Particule p){
@@ -43,6 +45,12 @@ public class ListeObjet {
 		// DEBUG - AFFICHAGE LISTE MODIFIE //
 	}
 
+	/** Méthode qui permet de dessiner la liste de toutes les particules gérées par la liste dans le Graphics passé en paramètre.
+	 * @param g : le Graphics où les particules seront dessinées
+	 * @param coefficient : le coefficient de mise à l'échelle calculé ailleurs, qui permet de faire tenir toutes les particules dans une unique vue.
+	 * @param dessinX : la taille horizontale de la zone de dessin.
+	 * @param dessinY : la taille vertical de la zone de dessin.
+	 */
 	public void dessinerListe(Graphics g, double[] coefficient, int dessinX, int dessinY){
 		//DEBUG // 
 		if(Affichage.debug){System.out.println("LISTEOBJET : longeur Liste qui va être dessiné : " + listeParticule.size());}
@@ -56,7 +64,7 @@ public class ListeObjet {
 	}
 
 	/** Méthode qui renvois le xmin, ymin, XMAX, YMAX de toutes les particules ensembles sous forme d'un tableau de 4 double.
-	 * @return le tableau de 4 doubles
+	 * @return le tableau de 4 doubles dans l'ordre : minX minY MAXX MAXY
 	 */
 	public double[] getEncadrementListe(){
 
@@ -127,6 +135,8 @@ public class ListeObjet {
 		return tableauMinimaMaxima;
 	}
 
+	/* Méthode standard d'écriture de chaque particule composant la liste, géré par la classe à un instant T.
+	 */
 	public String toString(){
 		String res="";
 
@@ -142,12 +152,14 @@ public class ListeObjet {
 	}
 
 	// ---- GETTEUR -----
+	/** Getteur de la liste des particules (LinkedList) géré par la classe.
+	 * @return : la LinkedList des Particules gérées.
+	 */
 	public LinkedList<Particule> getListeParticule() {
 		return listeParticule;
 	}
 
-	/**
-	 *  Méthode pour passer à l'état futur toutes les particules après les calculs.
+	/** Méthode pour passer à l'état futur toutes les particules après les calculs.
 	 */
 	public void  mettreAJourEtat(){
 		for(int i=0; i<listeParticule.size(); i++){

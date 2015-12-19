@@ -1,17 +1,27 @@
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.LinkedList;
 
+import javax.swing.JCheckBox;
+
+/** Classe Ecouteur du bouton retirer de la fenêtre de retrait des particules
+ */
 public class EcouteurFenetreRetraitRetirer implements ActionListener{
 	private FenetreRetrait fenetreRetrait;
 	private Affichage fenetreAffichage;
 
+	/** Constructeur de l'écouteur du bouton Annuler
+	 * @param fenetreRetrait : la fenêtre Retrait parente qui contient le bouton annuler
+	 * @param fenetreAffichage : Fenêtre parente de la fenêtre de Retrait, contenant le bouton "Retirer une particule"
+	 */
 	public EcouteurFenetreRetraitRetirer(FenetreRetrait fenetreRetrait, Affichage fenetreAffichage){
 		this.fenetreRetrait = fenetreRetrait;
 		this.fenetreAffichage = fenetreAffichage;
 	}
 
+
+	/* Méthode de standard de traitement d'actions.
+	 */
 	public void actionPerformed(ActionEvent ae){
 		//Récupération de la liste courante de particules (type LinkedList)
 		LinkedList<Particule> listeParticules = fenetreRetrait.getListeParticules();

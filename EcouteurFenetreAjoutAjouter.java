@@ -1,17 +1,24 @@
-import java.util.LinkedList;
-import javax.swing.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+/** Classe écouteut du bouton Ajouter de la fenpetre "ajouter particule"
+ */
 public class EcouteurFenetreAjoutAjouter implements ActionListener {
 
 	FenetreAjout fenetreAjout;
 
+	/** Constructeur de l'écouteur
+	 * @param fenetreAjout : Fenêtre parente "Fenetre Ajout" conteant le bouton "Ajouter"
+	 */
 	public EcouteurFenetreAjoutAjouter(FenetreAjout fenetreAjout){
 		this.fenetreAjout=fenetreAjout;
 	}
 
+	/*  Méthode standard de réaction
+	 */
 	public void actionPerformed(ActionEvent ae) {
 		if(fenetreAjout.getMasse()!=0 && fenetreAjout.getRayon()>0){
+			//On réagit différemment suivant le type de particule sélectionné.
 			switch(fenetreAjout.getTypeParticule()){
 			case "Terre" :
 				// On créé la particule avec les données de la fenêtre et on l'ajoute à la fenetre principale qui se charge du reste
@@ -63,7 +70,6 @@ public class EcouteurFenetreAjoutAjouter implements ActionListener {
 				break;
 			}
 
-			
 		} else {
 			System.out.println("La particule doit obligatoirement avoir une masse et un rayon positif.");
 
