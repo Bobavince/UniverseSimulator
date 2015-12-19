@@ -1,39 +1,76 @@
 import java.util.LinkedList;
-
 import javax.swing.*;
-
 import java.awt.event.*;
 
-
-
 public class EcouteurFenetreAjoutAjouter implements ActionListener {
-	
-	FenetreAjout fen;
-	
+
+	FenetreAjout fenetreAjout;
+
 	public EcouteurFenetreAjoutAjouter(FenetreAjout fenetreAjout){
-		this.fen=fenetreAjout;
+		this.fenetreAjout=fenetreAjout;
 	}
-	
+
 	public void actionPerformed(ActionEvent ae) {
-		if(fen.getMasse()!=0 && fen.getRayon()>0){
+		if(fenetreAjout.getMasse()!=0 && fenetreAjout.getRayon()>0){
+			switch(fenetreAjout.getTypeParticule()){
+			case "Terre" :
+				// On créé la particule avec les données de la fenêtre et on l'ajoute à la fenetre principale qui se charge du reste
+				Terre maTerre = new Terre(fenetreAjout.getCoordX(), fenetreAjout.getCoordY(),0, fenetreAjout.getVitX(), fenetreAjout.getVitY(),0,fenetreAjout.getAccX(), fenetreAjout.getAccY(), 0, fenetreAjout.getMasse(), fenetreAjout.getRayon(),true);
+				fenetreAjout.getFenAffichage().ajouterParticule(maTerre);
+				fenetreAjout.getFenAffichage().getZoneDessin().repaint();
+				//On cache la fenetre d'ajout de particule
+				fenetreAjout.dispose();
+
+				//DEBUG //
+				if(Affichage.debug){System.out.println(" ECOUTEUR LANCEMENT (Ajout d'une particule TERRE) coordX " + fenetreAjout.getCoordX() + " coordY " +  fenetreAjout.getCoordY() + "coordZ " + 0 + " vitesX " +  fenetreAjout.getVitX() + " vitesY " +  fenetreAjout.getVitY() + "vitesZ " + 0 + " accelX " + fenetreAjout.getAccX() + " accelY " +  fenetreAjout.getAccY() + " accelZ " + 0 + " masse " + fenetreAjout.getMasse() + " type " +  fenetreAjout.getTypeParticule() + "rayon " +  fenetreAjout.getRayon() + " couleur " + fenetreAjout.getCouleurParticule());}
+				//DEBUG - Connaitre les particules effectivement ajouté// 
+				break;
+			case "Naine rouge" :
+				// On créé la particule avec les données de la fenêtre et on l'ajoute à la fenetre principale qui se charge du reste
+				EtoileNaineRouge monEtoileNaine = new EtoileNaineRouge(fenetreAjout.getCoordX(), fenetreAjout.getCoordY(),0, fenetreAjout.getVitX(), fenetreAjout.getVitY(),0,fenetreAjout.getAccX(), fenetreAjout.getAccY(), 0, fenetreAjout.getMasse(), fenetreAjout.getRayon(),true);
+				fenetreAjout.getFenAffichage().ajouterParticule(monEtoileNaine);
+				fenetreAjout.getFenAffichage().getZoneDessin().repaint();
+				//On cache la fenetre d'ajout de particule
+				fenetreAjout.dispose();
+
+				//DEBUG //
+				if(Affichage.debug){System.out.println(" ECOUTEUR LANCEMENT (Ajout d'une particule Naine Rouge) coordX " + fenetreAjout.getCoordX() + " coordY " +  fenetreAjout.getCoordY() + "coordZ " + 0 + " vitesX " +  fenetreAjout.getVitX() + " vitesY " +  fenetreAjout.getVitY() + "vitesZ " + 0 + " accelX " + fenetreAjout.getAccX() + " accelY " +  fenetreAjout.getAccY() + " accelZ " + 0 + " masse " + fenetreAjout.getMasse() + " type " +  fenetreAjout.getTypeParticule() + "rayon " +  fenetreAjout.getRayon() + " couleur " + fenetreAjout.getCouleurParticule());}
+				//DEBUG - Connaitre les particules effectivement ajouté// 
+				break;
+			case "Meteorite Tcheliabinsk" :
+				// On créé la particule avec les données de la fenêtre et on l'ajoute à la fenetre principale qui se charge du reste
+				Meteorite maMeteorite = new Meteorite(fenetreAjout.getCoordX(), fenetreAjout.getCoordY(),0, fenetreAjout.getVitX(), fenetreAjout.getVitY(),0,fenetreAjout.getAccX(), fenetreAjout.getAccY(), 0, fenetreAjout.getMasse(), fenetreAjout.getRayon(),true);
+				fenetreAjout.getFenAffichage().ajouterParticule(maMeteorite);
+				fenetreAjout.getFenAffichage().getZoneDessin().repaint();
+				//On cache la fenetre d'ajout de particule
+				fenetreAjout.dispose();
+
+				//DEBUG //
+				if(Affichage.debug){System.out.println(" ECOUTEUR LANCEMENT (Ajout d'une particule Meteorite) coordX " + fenetreAjout.getCoordX() + " coordY " +  fenetreAjout.getCoordY() + "coordZ " + 0 + " vitesX " +  fenetreAjout.getVitX() + " vitesY " +  fenetreAjout.getVitY() + "vitesZ " + 0 + " accelX " + fenetreAjout.getAccX() + " accelY " +  fenetreAjout.getAccY() + " accelZ " + 0 + " masse " + fenetreAjout.getMasse() + " type " +  fenetreAjout.getTypeParticule() + "rayon " +  fenetreAjout.getRayon() + " couleur " + fenetreAjout.getCouleurParticule());}
+				//DEBUG - Connaitre les particules effectivement ajouté//
+				break;
+			default :
+				// On créé la particule avec les données de la fenêtre et on l'ajoute à la fenetre principale qui se charge du reste
+				Particule maParticule = new Particule(fenetreAjout.getCoordX(), fenetreAjout.getCoordY(),0, fenetreAjout.getVitX(), fenetreAjout.getVitY(),0,fenetreAjout.getAccX(), fenetreAjout.getAccY(),0,fenetreAjout.getMasse(),fenetreAjout.getTypeParticule(), fenetreAjout.getRayon(),fenetreAjout.getCouleurParticule(), true);
+				fenetreAjout.getFenAffichage().ajouterParticule(maParticule);
+				fenetreAjout.getFenAffichage().getZoneDessin().repaint();
+				//On cache la fenetre d'ajout de particule
+				fenetreAjout.dispose();
+
+				//DEBUG //
+				if(Affichage.debug){System.out.println(" ECOUTEUR LANCEMENT (Ajout d'une particule par défaut) coordX " + fenetreAjout.getCoordX() + " coordY " +  fenetreAjout.getCoordY() + "coordZ " + 0 + " vitesX " +  fenetreAjout.getVitX() + " vitesY " +  fenetreAjout.getVitY() + "vitesZ " + 0 + " accelX " + fenetreAjout.getAccX() + " accelY " +  fenetreAjout.getAccY() + " accelZ " + 0 + " masse " + fenetreAjout.getMasse() + " type " +  fenetreAjout.getTypeParticule() + "rayon " +  fenetreAjout.getRayon() + " couleur " + fenetreAjout.getCouleurParticule());}
+				//DEBUG - Connaitre les particules effectivement ajouté// 
+				break;
+			}
+
 			
-			// On créé la particule avec les données de la fenêtre et on l'ajoute à la fenetre principale qui se charge du reste
-			Particule maParticule= new Particule(fen.getCoordX(), fen.getCoordY(),0, fen.getVitX(), fen.getVitY(),0,fen.getAccX(), fen.getAccY(),0,fen.getMasse(),fen.getTypeParticule(), fen.getRayon(),fen.getCouleurParticule(), true);
-			fen.getFenAffichage().ajouterParticule(maParticule);
-			fen.getFenAffichage().getZoneDessin().repaint();
-			//On cache la fenetre d'ajout de particule
-			fen.dispose();
-			
-			//DEBUG //
-			if(Affichage.debug){System.out.println(" ECOUTEUR LANCEMENT (Ajout d'une particule) coordX " + fen.getCoordX() + " coordY " +  fen.getCoordY() + "coordZ " + 0 + " vitesX " +  fen.getVitX() + " vitesY " +  fen.getVitY() + "vitesZ " + 0 + " accelX " + fen.getAccX() + " accelY " +  fen.getAccY() + " accelZ " + 0 + " masse " + fen.getMasse() + " type " +  fen.getTypeParticule() + "rayon " +  fen.getRayon() + " couleur " + fen.getCouleurParticule());}
-			//DEBUG - Connaitre les particules effectivement ajouté// 
 		} else {
 			System.out.println("La particule doit obligatoirement avoir une masse et un rayon positif.");
-			
+
 			//DEBUG // 
-			if(Affichage.debug){System.out.println("ECOUTEUR LANCEMENT : " + fen.getMasse() +" "+ fen.getRayon());}
+			if(Affichage.debug){System.out.println("ECOUTEUR LANCEMENT : " + fenetreAjout.getMasse() +" "+ fenetreAjout.getRayon());}
 			//DEBUG//
 		}
-		
+
 	}
 }
