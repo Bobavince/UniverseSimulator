@@ -24,7 +24,7 @@ public class ListeObjet {
 		}
 
 		// DEBUG //
-		if(Affichage.debug){System.out.println(this.toString());}
+		if(Affichage.debug){System.out.println("LISTE OBJET : Ajout particule dans la liste : " + this.toString());}
 		// DEBUG - AFFICHAGE LISTE MODIFIE //
 	}
 
@@ -45,13 +45,12 @@ public class ListeObjet {
 
 	public void dessinerListe(Graphics g, double coefficient, int dessinX, int dessinY){
 		//DEBUG // 
-		if(Affichage.debug){System.out.println("Arrivé dans la métode dessin de Liste");}
-		if(Affichage.debug){System.out.println("Longeur Liste : " + listeParticule.size());}
+		if(Affichage.debug){System.out.println("LISTEOBJET : longeur Liste qui va être dessiné : " + listeParticule.size());}
 		//DEBUG//
 		for (int i=0; i< this.listeParticule.size(); i++){
 			this.listeParticule.get(i).dessiner(g, coefficient, dessinX, dessinY);
 			//DEBUG //
-			if(Affichage.debug){System.out.println("La particule N°" + i + " a été dessiné : " + listeParticule.get(i).toString());}
+			if(Affichage.debug){System.out.println("LISTEOBJET : La particule N°" + i + " a été dessiné : " + listeParticule.get(i).toString());}
 			//DEBUG//
 		}
 	}
@@ -111,12 +110,18 @@ public class ListeObjet {
 			tableauMinimaMaxima[1]=minY;
 			tableauMinimaMaxima[2]=MAXX;
 			tableauMinimaMaxima[3]=MAXY;
+			//DEBUG //
+			if(Affichage.debug){System.out.println("LISTEOBJET Maxima/minima calculés : min X " + minX + " minY : " + minY + " MAXX " + MAXX + " MAXY" + MAXY);}
+			//DEBUG//
 		} else {
 			// On range dans le tableau
 			tableauMinimaMaxima[0]=0;
 			tableauMinimaMaxima[1]=0;
 			tableauMinimaMaxima[2]=1000;
 			tableauMinimaMaxima[3]=1000;
+			//DEBUG //
+			if(Affichage.debug){System.out.println("LISTEOBJET Maxima/minima calculés : par défauts ");}
+			//DEBUG//
 		}
 
 		return tableauMinimaMaxima;

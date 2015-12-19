@@ -18,9 +18,14 @@ public class EcouteurMasse implements ChangeListener {
 
 			// On récupère la particule courante sélectionnée
 			Particule particule = (Particule)(fenetreAffichage.getJComboBox().getSelectedItem());
-			// On lui attribue sa nouvelle masse
-			particule.setMasse(fenetreAffichage.getMasse());
-
+			
+			if(!fenetreAffichage.getBoutonStartPause().isSelected()){
+				// On lui attribue sa nouvelle masse
+				particule.setMasse(fenetreAffichage.getMasse());
+			} else {
+				System.out.println("Vous ne pouvez pas changer la masse en cours d'execution ! ");
+			}
+			
 			//DEBUG // 
 			if(Affichage.debug){System.out.println("MASSE DE LA PARTICULE : \n" + particule.toStringComplet() + " \n changée");}
 			//DEBUG - Pour savoir si la masse été changée effectivement. //

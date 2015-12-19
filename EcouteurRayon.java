@@ -18,9 +18,14 @@ public class EcouteurRayon implements ChangeListener {
 
 			// On récupère la particule courante sélectionnée
 			Particule particule = (Particule)(fenetreAffichage.getJComboBox().getSelectedItem());
-			// On lui attribue son nouveau rayon
-			particule.setRayon(fenetreAffichage.getRayon());
-
+			
+			if(!fenetreAffichage.getBoutonStartPause().isSelected() && fenetreAffichage.getRayon()>0){
+				// On lui attribue son nouveau rayon
+				particule.setRayon(fenetreAffichage.getRayon());
+			} else {
+				System.out.println("Vous ne pouvez pas changer le rayon en cours d'execution ! Ni mettre un rayon négatif ! ");
+			}
+			
 			//DEBUG // 
 			if(Affichage.debug){System.out.println("RAYON DE LA PARTICULE : \n" + particule.toStringComplet() + " \n changée ");}
 			//DEBUG - Pour savoir si la rayon été changée effectivement. //

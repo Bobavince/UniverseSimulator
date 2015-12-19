@@ -34,7 +34,7 @@ public class EcouteurBoutonNext implements ActionListener {
 		fenetreAffichage.getZoneDessin().setCoefficient(coefDilatation);
 		
 		//DEBUG//
-		if(Affichage.debug){System.out.println("Ecouteur NEXT :  minX, minY, MAXX, MAXY" + tableauMinimaMaxima[0] + " " + tableauMinimaMaxima[1] + " " + tableauMinimaMaxima[2] + " " + tableauMinimaMaxima[3]); }
+		if(Affichage.debug){System.out.println("Ecouteur NEXT :  minX, minY, MAXX, MAXY " + tableauMinimaMaxima[0] + " " + tableauMinimaMaxima[1] + " " + tableauMinimaMaxima[2] + " " + tableauMinimaMaxima[3]); }
 		// DEBUG // 
 		
 		//On repaint la fenetre puisque la position des objets a chang�.

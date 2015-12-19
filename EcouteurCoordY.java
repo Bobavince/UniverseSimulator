@@ -18,9 +18,14 @@ public class EcouteurCoordY implements ChangeListener {
 
 			// On récupère la particule courante sélectionnée
 			Particule particule = (Particule)(fenetreAffichage.getJComboBox().getSelectedItem());
-			// On lui attribue de nouvelles coordonnées : sa coordonnée y depuis la fenetre principale et sa coordonnées x inchangée
-			particule.setCoordonnees(particule.getCoordonneeX(),fenetreAffichage.getCoordY(),0.0);
-
+			
+			if(!fenetreAffichage.getBoutonStartPause().isSelected()){
+				// On lui attribue de nouvelles coordonnées : sa coordonnée y depuis la fenetre principale et sa coordonnées x inchangée
+				particule.setCoordonnees(particule.getCoordonneeX(),fenetreAffichage.getCoordY(),0.0);
+			} else {
+				System.out.println("Vous ne pouvez pas changer le rayon en cours d'execution !");
+			}
+			
 			//DEBUG // 
 			System.out.println("COORDONNES Y DE LA PARTICULE : \n" + particule.toStringComplet() + " \n changée");
 			//DEBUG - Pour savoir si la coordonnées à été changée effectivement. //

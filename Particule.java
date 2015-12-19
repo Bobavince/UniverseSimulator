@@ -198,12 +198,12 @@ public class Particule {
 			vitesse = vitesse.addition(acceleration);  
 		}
 		//DEBUG//
-		if(Affichage.debug){System.out.println("PARTICULE " +  this.toString() + ": Passer état futur COURANT MODIF  :  acceleration" + this.getAcceleration().toString() + " vitesse " + this.getVitesse().toString() + " coordonnées " + this.getCoordonnees().toString());}
+		if(Affichage.debug){System.out.println("PARTICULE " +  this.toString() + ": Passer état futur (vitesse modifiée) COURANT MODIF  :  acceleration" + this.getAcceleration().toString() + " vitesse " + this.getVitesse().toString() + " coordonnées " + this.getCoordonnees().toString());}
 		//DEBUG//
 		vitesseFuture = vitesse;
 		coordonnees=coordonnees.addition(vitesse);
 		//DEBUG//
-		if(Affichage.debug){System.out.println("PARTICULE " +  this.toString() + ": Passer état futur APRES MODIF  :  acceleration" + this.getAcceleration().toString() + " vitesse " + this.getVitesse().toString() + " coordonnées " + this.getCoordonnees().toString());}
+		if(Affichage.debug){System.out.println("PARTICULE " +  this.toString() + ": Passer état futur APRES (coordonnées modifiée) MODIF  :  acceleration" + this.getAcceleration().toString() + " vitesse " + this.getVitesse().toString() + " coordonnées " + this.getCoordonnees().toString());}
 		//DEBUG//
 	}
 

@@ -246,7 +246,7 @@ public class Affichage extends JFrame {
 
 		// LISTE OBJET ECOUTEUR
 		EcouteurListeObjet ElisteObjets = new EcouteurListeObjet(this);
-		listeObjets.addActionListener(ElisteObjets);
+		listeObjets.addItemListener(ElisteObjets);
 		// COORDONNES ECOUTEUR
 		EcouteurCoordX EcoordX = new EcouteurCoordX(this);
 		EcouteurCoordY EcoordY = new EcouteurCoordY(this);
@@ -308,13 +308,17 @@ public class Affichage extends JFrame {
 		return conteneurNordPrincipal;
 	}
 
+	public void setBoutonAutoScale(JToggleButton boutonAutoScale) {
+		this.boutonAutoScale = boutonAutoScale;
+	}
+
 	//SETTEURS PARTICULIERS
 	public void setBoutonStartPause(JToggleButton boutonStartPause) {
 		this.boutonStartPause = boutonStartPause;
 	}
 
-	public void setBoutonAutoScale(JToggleButton boutonAutoScale) {
-		this.boutonAutoScale = boutonAutoScale;
+	public JToggleButton getBoutonStartPause() {
+		return boutonStartPause;
 	}
 
 	// LES SETTEURS des COORDONNES / VITESSES / ACCELERATIONS / MASSE / RAYON 
@@ -455,6 +459,9 @@ public class Affichage extends JFrame {
 			this.setAccelY(particule.getAcceleration().getTabVecteur()[1]);
 			this.setMasse(particule.getMasse());
 			this.setRayon(particule.getRayon());
+			//DEBUG // 
+			if(Affichage.debug){System.out.println("AFFICHAGE : Mise à jour champs pour" + particule.toString() );}
+			//DEBUG //
 			//On repaint la fenetre puisque la position des objets a chang�.
 			this.getZoneDessin().repaint();
 		} else {
@@ -468,6 +475,9 @@ public class Affichage extends JFrame {
 				this.setAccelY(0);
 				this.setMasse(0);
 				this.setRayon(0);
+				//DEBUG // 
+				if(Affichage.debug){System.out.println("AFFICHAGE : Mise par défaut des champs" );}
+				//DEBUG //
 		}
 	}
 

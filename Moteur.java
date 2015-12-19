@@ -26,15 +26,15 @@ public class Moteur {
 		//On fait force * vecteur directeur 
 		Vecteur vecteurForce = distance(objetUn,objetDeux).normalise().multScalaire(valeurforce);
 		//DEBUG//
-		if(Affichage.debug){System.out.println("MOTEUR : vecteurForceNormalisé " + vecteurForce);}
+		if(Affichage.debug){System.out.println("MOTEUR : SI vecteurForceNormalisé " + vecteurForce);}
 		//DEBUG// 
 		// On sait que acc�l�ration = force/masseObjet car F = m.a
 		Vecteur acceleration = vecteurForce.multScalaire((1/objetUn.getMasse()));
 		//DEBUG//
-		if(Affichage.debug){System.out.println("MOTEUR : acceleration " + acceleration );}
+		if(Affichage.debug){System.out.println("MOTEUR : SI acceleration " + acceleration );}
 		//DEBUG// 
 		//DEBUG//
-		if(Affichage.debug){System.out.println("MOTEUR : acceleration de " + objetUn.toString() + " avant modif " + objetUn.getAcceleration().toString() );}
+		if(Affichage.debug){System.out.println("MOTEUR : SI acceleration de " + objetUn.toString() + " avant modif " + objetUn.getAcceleration().toString() );}
 		//DEBUG//
 		//Mise � jour de l'acc�l�ration de l'objet : 
 		objetUn.setAcceleration(objetUn.getAcceleration().addition(acceleration));
@@ -57,41 +57,41 @@ public class Moteur {
 		//on projette le vecteur vitesse cart�sien de l'objet A sur le rep�re axiale, on r�cup�re la norme du vecteur : normeVitesseDeDirectionAB = VitesseObjetUn � (AB/DistanceAB)
 		double normeVitesseAxiale = objetUn.getVitesse().prodScalaire(vecteurAxialeUnitaire);
 		//DEBUG//
-		if(Affichage.debug){System.out.println("MOTEUR : normeVitesseAxiale " + normeVitesseAxiale );}
+		if(Affichage.debug){System.out.println("MOTEUR : SC normeVitesseAxiale " + normeVitesseAxiale );}
 		//DEBUG// 
 		
 		//On d�finit ensuite le vecteur vitesse axiale en multipliant la norme de la vitesse axiale par le vecteur unitaire de direction AB. VitesseAxialeDeA = normeVitesseDeDirectionAB * (AB/DistanceAB) 
 		Vecteur vitesseAxiale = vecteurAxialeUnitaire.multScalaire(normeVitesseAxiale);
 		//DEBUG//
-		if(Affichage.debug){System.out.println("MOTEUR : vitesseAxiale " + vitesseAxiale.toString() );}
+		if(Affichage.debug){System.out.println("MOTEUR : SC vitesseAxiale " + vitesseAxiale.toString() );}
 		//DEBUG// 
 		
 		//On r�cup�re la vitesse tangentielle � la collision, pour la remettre dans la vitesse de l'objet ensuite : VitesseTangentielle = VecteurVitesseA - VitesseAxialeDeA
 		Vecteur vitesseTangentielle = objetUn.getVitesse().soustraction(vitesseAxiale);
 		//DEBUG//
-		if(Affichage.debug){System.out.println("MOTEUR : vitesseTangentielle " + vitesseTangentielle.toString() );}
+		if(Affichage.debug){System.out.println("MOTEUR : SC vitesseTangentielle " + vitesseTangentielle.toString() );}
 		//DEBUG// 
 		
 		//On r�cup�re la vitesse axiale de l'objet en face (idem que A, on multiplie juste par -1 pour que la vitesse soit selon (-axe Axiale) 
 		Vecteur vitesseAxialeDeux = vecteurAxialeUnitaire.multScalaire((-1)*objetDeux.getVitesse().prodScalaire(vecteurAxialeUnitaire));
 		//DEBUG//
-		if(Affichage.debug){System.out.println("MOTEUR : vitesseAxialeDeux " + vitesseAxialeDeux.toString() );}
+		if(Affichage.debug){System.out.println("MOTEUR : SC vitesseAxialeDeux " + vitesseAxialeDeux.toString() );}
 		//DEBUG// 
 		
 		//on utilise la formule de collision �lastique (Wikip�dia) : ((vitesseAxiale*masseA)+(vitesseAxialeDeux*masseB) - (Diff�renceDesVitessesAxiales*masseB))/(MasseA + MasseB)
 		Vecteur nouvelleVitesseAxiale = ( (vitesseAxiale.multScalaire(objetUn.getMasse())) .addition( (vitesseAxialeDeux.multScalaire(objetDeux.getMasse()) )) .soustraction( ((vitesseAxialeDeux.soustraction(vitesseAxiale)) .multScalaire (objetDeux.getMasse()) )) ).multScalaire( 1/(objetUn.getMasse() + objetDeux.getMasse()) );
 		//DEBUG//
-		if(Affichage.debug){System.out.println("MOTEUR : nouvelleVitesseAxiale " + nouvelleVitesseAxiale.toString() );}
+		if(Affichage.debug){System.out.println("MOTEUR : SC nouvelleVitesseAxiale " + nouvelleVitesseAxiale.toString() );}
 		//DEBUG// 
 		
 		//On repasse la nouvelleVitesseAxiale dans le rep�re cart�sien. On fait Coordonn�eCart�sienneX = vecteurAxiale�unitaireX + VecteurTangentielle�unitaireY, Coordonn�esCart�sienneY = ... de m�me.
 		Vecteur nouvelleVitesseCartesien = new Vecteur(normeX.prodScalaire(nouvelleVitesseAxiale)+ normeX.prodScalaire(vitesseTangentielle), normeY.prodScalaire(nouvelleVitesseAxiale)+ normeY.prodScalaire(vitesseTangentielle) , normeZ.prodScalaire(nouvelleVitesseAxiale)+ normeZ.prodScalaire(vitesseTangentielle) );
 		//DEBUG//
-		if(Affichage.debug){System.out.println("MOTEUR : nouvelleVitesseCartesien " + nouvelleVitesseCartesien.toString() );}
+		if(Affichage.debug){System.out.println("MOTEUR : SC nouvelleVitesseCartesien " + nouvelleVitesseCartesien.toString() );}
 		//DEBUG// 
 		
 		//DEBUG//
-		if(Affichage.debug){System.out.println("MOTEUR : vitesseAcutelle Particule " + objetUn.getVitesse() + " et vitesseFuture AVANT modif : " + objetUn.getVitesseFuture() );}
+		if(Affichage.debug){System.out.println("MOTEUR : SC vitesseAcutelle Particule " + objetUn.getVitesse() + " et vitesseFuture AVANT modif : " + objetUn.getVitesseFuture() );}
 		//DEBUG// 
 		objetUn.setVitesseFuture(nouvelleVitesseCartesien);
 		//DEBUG//
@@ -106,7 +106,7 @@ public class Moteur {
 	 * @return
 	 */
 	public boolean sontEnCollision(Particule objetUn, Particule objetDeux){
-		if( distance(objetUn,objetDeux).moduleCarre() <= (objetUn.getRayon()+objetDeux.getRayon())*(objetUn.getRayon()+objetDeux.getRayon()) ){
+		if(distance(objetUn,objetDeux).moduleCarre() <= (objetUn.getRayon()+objetDeux.getRayon())*(objetUn.getRayon()+objetDeux.getRayon()) ){
 			//DEBUG//
 			if(Affichage.debug){System.out.println("Collision détectée");}
 			//DEBUG// 
@@ -141,12 +141,12 @@ public class Moteur {
 					if(sontEnCollision(listeDesObjets.getListeParticule().get(i),listeDesObjets.getListeParticule().get(j))){
 						collisionParticules(listeDesObjets.getListeParticule().get(i),listeDesObjets.getListeParticule().get(j));
 						//DEBUG//
-						if(Affichage.debug){System.out.println("Gestion collision de " + listeDesObjets.getListeParticule().get(i).toString() + " " + listeDesObjets.getListeParticule().get(j).toString());}
+						if(Affichage.debug){System.out.println("Gestion collision de " + listeDesObjets.getListeParticule().get(i).toString() + " avec " + listeDesObjets.getListeParticule().get(j).toString());}
 						//DEBUG//
 					} else {
 						interactionParticule(listeDesObjets.getListeParticule().get(i),listeDesObjets.getListeParticule().get(j));
 						//DEBUG//
-						if(Affichage.debug){System.out.println("Gestion interaction de " + listeDesObjets.getListeParticule().get(i).toString() + " " + listeDesObjets.getListeParticule().get(j).toString());}
+						if(Affichage.debug){System.out.println("Gestion interaction de " + listeDesObjets.getListeParticule().get(i).toString() + " avec  " + listeDesObjets.getListeParticule().get(j).toString());}
 						//DEBUG//
 					}
 				} // fin du if de l'objet avec lui m�me

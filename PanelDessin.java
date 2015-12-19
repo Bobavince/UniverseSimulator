@@ -17,6 +17,10 @@ public class PanelDessin extends JPanel {
 		//Appel de la fonction n�cessaire pour commencer � dessiner la zone de dessin
 		super.paintComponent(g); 
 		
+		//DEBUG // 
+		if(Affichage.debug){System.out.println("DANS PANEL DESSIN : fenetre repeinte ! ");}
+		//DEBUG // 
+		
 		//On demande à la liste des Objets de dessiner toutes les particules
 		fenetreParente.getListeObjets().dessinerListe(g, coefficient, this.getWidth(), this.getHeight());
 		

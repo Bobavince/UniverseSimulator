@@ -17,8 +17,14 @@ public class EcouteurVitesY implements ChangeListener {
 
 			// On récupère la particule courante sélectionnée
 			Particule particule = (Particule)(fenetreAffichage.getJComboBox().getSelectedItem());
-			// On lui attribue de nouvelles coordonnées : sa vitesse y depuis la fenetre principale et sa vitesse x inchangée
-			particule.setVitesse(particule.getVitesseX(),fenetreAffichage.getVitesY(),0.0);
+			
+			if(!fenetreAffichage.getBoutonStartPause().isSelected()){
+				// On lui attribue de nouvelles coordonnées : sa vitesse y depuis la fenetre principale et sa vitesse x inchangée
+				particule.setVitesse(particule.getVitesseX(),fenetreAffichage.getVitesY(),0.0);
+			} else {
+				System.out.println("Vous ne pouvez pas changer les Vitesses en cours d'execution !");
+			}
+			
 
 			//DEBUG // 
 			System.out.println("VITESSE Y DE LA PARTICULE : \n" + particule.toStringComplet() + " \n changée");

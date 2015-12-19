@@ -14,15 +14,19 @@ public class EcouteurVitesX implements ChangeListener {
 
 	@Override
 	public void stateChanged(ChangeEvent e) {
-
+		
 		if(fenetreAffichage.getJComboBox().getSelectedItem() instanceof Particule){
 
 			// On récupère la particule courante sélectionnée
 			Particule particule = (Particule)(fenetreAffichage.getJComboBox().getSelectedItem());
-			// On lui attribue de nouvelles coordonnées : sa vitesse x depuis la fenetre principale et sa vitesse y inchangée
-			particule.setVitesse(fenetreAffichage.getVitesX(),particule.getVitesseY(),0.0);
-
-			//DEBUG // 
+			if(!fenetreAffichage.getBoutonStartPause().isSelected()){
+				// On lui attribue de nouvelles coordonnées : sa vitesse x depuis la fenetre principale et sa vitesse y inchangée
+				particule.setVitesse(fenetreAffichage.getVitesX(),particule.getVitesseY(),0.0);
+			} else {
+				System.out.println("Vous ne pouvez pas changer les Vitesses en cours d'execution !");
+			}
+			
+			//DEBUG //
 			System.out.println("VITESSE X DE LA PARTICULE : \n" + particule.toStringComplet() + " \n changée");
 			//DEBUG - Pour savoir si la vitesse X à été changée effectivement. //
 		} else {
