@@ -8,10 +8,12 @@ public class Particule {
 	private Vecteur acceleration;
 	private Vecteur vitesseFuture;
 	private double masse;
-	private double rayon;
 	private double charge;
-	private Color couleur;
 	private String type;
+	
+	//ATTRIBUTS PROTECTED POUR ENFANTS Y ACCEDENT
+	protected double rayon;
+	protected Color couleur;
 
 	//VALEUR PAR DEFAUT
 	private static String typeParDefaut= "Particule";
@@ -40,7 +42,7 @@ public class Particule {
 			compteur++;
 			this.num=compteur;
 		}
-		
+
 	}
 
 	public Particule(double x,double y, double z, double vx, double vy, double vz, double ax, double ay, double az,double masse, String type, double rayon, boolean vraiParticule){
@@ -140,6 +142,10 @@ public class Particule {
 		return type;
 	}
 
+	public Color getCouleur() {
+		return couleur;
+	}
+
 	//ENSEMBLE DE SETTEURS ESSENTIELLS
 
 	public void setMasse(double masse) {
@@ -207,44 +213,23 @@ public class Particule {
 		//DEBUG//
 	}
 
-	protected void dessiner(Graphics g, int maxX, int maxY, int minX, int minY, int dessinX, int dessinY){
-		g.setColor(couleur);
-		int corrigeCentreX = map((int)(this.getCoordonneeX()-this.rayon), minX, maxX, 0, dessinX);
-		int corrigeCentreY = map((int)(this.getCoordonneeY()-this.rayon), minY, maxY, 0, dessinY); // FAIT DES OVALES ! A CORRIGER ! 
-		int corrigeRayon = map((int)(rayon), minY, maxY, 0, dessinY); // LIGNE A CORRIGER
-
-		//LIGNE DE DEBUG
-		g.fillOval((int)this.getCoordonneeX(), (int)this.getCoordonneeY(),(int)rayon*2, (int)rayon*2);
-
-		//g.fillOval(corrigeCentreX, corrigeCentreY,corrigeRayon, corrigeRayon);
-		if(Affichage.debug){System.out.println("PARTICULE :  i, maxX, maxyn minx, minY, getWidht, getHeight" + maxX + " " + maxY + " " + minX + " " + minY + " " + dessinX +  " " + dessinY);}
-		if(Affichage.debug){System.out.println("PARTICULE : corrigeX, corrigeY, corrigeRayon" + corrigeCentreX + " " + corrigeCentreY  + " " +  corrigeRayon) ;}
-
-
-	}
-
-	protected void dessiner(Graphics g, double coefficient, int dessinX, int dessinY){
+	protected void dessiner(Graphics g, double[] coefficient, int dessinX, int dessinY){
 		g.setColor(couleur);
 		//AJOUTER LA GESTION DU COEFFICIENT : 
 		// FAIRE x*coefficient y*coefficient
+		int rayonBonneEchelle = (int)(rayon*coefficient[0]);
+		int coordXBonneEchelle = (int)(((this.getCoordonneeX()*coefficient[0])+coefficient[1])-rayonBonneEchelle);
+		int coordYBonneEchelle = (int)(((this.getCoordonneeY()*coefficient[0])+coefficient[1])-rayonBonneEchelle);
 
 		//DEBUG //
-		if(Affichage.debug){System.out.println("Coordonnes Particule : " + this.toString() + " en : x " + (int)(this.getCoordonneeX()) + " y " + (int)(this.getCoordonneeY()));}
-		if(Affichage.debug){System.out.println("Tentative de dessin de : " + this.toString() + " en : x " + (int)(this.getCoordonneeX()-this.rayon) + " y " + (int)(this.getCoordonneeY()-this.rayon) + " de rayon " + (int)rayon + " " +(int)rayon);}
+		if(Affichage.debug){System.out.println("PARTICULE : Coordonnes Particule : " + this.toString() + " en : x " + (int)(this.getCoordonneeX()) + " y " + (int)(this.getCoordonneeY()));}
+		if(Affichage.debug){System.out.println("PARTICULE : Tentative de dessin de : " + this.toString() + " en : x " + (int)(this.getCoordonneeX()-this.rayon) + " y " + (int)(this.getCoordonneeY()-this.rayon) + " de rayon " + (int)rayon + " " +(int)rayon);}
+		if(Affichage.debug){System.out.println("PARTICULE : Coefficient transmis : " + coefficient[0] + " et " + coefficient[1]);}
+		if(Affichage.debug){System.out.println("PARTICULE : Coordonnes du DESSIN A L'ECHELLE : " + this.toString() + " en : x " + coordXBonneEchelle + " y " + coordYBonneEchelle + " rayon " + rayonBonneEchelle );}
 		//DEBUG //
-		g.fillOval((int)(this.getCoordonneeX()-(this.rayon)), (int)(this.getCoordonneeY()-(this.rayon)),(int)rayon*2, (int)rayon*2);
+
+		g.fillOval(coordXBonneEchelle, coordYBonneEchelle ,rayonBonneEchelle*2, rayonBonneEchelle*2);
 	}
-
-
-
-	//M�thode map pour changer valeurs - A METTRE DANS PARTICULE
-	int map(int x, int in_min, int in_max, int out_min, int out_max)
-	{
-		return (int) ((x*(out_max-out_min))/(double)(in_min-in_max));
-		//return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
-
-	}
-
 
 	// ---- ENSEMBLE DE TOSTRING et EQUALS ----
 	public String toStringComplet(){

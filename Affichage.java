@@ -308,17 +308,16 @@ public class Affichage extends JFrame {
 		return conteneurNordPrincipal;
 	}
 
-	public void setBoutonAutoScale(JToggleButton boutonAutoScale) {
-		this.boutonAutoScale = boutonAutoScale;
-	}
-
-	//SETTEURS PARTICULIERS
-	public void setBoutonStartPause(JToggleButton boutonStartPause) {
-		this.boutonStartPause = boutonStartPause;
-	}
-
 	public JToggleButton getBoutonStartPause() {
 		return boutonStartPause;
+	}
+
+	public JToggleButton getBoutonAutoScale() {
+		return boutonAutoScale;
+	}
+
+	public JButton getBoutonCouleur() {
+		return boutonCouleur;
 	}
 
 	// LES SETTEURS des COORDONNES / VITESSES / ACCELERATIONS / MASSE / RAYON 
@@ -459,6 +458,7 @@ public class Affichage extends JFrame {
 			this.setAccelY(particule.getAcceleration().getTabVecteur()[1]);
 			this.setMasse(particule.getMasse());
 			this.setRayon(particule.getRayon());
+			this.mettreCouleurBouton(particule.getCouleur());
 			//DEBUG // 
 			if(Affichage.debug){System.out.println("AFFICHAGE : Mise à jour champs pour" + particule.toString() );}
 			//DEBUG //
@@ -475,9 +475,20 @@ public class Affichage extends JFrame {
 				this.setAccelY(0);
 				this.setMasse(0);
 				this.setRayon(0);
+				this.mettreCouleurBouton(Color.WHITE);
 				//DEBUG // 
 				if(Affichage.debug){System.out.println("AFFICHAGE : Mise par défaut des champs" );}
 				//DEBUG //
+		}
+	}
+	
+	public void mettreCouleurBouton(Color couleur){
+		//On met une jolie couleur au bouton : 
+		boutonCouleur.setBackground(couleur);
+		if(couleur.getRed()<127 && couleur.getBlue()<127 && couleur.getGreen()<127){
+			boutonCouleur.setForeground(Color.WHITE);
+		} else {
+			boutonCouleur.setForeground(Color.BLACK);
 		}
 	}
 

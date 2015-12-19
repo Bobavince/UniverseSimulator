@@ -19,13 +19,14 @@ public class EcouteurBoutonStartPause implements ActionListener {
 		JToggleButton boutonStartStop = (JToggleButton)arg0.getSource();
         if (boutonStartStop.isSelected()) {
         	timer.start();
-        	
+        	fenetreAffichage.getBoutonStartPause().setText("PAUSE");
         	//DEBUG // 
 			if(Affichage.debug){System.out.println("ECOUTEUR STARTSTOP : bouton SELECTIONE");}
 			//DEBUG - Pour savoir si la rayon été changée effectivement. //
 			
         } else {
         	timer.stop();
+        	fenetreAffichage.getBoutonStartPause().setText("START");
         	//DEBUG // 
 			if(Affichage.debug){System.out.println("ECOUTEUR STARTSTOP : bouton NON SELECTIONE");}
 			//DEBUG - Pour savoir si la rayon été changée effectivement. //

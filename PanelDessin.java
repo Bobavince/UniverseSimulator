@@ -5,7 +5,7 @@ import java.util.*;
 
 public class PanelDessin extends JPanel {
 	private Affichage fenetreParente;
-	double coefficient = 1;
+	double[] coefficient = {1,0};
 	
 	public PanelDessin(Affichage fenetreParente){
 		this.fenetreParente = fenetreParente;
@@ -34,7 +34,7 @@ public class PanelDessin extends JPanel {
 	}
 	
 
-	public void setCoefficient(double coefficient){
-		this.coefficient = coefficient;
+	public void setCoefficient(double[] coefDilatation){
+		this.coefficient = coefDilatation;
 	}
 }

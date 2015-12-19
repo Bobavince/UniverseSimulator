@@ -23,6 +23,9 @@ public class EcouteurCouleur implements ActionListener {
 			// On lui attribue de nouvelles coordonnées : sa coordonnée X depuis la fenetre principale et sa coordonnées y inchangée
 			particule.setCouleur(couleurChoisie);
 			
+			//On applique la couleur au bouton pour faire joli
+			fenetreAffichage.mettreCouleurBouton(couleurChoisie);
+			
 			//DEBUG // 
 			System.out.println("COULEUR DE LA PARTICULE : \n" + particule.toStringComplet() + " \n changée");
 			//DEBUG - Pour savoir si la coordonnées à été changée effectivement. //

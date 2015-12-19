@@ -43,7 +43,7 @@ public class ListeObjet {
 		// DEBUG - AFFICHAGE LISTE MODIFIE //
 	}
 
-	public void dessinerListe(Graphics g, double coefficient, int dessinX, int dessinY){
+	public void dessinerListe(Graphics g, double[] coefficient, int dessinX, int dessinY){
 		//DEBUG // 
 		if(Affichage.debug){System.out.println("LISTEOBJET : longeur Liste qui va être dessiné : " + listeParticule.size());}
 		//DEBUG//
