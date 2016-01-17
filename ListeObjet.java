@@ -87,23 +87,26 @@ public class ListeObjet {
 				int xCourantDroite = (int) (listeParticule.get(i).getCoordonnees().getTabVecteur()[0]+listeParticule.get(i).getRayon());
 				int yCourantBas = (int) (listeParticule.get(i).getCoordonnees().getTabVecteur()[1]+listeParticule.get(i).getRayon());
 
+				// Modification des Maximums
 				if(MAXX<xCourantGauche){
 					MAXX=xCourantGauche;
 				}
 				if(MAXY<yCourantHaut){
 					MAXY=yCourantHaut;
 				}
-				if(minX>xCourantGauche){
-					minX=xCourantGauche;
-				}
-				if(minY>yCourantHaut){
-					minY=yCourantHaut;
-				}
 				if(MAXX<xCourantDroite){
 					MAXX=xCourantDroite;
 				}
 				if(MAXY<yCourantBas){
 					MAXY=yCourantBas;
+				}
+				
+				// Modification des minimums
+				if(minX>xCourantGauche){
+					minX=xCourantGauche;
+				}
+				if(minY>yCourantHaut){
+					minY=yCourantHaut;
 				}
 				if(minX>xCourantDroite){
 					minX=xCourantDroite;
@@ -119,7 +122,7 @@ public class ListeObjet {
 			tableauMinimaMaxima[2]=MAXX;
 			tableauMinimaMaxima[3]=MAXY;
 			//DEBUG //
-			if(Affichage.debug){System.out.println("LISTEOBJET Maxima/minima calculés : min X " + minX + " minY : " + minY + " MAXX " + MAXX + " MAXY" + MAXY);}
+			if(Affichage.debug){System.out.println("LISTEOBJET Maxima/minima calculés : min X " + minX + " minY : " + minY + " MAXX " + MAXX + " MAXY " + MAXY);}
 			//DEBUG//
 		} else {
 			// On range dans le tableau

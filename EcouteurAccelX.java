@@ -25,7 +25,7 @@ public class EcouteurAccelX implements ChangeListener{
 			Particule particule = (Particule)(fenetreAffichage.getJComboBox().getSelectedItem());
 			if(!fenetreAffichage.getBoutonStartPause().isSelected()){
 				// On lui attribue de nouvelles coordonnées : sa acceleration x depuis la fenetre principale et sa vitesse y inchangée
-				particule.setAcceleration(fenetreAffichage.getVitesX(),particule.getAccelerationY(),0.0);
+				particule.setAcceleration(fenetreAffichage.getAccelX(),particule.getAccelerationY(),0.0);
 			} else {
 				System.out.println("Vous ne pouvez pas changer les Accélérations en cours d'execution !");
 			}

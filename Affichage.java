@@ -78,7 +78,7 @@ public class Affichage extends JFrame {
 	JPanel conteneurSudEst;
 
 	//DEBUG
-	static boolean debug = false;
+	static boolean debug = true;
 
 	/** Constructeur de la fenêtre principale de type "Affichage"
 	 */
